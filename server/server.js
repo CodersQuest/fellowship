@@ -8,14 +8,14 @@ const local = require('passport-local');
 
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-const server = app.listen(PORT, () => {
-  console.log(`listening on port ${PORT} you peasant!!!`)
+const server = app.listen(port, () => {
+  console.log(`listening on port ${port} you peasant!!!`)
 });
 
 // Socket.io setup
