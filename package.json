@@ -7,7 +7,8 @@
     "url": "https://github.com/CodersQuest/fellowship.git"
   },
   "scripts": {
-    "start": "webpack --mode development --watch",
+    "start": "nodemon server/server.js",
+    "react-dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
