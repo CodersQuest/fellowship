@@ -5,12 +5,9 @@ const DBConfig = require('../config/config').mlabdb.uri;
 
 
 // Conncet to Mongo
-mongoose.connect(db)
+mongoose.connect(DBConfig)
   .then(() => {
     console.log('MongoDB Connected...');
   }).catch((err) => {
     console.log(err);
   });
-
-
-
