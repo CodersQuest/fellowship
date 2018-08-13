@@ -7,7 +7,8 @@
     "url": "https://github.com/CodersQuest/fellowship.git"
   },
   "scripts": {
-    "start": "webpack --mode development --watch",
+    "start": "nodemon server/server.js",
+    "react-dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,7 +30,8 @@
     "react-test-renderer": "^16.4.2",
     "style-loader": "^0.22.1",
     "webpack": "^4.16.5",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
     "axios": "^0.18.0",
