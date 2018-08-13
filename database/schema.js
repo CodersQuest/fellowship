@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-<<<<<<< HEAD
 /****************Schemas****************/
 
 var Schema = mongoose.Schema;
