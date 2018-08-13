@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
+<<<<<<< HEAD
 /****************Schemas****************/
 
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
+=======
+var Schema = mongoose.Schema;
+
+var user = new Schema({
+>>>>>>> 8234612592cdfcefddd064c3185a7945d0ecd27a
   username:  { type: String, unique: true },
   email: { type: String, unique: true },
   password:   String,
@@ -13,7 +19,11 @@ var userSchema = new Schema({
   currentGames: Number
 });
 
+<<<<<<< HEAD
 var gameSchema = new Schema({
+=======
+var games = new Schema({
+>>>>>>> 8234612592cdfcefddd064c3185a7945d0ecd27a
   gameName:  String,
   gameUrl: String,
   ownerId: String,
@@ -23,6 +33,7 @@ var gameSchema = new Schema({
   battlelog: [{ body: String, date: Date }]
 });
 
+<<<<<<< HEAD
 var tokenTemplateSchema = new Schema({
   imageUrl: String,
   name: String
@@ -75,3 +86,6 @@ module.exports.TokenTemplates = TokenTemplates;
 module.exports.Tokens = Tokens;
 module.exports.DMnotes = DMnotes;
 module.exports.Players = Players;
+=======
+//next few schema tokentemplates, game tokens, dm notes, combat log, players of games?
+>>>>>>> 8234612592cdfcefddd064c3185a7945d0ecd27a
