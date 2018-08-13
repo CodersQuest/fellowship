@@ -11,6 +11,3 @@ mongoose.connect(DBConfig)
   }).catch((err) => {
     console.log(err);
   });
-
-
-
