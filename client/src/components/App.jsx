@@ -45,12 +45,12 @@ class App extends Component {
         <h1>CodeQuest Fellowship</h1>
         <nav>
           <ul>
-          <li><Link to="/">Login</Link></li>
+          <li><Link to="/login">Login</Link></li>
           <li><Link to="/signup">Sign Up</Link></li>
           </ul>
         </nav>
         <Switch>
-          <Route exact path="/" render={renderLogin}/>
+          <Route exact path="/login" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>
         </Switch>
       </div>
