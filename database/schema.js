@@ -62,8 +62,8 @@ var User = mongoose.model('User', userSchema);
 var Games = mongoose.model('Games', gameSchema);
 var TokenTemplates = mongoose.model('TokenTemplates', tokenTemplateSchema);
 var Tokens = mongoose.model('Tokens', combatLogSchema);
-var DMnotes = mongoose.model('Tokens', DMnoteSchema);
-var Players = mongoose.model('Tokens', playersOfGamesSchema);
+var DMnotes = mongoose.model('DMnotes', DMnoteSchema);
+var Players = mongoose.model('Players', playersOfGamesSchema);
 
 /****************Models****************/
 
@@ -75,4 +75,3 @@ module.exports.TokenTemplates = TokenTemplates;
 module.exports.Tokens = Tokens;
 module.exports.DMnotes = DMnotes;
 module.exports.Players = Players;
-
