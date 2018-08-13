@@ -9,13 +9,13 @@
 
 const diceRoll = (max, bonus) => {
     const roll = Math.floor(Math.random() * (max - 1 + 1) + 1);
-    let string = '';
+    let rollStr = '';
     if (bonus) {
-        string = `rolled a ${roll} out of ${max} with a modifier of ${bonus} for a total of ${roll + bonus}`;
+        rollStr = `rolled a ${roll} out of ${max} with a modifier of ${bonus} for a total of ${roll + bonus}`;
     } else {
-        string = `rolled a ${roll} out of ${max} for a total of ${roll}`;
+        rollStr = `rolled a ${roll} out of ${max} for a total of ${roll}`;
     }
-    return string;
+    return rollStr;
 };
 
 // When a dice is rolled, a function must capture Username, as well as the context of the dice roll.
