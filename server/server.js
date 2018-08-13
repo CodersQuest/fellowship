@@ -19,5 +19,4 @@ const server = app.listen(port, () => {
 });
 
 // Socket.io setup
-const io = socket(app)
-
+const io = socket(server);
