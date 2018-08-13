@@ -1,6 +1,6 @@
 const Config = {
   mlabdb: {
-    uri: 'mongodb://username:password@ds145911.mlab.com:45911/budgetlife',
+    uri: 'mongodb://admin:hackreactor32@ds119662.mlab.com:19662/codequestfellowship',
   },
 };
 
