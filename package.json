@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "nodemon server/server.js",
-    "react-dev": "webpack-dev-server --open --mode development",
+    "react-dev": "webpack -d --watch",
     "build": "webpack --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
