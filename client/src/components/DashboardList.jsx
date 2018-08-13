@@ -1,15 +1,13 @@
 import React from 'react';
-import DashboardListEntry from './DashboardListEntry';
+import Gameslist from './GamesList.jsx';
 
 const DashboardList = () => {
   return (
     <div className="dashBoardList">
-      <DashboardListEntry />
+      <GamesList />
     </div>
 
   );
 };
 
 export default DashboardList;
-// 
-
