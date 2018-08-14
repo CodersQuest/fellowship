@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
+const DBConfig = require('../config/config').mlabdb.uri;
 
+/****************Connect to Mongo****************/
+mongoose.connect(DBConfig)
+  .then(() => {
+    console.log('MongoDB Connected...');
+  }).catch((err) => {
+    console.log(err);
+  });
+
+/****************Connect to Mongo****************/
 /****************Schemas****************/
 
 var Schema = mongoose.Schema;
@@ -23,6 +33,7 @@ var gameSchema = new Schema({
   battlelog: [{ body: String, date: Date }]
 });
 
+//templates for types of tokens
 var tokenTemplateSchema = new Schema({
   imageUrl: String,
   name: String
@@ -61,7 +72,8 @@ var playersOfGamesSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 var Games = mongoose.model('Games', gameSchema);
 var TokenTemplates = mongoose.model('TokenTemplates', tokenTemplateSchema);
-var Tokens = mongoose.model('Tokens', combatLogSchema);
+var Tokens = mongoose.model('Tokens', tokenSchema);
+var CombatLog = mongoose.model('CombatLog', combatLogSchema);
 var DMnotes = mongoose.model('DMnotes', DMnoteSchema);
 var Players = mongoose.model('Players', playersOfGamesSchema);
 
@@ -73,5 +85,6 @@ module.exports.User = User;
 module.exports.Games = Games;
 module.exports.TokenTemplates = TokenTemplates;
 module.exports.Tokens = Tokens;
+module.exports.CombatLog = CombatLog;
 module.exports.DMnotes = DMnotes;
 module.exports.Players = Players;

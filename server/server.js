@@ -68,9 +68,8 @@ app.get('/logout', function(req, res){
 
 //for signup
 app.post('/signup', (req, res) => {
-  // if email is valid and pw is valid, save to db
-  //may need to serialize the username/pw
-  // console.log('calld', req.body)
+  // if name and email are unique save to db
+  console.log('calld', req.body)
   var player = new db.User({
     username:  req.body.username,
     email: req.body.email,
@@ -78,7 +77,8 @@ app.post('/signup', (req, res) => {
     gamesOwned: 0,
     gamesPartOf: [],
     currentGames: 0
-  }).save().then(()=> {
+  })
+  player.save((err, user) => {
     //on succcessful signup, automatically login to new session:
     req.login(user, function(err) {
       if (err) { return next(err); }
