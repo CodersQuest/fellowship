@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GamesListItem = () => {
+const GamesListItem = ({game}) => {
   // Image of game
   // game name
   // description of game
@@ -11,14 +11,15 @@ const GamesListItem = () => {
 
         <ul>
           <li>
-            <div>
-              Game Name
+            <div className="gameName">
+              {game.gameName}
             </div>
-            <div>
-              Game Description
+            <div className="gameDescription">
+              {game.description}
             </div>
-            <img src={"https://southoldlibrary.org/wp-content/uploads/2017/09/Dragon.jpg"}/>
-
+            <div className="gameImage">
+              <img src={game.imageUrL}/>
+            </div>
           </li>
         </ul>
     </div>
@@ -26,3 +27,5 @@ const GamesListItem = () => {
 };
 
 export default GamesListItem;
+//
+//
