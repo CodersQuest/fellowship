@@ -9,10 +9,14 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.state = {
+          view: '',
           username: '',
-          password: ''
+          password: '',
+          email:''
       };
     this.handleChange = this.handleChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.viewChange = this.viewChange.bind(this);
   }
 
 
@@ -22,18 +26,40 @@ class App extends Component {
     });
   }
 
-  render() {
-    const { view, username, password } = this.state;
+  viewChange(text) {
+    this.setState({
+      view: text
+    })
+  }
+
+  onSubmit() {
+    //post request to db on submit button
+    const { view , email, username, password } = this.state;
+    axios.post(view, {
+      username: username,
+      password: password,
+      email: email
+    })
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      throw error;
+    });
+  }
+
+  render () {
+    const { email, username, password } = this.state;
 
     const renderLogin = () => {
       return (
-              <Login username={username} pw={password} handleChange={this.handleChange}/>
+              <Login onSubmit={this.onSubmit} username={username} pw={password} handleChange={this.handleChange}/>
             )
     }
 
     const renderSignUp = () => {
       return  ( 
-              <SignUp username={username} pw={password} handleChange={this.handleChange}/>
+              <SignUp onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
             )
     }
 
@@ -51,8 +77,8 @@ class App extends Component {
         <h1>CodeQuest Fellowship</h1>
         <nav>
           <ul>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/signup">Sign Up</Link></li>
+          <li onClick={()=> this.viewChange('/login')}><Link to="/login">Login</Link></li>
+          <li onClick={()=> this.viewChange('/signup')}><Link to="/signup">Sign Up</Link></li>
           <li><Link to ="/Dashboard">Dashboard</Link></li>
           </ul>
         </nav>
