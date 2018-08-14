@@ -1,5 +1,23 @@
 const mongoose = require('mongoose');
 
+/****************Connect to Mongo****************/
+
+/*mongoose.connect('mongodb://localhost/dragons');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('the mongod sends dragons');
+});*/
+const DBConfig = require('../config/config').mlabdb.uri;	
+ // Conncet to Mongo	
+mongoose.connect(DBConfig)	
+  .then(() => {	
+    console.log('MongoDB Connected you peasants...');	
+  }).catch((err) => {	
+    console.log(err);	
+  });
+
+/****************Connect to Mongo****************/
 /****************Schemas****************/
 
 var Schema = mongoose.Schema;
@@ -23,6 +41,7 @@ var gameSchema = new Schema({
   battlelog: [{ body: String, date: Date }]
 });
 
+//templates for types of tokens
 var tokenTemplateSchema = new Schema({
   imageUrl: String,
   name: String
@@ -58,20 +77,22 @@ var playersOfGamesSchema = new Schema({
 
 /****************Models****************/
 
-var User = mongoose.model('User', userSchema);
-var Games = mongoose.model('Games', gameSchema);
+var User = mongoose.model('Users', userSchema);
+var Game = mongoose.model('Games', gameSchema);
 var TokenTemplates = mongoose.model('TokenTemplates', tokenTemplateSchema);
-var Tokens = mongoose.model('Tokens', combatLogSchema);
-var DMnotes = mongoose.model('DMnotes', DMnoteSchema);
-var Players = mongoose.model('Players', playersOfGamesSchema);
+var Token = mongoose.model('Tokens', tokenSchema);
+var CombatLog = mongoose.model('CombatLog', combatLogSchema);
+var DMnote = mongoose.model('DMnotes', DMnoteSchema);
+var Player = mongoose.model('Players', playersOfGamesSchema);
 
 /****************Models****************/
 
 /****************Exports****************/
 
 module.exports.User = User;
-module.exports.Games = Games;
+module.exports.Game = Game;
 module.exports.TokenTemplates = TokenTemplates;
-module.exports.Tokens = Tokens;
-module.exports.DMnotes = DMnotes;
-module.exports.Players = Players;
+module.exports.Token = Token;
+module.exports.CombatLog = CombatLog;
+module.exports.DMnote = DMnote;
+module.exports.Player = Player;
