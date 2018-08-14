@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
+import Dashboard from './Dashboard.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -36,6 +37,11 @@ class App extends Component {
             )
     }
 
+    const renderDashboard = () => {
+      return  ( 
+              <Dashboard />
+            )
+    }
 
     return (
       
@@ -47,11 +53,13 @@ class App extends Component {
           <ul>
           <li><Link to="/">Login</Link></li>
           <li><Link to="/signup">Sign Up</Link></li>
+          <li><Link to ="/Dashboard">Dashboard</Link></li>
           </ul>
         </nav>
         <Switch>
           <Route exact path="/" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>
+          <Route path="/dashboard" render={renderDashboard}/>
         </Switch>
       </div>
     </Router>
