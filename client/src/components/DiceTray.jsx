@@ -4,10 +4,10 @@ import React from 'react';
 // Will also pass down click events to each dice component.
 // Utilize Flexbox for styling this container.
 
-const DiceTray = (props) => {
+const DiceTray = (props) => (
   <div>
     <h1>DICE TRAY AREA</h1>
   </div>
-}
+)
 
 export default DiceTray;
