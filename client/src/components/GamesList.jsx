@@ -3,9 +3,10 @@ import GamesListItem from './GamesListItem.jsx';
 
 const GamesList = () => {
   return (
-    <GamesListItem />
+    <div className="gamesList">
+      <GamesListItem />
+    </div>
   );
 };
 
 export default GamesList;
-//
