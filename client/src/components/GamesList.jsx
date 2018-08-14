@@ -1,12 +1,22 @@
 import React from 'react';
 import GamesListItem from './GamesListItem.jsx';
 
-const GamesList = () => {
+
+const GamesList = ({games}) => {
   return (
     <div className="gamesList">
-      <GamesListItem />
+     {games.map(function (game) {
+       return (
+
+        <GamesListItem 
+          game={game} key={game._id}
+        />
+       )
+     })
+     }
     </div>
   );
 };
 
 export default GamesList;
+//
