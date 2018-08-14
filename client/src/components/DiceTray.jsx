@@ -9,3 +9,5 @@ const DiceTray = (props) => {
     <h1>DICE TRAY AREA</h1>
   </div>
 }
+
+export default DiceTray;

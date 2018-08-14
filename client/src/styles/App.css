@@ -1,0 +1,24 @@
+*, body, html {
+  margin: 0;
+  padding: 0;
+}
+
+#gameContainer {
+  display: grid;
+  grid-template-columns: [left] 100px [main] auto [right] 300px;
+  grid-template-rows: [top] 100px [buffer] 10px [main] auto [bottom] 200px;
+}
+
+canvas {
+  background: white;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#diceTray {
+  grid-column-start: main;
+  grid-column-end: main;
+  grid-row-start: bottom;
+  grid-row-end: bottom;
+}

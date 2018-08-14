@@ -16,3 +16,5 @@ class GameOptions extends React.Component {
     )
   }
 }
+
+export default GameOptions;
