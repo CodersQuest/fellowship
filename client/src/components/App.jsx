@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
+import GameRoom from './GameRoom.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -69,6 +70,12 @@ class App extends Component {
             )
     }
 
+    const renderGameRoom = () => {
+      return (
+        <GameRoom />
+      )
+    }
+
     return (
       
     <Router>
@@ -86,6 +93,7 @@ class App extends Component {
           <Route exact path="/login" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>
           <Route path="/dashboard" render={renderDashboard}/>
+          <Route path="/games" render={renderGameRoom}/>
         </Switch>
       </div>
     </Router>
