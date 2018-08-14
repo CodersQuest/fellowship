@@ -58,7 +58,7 @@ app.post('/login',
   (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    res.redirect('/dashboard/' + req.user.username);
+    res.redirect('/dashboard/' /*+ req.user.username*/);
   });
 
 //logout
@@ -70,7 +70,7 @@ app.get('/logout', function(req, res){
 //for signup
 app.post('/signup', (req, res) => {
   // if name and email are unique save to db
-  // console.log('calld', req.body)
+  console.log('called', req.body)
   var player = new db.User({
     username:  req.body.username,
     email: req.body.email,
@@ -84,7 +84,7 @@ app.post('/signup', (req, res) => {
     req.login(user, function(err) {
       // console.log(user, 'user')
       if (err) { throw err; }
-      return res.redirect('/dashboard/' + req.user.username);
+      return res.redirect('/dashboard/' /*+ req.user.username*/);
     });
   })
 });
