@@ -2,12 +2,20 @@ const mongoose = require('mongoose');
 
 /****************Connect to Mongo****************/
 
-mongoose.connect('mongodb://localhost/dragons');
+/*mongoose.connect('mongodb://localhost/dragons');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('the mongod sends dragons');
-});
+});*/
+const DBConfig = require('../config/config').mlabdb.uri;	
+ // Conncet to Mongo	
+mongoose.connect(DBConfig)	
+  .then(() => {	
+    console.log('MongoDB Connected you peasants...');	
+  }).catch((err) => {	
+    console.log(err);	
+  });
 
 /****************Connect to Mongo****************/
 /****************Schemas****************/
