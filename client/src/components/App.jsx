@@ -93,7 +93,7 @@ class App extends Component {
           <Route exact path="/login" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>
           <Route path="/dashboard" render={renderDashboard}/>
-          <Route path="/games" render={renderGameRoom}/>
+          <Route path="/games/:game*" render={renderGameRoom}/>
         </Switch>
       </div>
     </Router>

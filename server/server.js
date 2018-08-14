@@ -6,6 +6,7 @@ const session = require('express-session');
 const cookieParser = require ('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const path = require('path');
 
 
 const app = express();
@@ -88,6 +89,17 @@ app.post('/signup', (req, res) => {
   })
 });
 
+app.get('/games/:game', (req, res) => {
+  if(req.params.game) {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    });
+  } else {
+    res.redirect('/dashboard');
+  }
+})
 /***********Passport************/
 
 /***********Listening to Server************/

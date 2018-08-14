@@ -16,3 +16,5 @@ class BattleLog extends React.Component {
     )
   }
 }
+
+export default BattleLog;

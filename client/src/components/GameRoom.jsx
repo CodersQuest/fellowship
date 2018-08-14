@@ -1,5 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import BattleMap from './BattleMap.jsx';
+import BattleLog from "./BattleLog.jsx";
+import GameProfiles from "./GameProfiles.jsx";
+import GameOptions from "./GameOptions.jsx";
+import DiceTray from "./DiceTray.jsx";
 //! need to import: BattleLog, GameOptions, GameProfiles, DiceTray
 
 // Will need to utilize CSS Grid to layout all subcomponents
@@ -20,7 +24,11 @@ class GameRoom extends Component {
     return (
       <Fragment>
         <div id="gameContainer">
-          <div>GAME SPACE</div>
+          <BattleMap />
+          <BattleLog />
+          <GameProfiles />
+          <GameOptions />
+          <DiceTray />
         </div>
       </Fragment>
     )
