@@ -24,10 +24,20 @@ app.use(passport.session());
 /********Middleware*************/
 
 /***********Passport************/
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 //strategy
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    //may need to deserialize the suername/pw
     db.User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
@@ -47,20 +57,49 @@ app.post('/login',
   (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    res.redirect('/users/' + req.user.username);
+    res.redirect('/dashboard/' + req.user.username);
+  });
+
+//logout
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
   });
 
 //for signup
+app.post('/signup', (req, res) => {
+  // if email is valid and pw is valid, save to db
+  //may need to serialize the username/pw
+  var player = new db.User({
+    username:  req.body.username,
+    email: req.body.email,
+    password:   req.body.password,
+    gamesOwned: 0,
+    gamesPartOf: [],
+    currentGames: 0
+  }).save().then(()=> {
+    //on succcessful signup, automatically login to new sesion:
+    req.login(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/dashboard/' + req.user.username);
+    });
+  })
+});
 
 /***********Passport************/
 
+/***********Listening to Server************/
 const server = app.listen(port, () => {
   console.log(`listening on port ${port} you peasant!!!`)
 });
 
-// Socket.io setup
+/***********Listening to Server************/
+
+/***********Socket.io setup************/
 const io = socket(server);
 
 io.on('connection', (socket) => {
   console.log('made socket connection: ', socket.id);
 });
+
+/***********Socket.io setup************/
