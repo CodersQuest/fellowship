@@ -5,7 +5,7 @@ import React from 'react';
 // Utilize Flexbox for styling this container.
 
 const DiceTray = (props) => (
-  <div>
+  <div id="diceTray">
     <h1>DICE TRAY AREA</h1>
   </div>
 )

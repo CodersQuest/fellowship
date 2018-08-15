@@ -10,7 +10,7 @@ class BattleLog extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="battleLog">
         <h1>COMPONENT TO RENDER ALL BATTLE LOG MESSAGES</h1>
       </div>
     )
