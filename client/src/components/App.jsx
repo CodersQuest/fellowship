@@ -86,7 +86,7 @@ class App extends Component {
           <ul>
           <li onClick={()=> this.viewChange('/login')}><Link to="/login">Login</Link></li>
           <li onClick={()=> this.viewChange('/signup')}><Link to="/signup">Sign Up</Link></li>
-          <li><Link to ="/Dashboard">Dashboard</Link></li>
+          <li><Link to ="/dashboard">Dashboard</Link></li>
           </ul>
         </nav>
         <Switch>
