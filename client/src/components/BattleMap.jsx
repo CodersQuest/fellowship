@@ -6,7 +6,7 @@ class BattleMap extends Component {
 
     this.state = {
       boardWidth: 1200,
-      boardHeight: 800,
+      boardHeight: 900,
       padding: 0,
       canvasWidth: 0,
       canvasHeight: 0
@@ -36,7 +36,7 @@ class BattleMap extends Component {
         ctx.moveTo(p, 0.5 + x + p);
         ctx.lineTo(bw + p, 0.5 + x + p);
     }
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "#3d3d3d";
     ctx.stroke();
   }
   

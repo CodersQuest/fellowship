@@ -18,8 +18,6 @@
 
 canvas {
   background: white;
-  border-color: black;
-  position: absolute;
 }
 
 #diceTray {
@@ -50,7 +48,8 @@ canvas {
 
 #battleMap {
   grid-area: game;
-  padding: 10px;
+  padding-left: 10em;
+  overflow: auto;
 }
 
 #battleLog {
