@@ -1,5 +1,4 @@
 
-
 const dashboardData = [
   {
     gameName: "Kalei's Korner", 
@@ -28,4 +27,4 @@ const dashboardData = [
   }
 ]
 
-export default dashboardData;//
+export default dashboardData;

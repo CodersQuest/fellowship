@@ -10,17 +10,31 @@ import { userInfo } from 'os';
 // 
 class Dashboard extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {
+      newGameValue: '',
+      joinGameValue: '',
+    };
     console.log(props);
     this.createNewGame = this.createNewGame.bind(this);
   }
   
   // componentDidMount method to retrive game data
   componentDidMount() {
-        
+
   }
 
-  createNewGame() {
+// createNewGame allows a user to create a brand new game room 
+// Gets called and receives 'game name' value from input
+// Must check against maxAllowedGames = 5
+// If 'game name' is unique then creates a new game room using 
+// unique 'game name' as its identifier
+/**
+ * 
+ * @param {Object} player represents logged in player passed to
+ * 'Dashboard' as Prop
+ */
+  createNewGame(player, ) {
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
@@ -29,8 +43,9 @@ class Dashboard extends Component {
     if(user.gamesPartof.length <= 5) {
       // if yes redirect to new game
       
+    } else {
+      // notifiy user that they have reached max allowed games
     }
-    // else do nothing
   }
 
   joinCurrentGame() {
