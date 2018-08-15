@@ -17,7 +17,6 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(cookieParser());
 app.use(session({ secret: 'anotherwellkeptsecret' }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -88,7 +87,10 @@ app.post('/signup', (req, res) => {
     });
   })
 });
+/***********Passport************/
 
+
+/***********Requests************/
 app.get('/games/:game', (req, res) => {
   if(req.params.game) {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
@@ -100,7 +102,8 @@ app.get('/games/:game', (req, res) => {
     res.redirect('/dashboard');
   }
 })
-/***********Passport************/
+
+/***********Requests************/
 
 /***********Listening to Server************/
 const server = app.listen(port, () => {
