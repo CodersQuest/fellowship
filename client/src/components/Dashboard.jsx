@@ -3,7 +3,7 @@ import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import data from './dashBoardDummyData.js';
-import { userInfo } from 'os';
+import users from './userData';
 
 // get request on load
 
@@ -34,7 +34,7 @@ class Dashboard extends Component {
  * @param {Object} player represents logged in player passed to
  * 'Dashboard' as Prop
  */
-  createNewGame(player, ) {
+  createNewGame(player) {
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
