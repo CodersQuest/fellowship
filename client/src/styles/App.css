@@ -4,9 +4,7 @@
 }
 
 #gameContainer {
-  display: grid;
-  grid-template-columns: [left] 100px [main] auto [right] 300px;
-  grid-template-rows: [top] 100px [buffer] 10px [main] auto [bottom] 200px;
+  display: flex;
 }
 
 canvas {
