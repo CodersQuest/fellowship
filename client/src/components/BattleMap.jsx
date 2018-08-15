@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 class BattleMap extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       boardWidth: 1200,
       boardHeight: 800,
@@ -11,16 +12,11 @@ class BattleMap extends Component {
       canvasHeight: this.state.boardHeight + 1
     }
   }
+
   componentDidMount() {
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext("2d");
     this.drawBoard();
-  }
-  checkState() {
-    return this.state.boardWidth ? 
-    <div id="canvas">
-    <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
-  </div> : <div>MapME</div>;
   }
 
   drawBoard(){
@@ -43,7 +39,9 @@ class BattleMap extends Component {
   }
   render() {
     return (
-      { this.checkState() }
+      <div id="canvas">
+        <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
+      </div>
     );
   }
 }
