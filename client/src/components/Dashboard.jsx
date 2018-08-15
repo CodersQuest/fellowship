@@ -32,15 +32,34 @@ class Dashboard extends Component {
     }
     // else do nothing
   }
+
+  joinCurrentGame() {
+    
+  }
   
   render () {
     console.log(data);
     return (
       <div className="dashBoard">
       <h1> Dashboard </h1>
+        <div className="player-options">
+          <div className="join-game">
+            <form>
+              <label>Enter Game Name:</label>
+              <input
+                type="text" name="game-name" />
+            </form>
+            <button
+              type="submit"
+              onClick={() => this.joinCurrentGame}
+              >Join Game
+          </button>
+          </div>
+
         <button type="submit" onClick={() => this.createNewGame}>
           New Game
         </button>
+        </div>
         <GamesList games={data} />
       </div>
     );
