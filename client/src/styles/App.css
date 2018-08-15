@@ -4,13 +4,14 @@
 }
 
 #gameContainer {
-  display: grid;
-  grid-template-columns: [left] 100px [main] auto [right] 300px;
-  grid-template-rows: [top] 100px [buffer] 10px [main] auto [bottom] 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 canvas {
   background: white;
+  border-color: black;
   position: absolute;
   height: 100%;
   width: 100%;
