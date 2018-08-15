@@ -5,8 +5,8 @@ class BattleMap extends Component {
     super(props);
 
     this.state = {
-      boardWidth: 1200,
-      boardHeight: 900,
+      boardWidth: 1500,
+      boardHeight: 1000,
       padding: 0,
       canvasWidth: 0,
       canvasHeight: 0
