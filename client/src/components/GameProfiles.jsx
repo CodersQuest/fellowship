@@ -11,7 +11,7 @@ class GameProfiles extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="userProfiles">
         <h1>USER PROFILES</h1>
       </div>
     )

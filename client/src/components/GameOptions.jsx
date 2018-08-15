@@ -10,7 +10,7 @@ class GameOptions extends React.Component {
 
   render() {
     return (
-      <div> 
+      <div id="settings"> 
         <h1>GAME OPTIONS/LEAVE GAME</h1>
       </div>
     )

@@ -4,24 +4,27 @@
 }
 
 #gameContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  width: 80vw;
+  height: 80vh;
+  grid-gap: 1em;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  grid-template-areas: 
+  "users users settings"
+  "game game log"
+  ". dice logchat"
 }
 
 canvas {
   background: white;
   border-color: black;
   position: absolute;
-  height: 100%;
-  width: 100%;
 }
 
 #diceTray {
-  grid-column-start: main;
-  grid-column-end: main;
-  grid-row-start: bottom;
-  grid-row-end: bottom;
+  grid-area: dice;
+  background-color: slategray;
 }
 
 .wrapper {
@@ -44,3 +47,24 @@ canvas {
   font-size: 40px;
   font-weight: bold;
 }
+
+#battleMap {
+  grid-area: game;
+  padding: 10px;
+}
+
+#battleLog {
+  grid-area: log;
+  background-color: aquamarine;
+}
+
+#userProfiles {
+  grid-area: users;
+  background-color: aquamarine;
+}
+
+#settings {
+  grid-area: settings;
+  background-color: aquamarine;
+}
+
