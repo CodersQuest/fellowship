@@ -12,13 +12,15 @@ class BattleMap extends Component {
     }
   }
   componentDidMount() {
-    this.setState({
-      boardWidth: 1200,
-      boardHeight: 800,
-    })
     const canvas = this.refs.canvas;
     const ctx = canvas.getContext("2d");
     this.drawBoard();
+  }
+  checkState() {
+    return this.state.boardWidth ? 
+    <div id="canvas">
+    <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
+  </div> : <div>MapME</div>;
   }
 
   drawBoard(){
@@ -41,10 +43,8 @@ class BattleMap extends Component {
   }
   render() {
     return (
-      <div id="canvas">
-        <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
-      </div>
-    )
+      { this.checkState() }
+    );
   }
 }
 
