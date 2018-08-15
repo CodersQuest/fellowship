@@ -23,6 +23,10 @@ canvas {
 #diceTray {
   grid-area: dice;
   background-color: slategray;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .wrapper {
@@ -48,7 +52,7 @@ canvas {
 
 #battleMap {
   grid-area: game;
-  padding-left: 10em;
+  padding-left: 15em;
   overflow: auto;
 }
 
