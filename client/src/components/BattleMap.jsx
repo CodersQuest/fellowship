@@ -19,8 +19,22 @@ class BattleMap extends Component {
       canvasHeight: this.state.boardHeight + this.state.padding + 1
     })
     var canvas = this.refs.canvas;
-    var context = canvas.getContext("2d");
-    this.drawBoard(context);
+    var ctx = canvas.getContext("2d");
+    const bw = this.state.boardWidth;
+    const bh = this.state.boardHeight;
+    const p = this.state.padding;
+
+    for (var x = 0; x <= bw; x += 50) {
+        ctx.moveTo(0.5 + x + p, p);
+        ctx.lineTo(0.5 + x + p, bh + p);
+    }
+
+    for (var x = 0; x <= bh; x += 50) {
+        ctx.moveTo(p, 0.5 + x + p);
+        ctx.lineTo(bw + p, 0.5 + x + p);
+    }
+    ctx.strokeStyle = "black";
+    ctx.stroke();
   }
 
   drawBoard(ctx){
