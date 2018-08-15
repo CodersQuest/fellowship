@@ -23,3 +23,24 @@ canvas {
   grid-row-start: bottom;
   grid-row-end: bottom;
 }
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-gap: 1em;
+  grid-row-gap: 1em;
+}
+
+.nested {
+  display: grid;
+}
+
+.wrapper > div {
+  background: #eee;
+  padding: 1em;
+}
+
+.gameName {
+  font-size: 40px;
+  font-weight: bold;
+}
