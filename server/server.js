@@ -66,11 +66,14 @@ passport.deserializeUser(function(id, done) {
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
+    const loggedInUserObj = req.user;
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     console.log(req.session, 'sessh')
     console.log(req.user, ': the req.user logged in')
-    res.redirect('/');
+
+    // on successful login send user to dashboard
+    res.redirect('/dashboard/' + loggedInUserObj.username);
   });
 
 //logout
@@ -122,6 +125,24 @@ app.get('/checkauth', auth, function(req, res){
     })
   }
 });
+
+
+app.get('/me', auth, function(req, res){
+
+  if (req.user) {
+
+
+    res.status(200).json({
+        status: 'Login successful!',
+        user: req.user
+    });
+  }else {
+    res.status(401).json({
+      status:'noooooo'
+    })
+  }
+});
+
 /***********Passport************/
 
 /***********Redirects************/
@@ -151,6 +172,14 @@ app.get('/games/:game', auth, (req, res) => {
   }
 })
 
+app.get('/dashboard/:id', auth, (req, res) => {
+  if (req.user) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
+});
+
 /***********Requests************/
 
 /***********Listening to Server************/
@@ -164,7 +193,12 @@ const server = app.listen(port, () => {
 const io = socket(server);
 
 io.on('connection', (socket) => {
-  console.log('made socket connection: ', socket.id);
+  console.log('Client has connected: ', socket.id);
+});
+
+
+io.on('login', (socket) => {
+
 });
 
 /***********Socket.io setup************/

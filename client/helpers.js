@@ -47,4 +47,10 @@ const createMessage = (user, rollType, diceVal, bonus) => {
 // Game Board Logic
 
 
+/***************
+ * DASHBOARD METHODS
+ **************/
+
+
+
 module.exports.diceRoll = diceRoll;
