@@ -66,7 +66,7 @@ passport.deserializeUser(function(id, done) {
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
-    const loggedInUserObj = req.user.
+    const loggedInUserObj = req.user;
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     console.log(req.session, 'sessh')
@@ -153,6 +153,14 @@ app.get('/games/:game', auth, (req, res) => {
     res.redirect('/dashboard');
   }
 })
+
+app.get('/dashboard/:id', auth, (req, res) => {
+  if (req.user) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(500);
+  }
+});
 
 /***********Requests************/
 

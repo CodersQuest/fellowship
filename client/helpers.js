@@ -50,45 +50,7 @@ const createMessage = (user, rollType, diceVal, bonus) => {
 /***************
  * DASHBOARD METHODS
  **************/
-const initUserSocket = () => {
-  const socket = openSocket('http://localhost:3000');
-}
 
-const deleteUserGame = (gameName) => {
-  //remove game from Dashboard View
-
-  //post updates to server for user to update 'gamesOwned'
-   // 'currentGames', 'gamesPartOf' on user object
-  // post updates to server for Game Object if this user is 
-    // game Owner
-}
-
-// createNewGame allows a user to create a brand new game room 
-// Gets called and receives 'game name' value from input
-// Must check against maxAllowedGames = 5
-// If 'game name' is unique then creates a new game room using 
-// unique 'game name' as its identifier
-/**
-* 
-* @param {Object} player represents logged in player passed to
-* 'Dashboard' as Prop
-*/
-const createNewGame = (player) => {
-  // user can only be a part of a max of 5 games
-  // chck the users games array
-  // route to the boardview
-
-  // check gamesPartOf array length < 5
-  if(user.gamesPartof.length <= 5) {
-    // if yes redirect to new game
-    
-  } else {
-    // notifiy user that they have reached max allowed games
-  }
-}
 
 
 module.exports.diceRoll = diceRoll;
-module.exports.initUserSocket = initUserSocket;
-module.exports.deleteUserGame = deleteUserGame;
-module.exports.createNewGame = createNewGame;

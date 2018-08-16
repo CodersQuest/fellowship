@@ -85,9 +85,6 @@ class App extends Component {
       return  ( 
               <Dashboard
                 currentState = { currentState }
-                createNewGame = { Helpers.createNewGame }
-                deleteUserGame = { Helpers.deleteUserGame }
-                initUserSocket = { Helpers.initUserSocket }
               />
             )
     }
