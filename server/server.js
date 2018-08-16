@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(session({
   secret: 'anotherwellkeptsecret',
-  cookie: { maxAge: 600000 },
+  cookie: { maxAge: 60000 },
   resave: false,
   saveUninitialized: true
 }));
@@ -30,15 +30,16 @@ app.use(passport.session());
 /********Middleware*************/
 
 /***********Passport************/
+
 //strategy
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    //may need to deserialize the suername/pw
     db.User.findOne({ username: username }, function (err, user) {
       if (err) { return done(err); }
       else if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
+      //needs better password checker...we shouldn't be storing passwords in db as-is
       else if (user.password !== password) {
         return done(null, false, { message: 'Incorrect password.' });
       } else {
@@ -48,6 +49,7 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
@@ -59,14 +61,16 @@ passport.deserializeUser(function(id, done) {
 });
 
 
+
 //for login
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
+    console.log(req.session, 'sessh')
     console.log(req.user, ': the req.user logged in')
-    res.redirect('/dashboard');
+    res.redirect('/');
   });
 
 //logout
@@ -82,7 +86,7 @@ app.get('/logout', function(req, res){
 //for signup
 app.post('/signup', (req, res) => {
   // if name and email are unique save to db
-  console.log('called', req.body)
+  // console.log('called', req.body)
   var player = new db.User({
     username:  req.body.username,
     email: req.body.email,
@@ -100,6 +104,23 @@ app.post('/signup', (req, res) => {
       return res.redirect('/dashboard' /*+ req.user.username*/);
     });
   })
+});
+
+
+app.get('/checkauth', auth, function(req, res){
+
+  if (req.user) {
+
+
+    res.status(200).json({
+        status: 'Login successful!',
+        sess: req.session
+    });
+  }else {
+    res.status(401).json({
+      status:'noooooo'
+    })
+  }
 });
 /***********Passport************/
 

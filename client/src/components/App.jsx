@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -13,7 +13,8 @@ class App extends Component {
           view: '',
           username: '',
           password: '',
-          email:''
+          email:'',
+          loggedIn: false
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -33,6 +34,15 @@ class App extends Component {
     })
   }
 
+  componentDidMount () {
+    axios.get('/checkauth').then(res=> {
+      this.setState({loggedIn: true})
+      console.log(res.data, 'res from checkauth')
+    }).catch(error => {
+      <Redirect to='/login'/>
+    })
+  }
+
   onSubmit() {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
@@ -42,7 +52,7 @@ class App extends Component {
       email: email
     })
     .then(response => {
-      console.log(response);
+      console.log(response)
     })
     .catch(error => {
       throw error;
@@ -75,7 +85,9 @@ class App extends Component {
         <GameRoom />
       )
     }
-
+    //TODO:
+    //if loggedIn === true, redirect to dashboard
+    //if loggedIn ===true, render logout link
     return (
       
     <Router>
