@@ -8,7 +8,7 @@ const Login = ({handleChange, onSubmit}) => (
     <input onChange={handleChange} type="text" id="display-name" name="username"  required />
     <label htmlFor="display-password"> Password:</label>
     <span>
-    <input onChange={handleChange} type="password" name="password" autocomplete="off" required/>
+    <input onChange={handleChange} type="password" name="password" autoComplete="off" required/>
     
     </span>    
     <button onClick={onSubmit} name="submit" type="submit" value="submit-true">
