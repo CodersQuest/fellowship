@@ -31,16 +31,6 @@ app.use(passport.session());
 
 /***********Passport************/
 
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  db.User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
 //strategy
 passport.use(new LocalStrategy(
   function(username, password, done) {
@@ -59,6 +49,16 @@ passport.use(new LocalStrategy(
     });
   }
 ));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 
 
