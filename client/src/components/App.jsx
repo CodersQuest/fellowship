@@ -6,6 +6,7 @@ import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
+import Helpers from '../../helpers';
 
 
 class App extends Component {
@@ -57,16 +58,11 @@ class App extends Component {
     .then(response => {
       console.log(response);
       //init the client socket connection.
-      
+
     })
     .catch(error => {
       throw error;
     });
-  }
-
-  initUserSocket() {
-    const socket = openSocket('http://localhost:3000');
-
   }
 
   render () {
@@ -85,8 +81,14 @@ class App extends Component {
     }
 
     const renderDashboard = () => {
+      let currentState = this.state;
       return  ( 
-              <Dashboard />
+              <Dashboard
+                currentState = { currentState }
+                createNewGame = { Helpers.createNewGame }
+                deleteUserGame = { Helpers.deleteUserGame }
+                initUserSocket = { Helpers.initUserSocket }
+              />
             )
     }
 
