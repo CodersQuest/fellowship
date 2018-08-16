@@ -14,6 +14,8 @@ class Dashboard extends Component {
     this.state = {
       newGameValue: '',
       joinGameValue: '',
+      socketId: ''
+      
     };
     console.log(props);
     this.createNewGame = this.createNewGame.bind(this);
@@ -68,7 +70,7 @@ class Dashboard extends Component {
               type="submit"
               onClick={() => this.joinCurrentGame}
               >Join Game
-          </button>
+            </button>
           </div>
 
         <button type="submit" onClick={() => this.createNewGame}>

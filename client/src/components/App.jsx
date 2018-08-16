@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import openSocket from 'socket.io-client'; 
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
+
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class App extends Component {
           username: '',
           password: '',
           email:'',
-          loggedIn: false
+          loggedIn: false,
+          clientSocketId: 0,
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -52,11 +55,18 @@ class App extends Component {
       email: email
     })
     .then(response => {
-      console.log(response)
+      console.log(response);
+      //init the client socket connection.
+      
     })
     .catch(error => {
       throw error;
     });
+  }
+
+  initUserSocket() {
+    const socket = openSocket('http://localhost:3000');
+
   }
 
   render () {
