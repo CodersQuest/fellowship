@@ -19,48 +19,22 @@ class Dashboard extends Component {
     };
     console.log(props);
     this.createNewGame = this.createNewGame.bind(this);
-  }
-  
-  // componentDidMount method to retrive game data
-  componentDidMount() {
-
+    this.initUserSocket = this.initUserSocket.bind(this);
+    this.deleteUserGame = this.deleteUserGame.bind(this);
   }
 
-// createNewGame allows a user to create a brand new game room 
-// Gets called and receives 'game name' value from input
-// Must check against maxAllowedGames = 5
-// If 'game name' is unique then creates a new game room using 
-// unique 'game name' as its identifier
-/**
- * 
- * @param {Object} player represents logged in player passed to
- * 'Dashboard' as Prop
- */
-  createNewGame(player) {
-    // user can only be a part of a max of 5 games
-    // chck the users games array
-    // route to the boardview
-
-    // check gamesPartOf array length < 5
-    if(user.gamesPartof.length <= 5) {
-      // if yes redirect to new game
-      
-    } else {
-      // notifiy user that they have reached max allowed games
-    }
-  }
-
-  joinCurrentGame() {
+  // joinCurrentGame() {
     
-  }
+  // }
+  
+  
   
   render () {
-    console.log(data);
     return (
       <div className="dashBoard">
       <h1> Dashboard </h1>
         <div className="player-options">
-          <div className="join-game">
+          {/* <div className="join-game">
             <form>
               <label>Enter Game Name:</label>
               <input
@@ -69,9 +43,10 @@ class Dashboard extends Component {
             <button
               type="submit"
               onClick={() => this.joinCurrentGame}
+
               >Join Game
             </button>
-          </div>
+          </div> */}
 
         <button type="submit" onClick={() => this.createNewGame}>
           New Game

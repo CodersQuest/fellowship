@@ -66,11 +66,14 @@ passport.deserializeUser(function(id, done) {
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   (req, res) => {
+    const loggedInUserObj = req.user.
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     console.log(req.session, 'sessh')
     console.log(req.user, ': the req.user logged in')
-    res.redirect('/');
+
+    // on successful login send user to dashboard
+    res.redirect('/dashboard/' + loggedInUserObj.username);
   });
 
 //logout
