@@ -3,7 +3,7 @@ import React from 'react';
 const Login = ({handleChange, onSubmit}) => (
   <div>
     <h4>Login</h4>
-    <form>
+    <form method="POST" action='/login'>
     <label htmlFor="display-name"> Name: </label>
     <input onChange={handleChange} type="text" id="display-name" name="username"  required />
     <label htmlFor="display-password"> Password:</label>

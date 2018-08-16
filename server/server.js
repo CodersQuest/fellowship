@@ -125,6 +125,24 @@ app.get('/checkauth', auth, function(req, res){
     })
   }
 });
+
+
+app.get('/me', auth, function(req, res){
+
+  if (req.user) {
+
+
+    res.status(200).json({
+        status: 'Login successful!',
+        user: req.user
+    });
+  }else {
+    res.status(401).json({
+      status:'noooooo'
+    })
+  }
+});
+
 /***********Passport************/
 
 /***********Redirects************/

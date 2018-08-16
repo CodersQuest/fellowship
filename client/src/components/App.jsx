@@ -47,7 +47,8 @@ class App extends Component {
     })
   }
 
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault();
     //post request to db on submit button
     const { view , email, username, password } = this.state;
     axios.post(view, {
@@ -67,10 +68,11 @@ class App extends Component {
 
   render () {
     const { email, username, password } = this.state;
-
+    let currentState = this.state;
+    
     const renderLogin = () => {
       return (
-              <Login onSubmit={this.onSubmit} username={username} pw={password} handleChange={this.handleChange}/>
+              <Login username={username} pw={password} handleChange={this.handleChange}/>
             )
     }
 
@@ -81,7 +83,7 @@ class App extends Component {
     }
 
     const renderDashboard = () => {
-      let currentState = this.state;
+      
       return  ( 
               <Dashboard
                 currentState = { currentState }

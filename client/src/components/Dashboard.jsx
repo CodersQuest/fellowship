@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import users from './userData';
+import { PromiseProvider } from 'mongoose';
 
 // get request on load
 
@@ -12,12 +14,11 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      authUser: props.username,
-      isAuth: props.loggedIn,
       createdGame: '',
       createdGameDesc: '',
       createdGameImg: '',
-      userGamesData:[]
+      userGamesData:[],
+      userObject: null,
     }
     console.log(props);
     this.createNewGame = this.createNewGame.bind(this);
@@ -25,6 +26,23 @@ class Dashboard extends Component {
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
+  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps, this.props)
+
+  //     this.setState({
+  //       isAuth: nextProps.loggedIn
+  //     })
+    
+  // }
+
+  componentDidMount () {
+    axios.get('/me').then(res=> {
+      this.setState({userObject: res.data.user})
+      console.log(res.data.user, 'res from /me')
+    }).catch(error => {
+      window.location.href='/login'
+    })
   }
 
   handleChange(e, attr) {
@@ -62,14 +80,34 @@ class Dashboard extends Component {
   * @param {Object} player represents logged in player passed to
   * 'Dashboard' as Prop
   */
-  createNewGame(player) {
+  createNewGame(gameName, gameDescription, gameImage) {
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
   
     // check gamesPartOf array length < 5
-    if(user.gamesPartof.length <= 5) {
-      // if yes redirect to new game
+    if(this.state.userObject.gamesPartof.length <= 5) {
+      // make a call to userUpdate endpoint to push game data to user collection
+
+      // make modifications to UI from state
+      const newUser = Object.assign(
+        {},
+        this.state.userObject
+      );
+      newUser.gamesPartof = this.state.userObject.gamesPartof.concat([
+        {
+          gameName: gameName,
+          gameUrl: '/foo', ///gameUrl,
+          gameDescription: gameDescription,
+          gameImage: gameImage,
+        }
+      ])
+
+      this.setState({
+        userObject: newUser
+      })
+
+      // 
       
     } else {
       // notifiy user that they have reached max allowed games
@@ -80,9 +118,10 @@ class Dashboard extends Component {
   
   
   render () {
-    const { authUser, isAuth, createdGame } = this.state;
-    const showUserGameOption = () => {
-      <div className="player-options">
+    const { createdGame, createdGameDesc, createdGameImg } = this.state;
+    const ShowUserGameOption = () => {
+      return (
+        <div className="player-options">
         <form>
           <div className="input-wrapper">
             <label>Enter Game Name:</label>
@@ -93,21 +132,23 @@ class Dashboard extends Component {
             />
           </div>
           <div className="input-wrapper">
-            <label>Enter Game Name:</label>
-            <input type="text"
+            <label>Enter Game description:</label>
+            <textarea
               name = "game-description"
               value = {createdGameDesc}
               onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
             />
           </div>
+          <button type="submit" onSubmit={() => {this.createNewGame(param1, param2, param3)}}></button>
         </form>
       </div>
+      )
     }
-    if (isAuth) {
+    if (this.props.currentState.loggedIn) {
       return (
         <div className="dashBoard">
           <h1> Dashboard </h1>
-            <showUserGameOption></showUserGameOption>
+            <ShowUserGameOption />
             <GamesList games={data} />
           </div>
       )
