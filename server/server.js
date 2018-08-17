@@ -79,9 +79,11 @@ app.post('/login',
 //logout
 app.all('/logout', function(req, res){
     req.logout();
+    console.log('hi')
     req.session.destroy(function(err) {
       if (err) {throw err;}
       //no session here
+      console.log('hey')
       res.redirect('/');
     })
   });
@@ -102,28 +104,11 @@ app.post('/signup', (req, res) => {
     if (err) {throw err;}
     //on succcessful signup, automatically login to new session:
     req.login(user, function(err) {
-      console.log(user, 'user')
+      console.log(req.user, 'user')
       if (err) { throw err; }
       return res.redirect('/dashboard/' + user.username);
     });
   })
-});
-
-
-app.get('/checkauth', auth, function(req, res){
-
-  if (req.user) {
-
-
-    res.status(200).json({
-        status: 'Login successful!',
-        sess: req.session
-    });
-  }else {
-    res.status(401).json({
-      status:'noooooo'
-    })
-  }
 });
 
 

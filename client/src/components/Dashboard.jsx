@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import users from './userData';
 import { PromiseProvider } from 'mongoose';
@@ -123,6 +123,8 @@ class Dashboard extends Component {
       return (
         <div className="player-options">
         <form>
+        {/* <p onClick={()=> this.props.viewChange('/logout')}><Redirect to ="/login">Logout</Redirect></p> */}
+
           <div className="input-wrapper">
             <label>Enter Game Name:</label>
             <input type="text"
