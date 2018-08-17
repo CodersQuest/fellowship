@@ -175,10 +175,12 @@ const server = app.listen(port, () => {
 /***********Listening to Server************/
 
 /***********Socket.io setup************/
-const io = socket(server);
+// const io = socket(server);
 
-io.on('connection', (socket) => {
-  console.log('Client has connected: ', socket.id);
-});
+require('./socket')(server);
+
+// io.on('connection', (socket) => {
+//   console.log('Client has connected: ', socket.id);
+// });
 
 /***********Socket.io setup************/
