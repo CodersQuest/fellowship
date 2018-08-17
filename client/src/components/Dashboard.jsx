@@ -140,7 +140,7 @@ class Dashboard extends Component {
               onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
             />
           </div>
-          <button type="submit" onSubmit={() => {this.createNewGame(param1, param2, param3)}}></button>
+          <button type="submit" onSubmit={() => {this.createNewGame(param1, param2, param3)}}>Create New Game</button>
         </form>
       </div>
       )
