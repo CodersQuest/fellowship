@@ -23,6 +23,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
 
@@ -36,19 +37,41 @@ class App extends Component {
     this.setState({
       view: text
     })
+
+      // if (this.state.view ==='/logout') {
+      //   this.onSubmit()
+      // }
+    
   }
 
   componentDidMount () {
-    axios.get('/checkauth').then(res=> {
-      this.setState({loggedIn: true})
-      console.log(res.data, 'res from checkauth')
+    axios.get('/me').then(res=> {
+      if (res.data.user) {
+
+        this.setState({loggedIn: true})
+      } else {
+        this.setState({loggedIn: false})
+
+      }
+      console.log(res.data.user, 'res from checkauth')
     }).catch(error => {
-      <Redirect to='/login'/>
+      console.log(error)
     })
   }
 
-  onSubmit(e) {
-    e.preventDefault();
+  logOut () {
+    axios.get('/logout')
+    .then(res => {
+      this.setState({
+        loggedIn: false
+      })
+      console.log('res from logout', res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+  onSubmit() {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
     axios.post(view, {
@@ -72,13 +95,13 @@ class App extends Component {
     
     const renderLogin = () => {
       return (
-              <Login username={username} pw={password} handleChange={this.handleChange}/>
+        <Login username={username} pw={password} viewChange={this.viewChange} handleChange={this.handleChange}/>
             )
     }
 
     const renderSignUp = () => {
       return  ( 
-              <SignUp onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
+              <SignUp viewChange={this.viewChange} onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
             )
     }
 
@@ -96,22 +119,47 @@ class App extends Component {
         <GameRoom />
       )
     }
+
+    const renderLanding = () => {
+      if (this.state.view ==='/logout') {
+        this.logOut();
+      }
+
+
+      if (this.state.loggedIn === true) {
+        return ( 
+          <Dashboard
+            currentState = { currentState }
+            viewChange={this.viewChange}
+          />
+        )
+      } else {
+        return renderLogin();
+      }
+    }
     //TODO:
-    //if loggedIn === true, redirect to dashboard
-    //if loggedIn ===true, render logout link
+    //if loggedIn === true, redirect to dashboard from \
+    //if loggedIn ===false, redirect to login from \
+    //if loggedIn === true, "login" becomes "logout"
+      //conditional rendering of text
+      //pass in different path text
     return (
       
     <Router>
      <div>
          
         <h1>CodeQuest Fellowship</h1>
-        <nav>
+        {/* <nav>
           <ul>
-          <li onClick={()=> this.viewChange('/login')}><Link to="/login">Login</Link></li>
           <li onClick={()=> this.viewChange('/signup')}><Link to="/signup">Sign Up</Link></li>
           <li><Link to ="/dashboard">Dashboard</Link></li>
+          <li onClick={()=> this.viewChange('/logout')}><Link to ="/login">Logout</Link></li>
+
           </ul>
-        </nav>
+        </nav> */}
+        {/* <li onClick={()=> this.viewChange('/logout')}><Link to ="/login">Logout</Link></li> */}
+
+        {renderLanding()}
         <Switch>
           <Route exact path="/login" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>

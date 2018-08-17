@@ -1,9 +1,10 @@
 import React from 'react';
 
-const SignUp = ({handleChange, onSubmit}) => (
+const SignUp = ({handleChange, onSubmit, viewChange}) => (
   <div>
     <h4>Sign Up</h4>
     <form>
+    <p onClick={()=> viewChange('/login')}><Link to ="/login">Login</Link></p>
     <label htmlFor="display-name"> Name: </label>
     <input onChange={handleChange} type="text" id="display-name" name="username"  required />
     <label htmlFor="display-email"> Email:</label>
