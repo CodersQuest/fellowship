@@ -23,6 +23,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
+    this.logOut = this.logOut.bind(this);
   }
 
 
@@ -58,6 +59,18 @@ class App extends Component {
     })
   }
 
+  logOut () {
+    axios.get('/logout')
+    .then(res => {
+      this.setState({
+        loggedIn: false
+      })
+      console.log('res from logout', res);
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   onSubmit() {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
@@ -67,17 +80,6 @@ class App extends Component {
       email: email
     })
     .then(response => {
-      // if (view === '/logout') {
-      //   this.setState({
-      //     loggedIn: false
-      //   })
-      //  } 
-      //  else if (view === '/login') {
-      //     this.setState({
-      //       loggedIn: true
-      //     })
-        
-      // }
       console.log(response);
       //init the client socket connection.
 
@@ -119,6 +121,11 @@ class App extends Component {
     }
 
     const renderLanding = () => {
+      if (this.state.view ==='/logout') {
+        this.logOut();
+      }
+
+
       if (this.state.loggedIn === true) {
         return ( 
           <Dashboard

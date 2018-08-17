@@ -77,7 +77,7 @@ app.post('/login',
   });
 
 //logout
-app.all('/logout', function(req, res){
+app.get('/logout', function(req, res){
     req.logout();
     console.log('hi')
     req.session.destroy(function(err) {
