@@ -123,8 +123,7 @@ class Dashboard extends Component {
       return (
         <div className="player-options">
         <form>
-        {/* <p onClick={()=> this.props.viewChange('/logout')}><Redirect to ="/login">Logout</Redirect></p> */}
-
+        <p onClick={()=> this.props.viewChange('/logout')}>Logout</p>
           <div className="input-wrapper">
             <label>Enter Game Name:</label>
             <input type="text"

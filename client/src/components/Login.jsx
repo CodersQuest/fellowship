@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 
 
 const Login = ({handleChange, onSubmit, viewChange}) => (
   <div>
     <h4>Login</h4>
-    <form method="POST" action='/login'>
-    <p onClick={()=> viewChange('/signup')}><Link to="/signup">Sign Up</Link></p>
+    <form >
+    <p onClick={()=> viewChange('/signup')}>Sign Up</p>
     <label htmlFor="display-name"> Name: </label>
     <input onChange={handleChange} type="text" id="display-name" name="username"  required />
     <label htmlFor="display-password"> Password:</label>
