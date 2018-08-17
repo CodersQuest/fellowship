@@ -2,7 +2,6 @@ import React from 'react';
 
 // Component to render battle log messages.
 // This includes Dice Rolls, and eventually player messages and spells/skills
-
 class BattleLog extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,7 @@ class BattleLog extends React.Component {
   render() {
     return (
       <div id="battleLog">
-        <h1>COMPONENT TO RENDER ALL BATTLE LOG MESSAGES</h1>
+        <h1>BATTLE LOG</h1>
       </div>
     )
   }

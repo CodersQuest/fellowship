@@ -1,7 +1,6 @@
 import React from 'react';
 
 // Component for options menu including Leaving the Game.
-
 class GameOptions extends React.Component {
   constructor(props) {
     super(props);
@@ -11,7 +10,7 @@ class GameOptions extends React.Component {
   render() {
     return (
       <div id="settings"> 
-        <h1>GAME OPTIONS/LEAVE GAME</h1>
+        <h1>LEAVE GAME</h1>
       </div>
     )
   }

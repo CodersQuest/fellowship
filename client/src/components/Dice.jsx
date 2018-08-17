@@ -8,8 +8,8 @@ var style = {
 const Dice = (props) => (
   <div>
     <img src={props.image} style={style}/>
-    <h5>{props.name}</h5>
   </div>
 )
 
 export default Dice;
+//
