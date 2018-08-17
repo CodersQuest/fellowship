@@ -177,13 +177,6 @@ const server = app.listen(port, () => {
 /***********Socket.io setup************/
 const io = socket(server);
 
-io.on('connection', (socket) => {
-  console.log('Client has connected: ', socket.id);
-});
-
-
-io.on('login', (socket) => {
-
-});
+require('./socket.js')(io);
 
 /***********Socket.io setup************/
