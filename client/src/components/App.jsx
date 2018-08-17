@@ -41,7 +41,7 @@ class App extends Component {
   componentDidMount () {
     axios.get('/checkauth').then(res=> {
       this.setState({loggedIn: true})
-      console.log(res.data, 'res from checkauth')
+      console.log(res, 'res from checkauth')
     }).catch(error => {
       <Redirect to='/login'/>
     })
@@ -96,9 +96,18 @@ class App extends Component {
         <GameRoom />
       )
     }
+
+    // const renderLanding = () => {
+    //   if (this.state.loggedIn === true) {
+    //     return (<Redirect to='/dashboard'/>)
+    //   } else {
+    //     return (<Redirect to='/login'/>)
+    //   }
+    // }
     //TODO:
-    //if loggedIn === true, redirect to dashboard
-    //if loggedIn ===true, render logout link
+    //if loggedIn === true, redirect to dashboard from \
+    //if loggedIn ===false, redirect to login from \
+    //if loggedIn === true, "login" becomes "logout"
     return (
       
     <Router>
@@ -110,8 +119,10 @@ class App extends Component {
           <li onClick={()=> this.viewChange('/login')}><Link to="/login">Login</Link></li>
           <li onClick={()=> this.viewChange('/signup')}><Link to="/signup">Sign Up</Link></li>
           <li><Link to ="/dashboard">Dashboard</Link></li>
+          <li onClick={()=> this.viewChange('/logout')}><Link to ="/login">Logout</Link></li>
           </ul>
         </nav>
+        {/* {renderLanding()} */}
         <Switch>
           <Route exact path="/login" render={renderLogin}/>
           <Route path="/signup" render={renderSignUp}/>

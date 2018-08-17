@@ -77,7 +77,7 @@ app.post('/login',
   });
 
 //logout
-app.get('/logout', function(req, res){
+app.all('/logout', function(req, res){
     req.logout();
     req.session.destroy(function(err) {
       if (err) {throw err;}
@@ -104,7 +104,7 @@ app.post('/signup', (req, res) => {
     req.login(user, function(err) {
       console.log(user, 'user')
       if (err) { throw err; }
-      return res.redirect('/dashboard' /*+ req.user.username*/);
+      return res.redirect('/dashboard/' + user.username);
     });
   })
 });
