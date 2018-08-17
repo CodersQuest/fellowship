@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import TokenLayer from './TokenLayer.jsx';
+
 
 class BattleMap extends Component {
   constructor(props) {
@@ -43,6 +45,7 @@ class BattleMap extends Component {
   render() {
     return (
       <div id="battleMap">
+        <TokenLayer/>
         <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
       </div>
     );

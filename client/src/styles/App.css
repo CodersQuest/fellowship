@@ -54,6 +54,7 @@ canvas {
   grid-area: game;
   padding-left: 15em;
   overflow: auto;
+  position: relative;
 }
 
 #battleLog {
@@ -69,5 +70,13 @@ canvas {
 #settings {
   grid-area: settings;
   background-color: aquamarine;
+}
+
+#token-layer #canvas-top {
+  background-color: transparent;
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  border: 2px solid;
 }
 
