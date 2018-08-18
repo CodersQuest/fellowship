@@ -4,6 +4,7 @@ import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
+import { updateBattleLog } from '../socketClient.js';
 
 class GameRoom extends Component {
   constructor(props) {
@@ -14,6 +15,11 @@ class GameRoom extends Component {
       tokens: [],
       log: [],
     }
+    this.updateBattleLog = updateBattleLog.bind(this);
+  }
+  
+  componentDidMount() {
+    this.updateBattleLog();
   }
 
   render() {
