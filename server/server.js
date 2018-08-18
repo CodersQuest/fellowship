@@ -178,8 +178,4 @@ server.listen(port, () => {
 
 require('./socket')(server, session);
 
-io.on('connection', (socket) => {
-  console.log('Client has connected: ', socket.id);
-});
-
 /***********Socket.io setup************/
