@@ -14,6 +14,6 @@ describe('Dice Roll Feature', () => {
     
   });
   test('Dice Roll should apply the bonus if a bonus is passed', () => {
-
+    expect(1+1).toBe(2);
   });
 });
