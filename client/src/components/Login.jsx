@@ -13,7 +13,7 @@ const Login = ({handleChange, onSubmit, viewChange}) => (
     <input onChange={handleChange} type="password" name="password" autoComplete="off" required/>
     
     </span>    
-    <button onClick={onSubmit} name="submit" type="submit" value="submit-true">
+    <button onClick={onSubmit} name="submit" type="button" value="submit-true">
     Submit
     </button>
     </form>
