@@ -17,9 +17,11 @@ class GameRoom extends Component {
     }
     this.updateBattleLog = updateBattleLog.bind(this);
   }
+  
   componentDidMount() {
     this.updateBattleLog();
   }
+
   render() {
     return (
       <Fragment>
