@@ -92,12 +92,6 @@ class App extends Component {
   render () {
     const { view, loggedIn, email, username, password } = this.state;
 
-    const renderGameRoom = () => {
-      return (
-        <GameRoom />
-      )
-    }
-
     const renderLanding = () => {
       if (view ==='/logout') {
         this.logOut();
@@ -120,6 +114,10 @@ class App extends Component {
       } else if (view==='/signup') {
         return  ( 
           <SignUp viewChange={this.viewChange} onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
+        )
+      } else if (view === '/game' && loggedIn === true) {
+        return (
+          <GameRoom />
         )
       }
     }

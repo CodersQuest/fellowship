@@ -8,7 +8,7 @@ const GamesList = ({games}) => {
      {games.map(function (game) {
        return (
         <GamesListItem 
-          game={game} key={game._id}
+          game = { game } key = { game._id }
         />
        )
      })

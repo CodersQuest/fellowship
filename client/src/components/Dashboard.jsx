@@ -61,6 +61,8 @@ class Dashboard extends Component {
     // post updates to server for Game Object if this user is 
       // game Owner
   }
+
+  
   
   // createNewGame allows a user to create a brand new game room 
   // Gets called and receives 'game name' value from input
@@ -98,8 +100,8 @@ class Dashboard extends Component {
       this.setState({
         userObject: newUser
       })
+      
 
-      // 
       
     } else {
       // notifiy user that they have reached max allowed games
@@ -110,12 +112,13 @@ class Dashboard extends Component {
   
   
   render () {
-    const { createdGame, createdGameDesc, createdGameImg } = this.state;
+    const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
     const ShowUserGameOption = () => {
       return (
         <div className="player-options">
         <form>
         <p onClick={()=> this.props.viewChange('/logout')}>Logout</p>
+        <p onClick={()=> this.props.viewChange('/game')}>Go To Game Page</p>
           <div className="input-wrapper">
             <label>Enter Game Name:</label>
             <input type="text"
@@ -132,7 +135,8 @@ class Dashboard extends Component {
               onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
             />
           </div>
-          <button type="submit" onSubmit={() => {this.createNewGame(param1, param2, param3)}}>Create New Game</button>
+          <button type="submit" onSubmit={() => {this.createNewGame(this.state.createdGame, this.state.createdGameDesc, this.state.createdGameImg)}}>Create New Game</button>
+          {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
         </form>
       </div>
       )
