@@ -176,6 +176,6 @@ server.listen(port, () => {
 
 /***********Socket.io setup************/
 // comment following line for testing
-// require('./socket')(server, session);
+require('./socket')(server, session);
 
 /***********Socket.io setup************/
