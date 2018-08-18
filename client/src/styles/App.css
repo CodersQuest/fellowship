@@ -55,6 +55,7 @@ canvas {
   padding-left: 15em;
   overflow: auto;
   position: relative;
+  z-index: auto;
 }
 
 #battleLog {
@@ -72,11 +73,16 @@ canvas {
   background-color: aquamarine;
 }
 
-#token-layer #canvas-top {
-  background-color: transparent;
+#token-layer {
   position: absolute;
-  z-index: 7;
-  left: 0;
+  background:transparent;
+}
+
+#canvas-top {
+  position: relative;
+  background: transparent;
+  z-index: 5;
+  left:0;
   border: 2px solid;
 }
 

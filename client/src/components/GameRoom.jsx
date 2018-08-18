@@ -15,12 +15,13 @@ class GameRoom extends Component {
       log: [],
     }
   }
-  
+
   render() {
     return (
       <Fragment>
         <div id="gameContainer">
-          <BattleMap />
+          <BattleMap />   
+
           <BattleLog />
           <GameProfiles />
           <GameOptions />

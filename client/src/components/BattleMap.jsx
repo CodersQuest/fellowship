@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import TokenLayer from './TokenLayer.jsx';
+import ErrorBoundary from './ErrorBoundry.jsx';
 
 
 class BattleMap extends Component {
@@ -43,9 +44,16 @@ class BattleMap extends Component {
   }
   
   render() {
+    //remove errorboundary to see actual error message in console:
+    //warning.js?da67:33 Warning: Can't call setState (or forceUpdate) on an unmounted component. This is a no-op, 
+    //but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks 
+    //in the componentWillUnmount method. in App
+    //keep errorboundary to prevent breaking of entire gameroom
     return (
       <div id="battleMap">
-        <TokenLayer/>
+      <ErrorBoundary>
+      <TokenLayer/>
+      </ErrorBoundary>
         <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
       </div>
     );
