@@ -1,5 +1,3 @@
-import BattleLog from './components/BattleLog';
-
 let socketio = require('socket.io-client');
 
 export const socket = socketio.connect('http://localhost:3000');
