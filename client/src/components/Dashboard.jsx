@@ -20,21 +20,13 @@ class Dashboard extends Component {
       userGamesData:[],
       userObject: null,
     }
-    console.log(props);
+
     this.createNewGame = this.createNewGame.bind(this);
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
   }
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps, this.props)
-
-  //     this.setState({
-  //       isAuth: nextProps.loggedIn
-  //     })
-    
-  // }
 
   componentDidMount () {
     axios.get('/me').then(res=> {

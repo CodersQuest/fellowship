@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import socket from '../socketClient.js';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
@@ -76,12 +76,13 @@ class App extends Component {
       password: password,
       email: email
     })
-    .then(response => {
-      console.log(response);
-      //init the client socket connection.
+    .then((response) => {
+      //console.log(response);
+      this.setState({
+        loggedIn: true
+      })
       // update something here based on response url
       history.pushState({key: response.data}, null, response.data);
-      this.setState
     })
     .catch(error => {
       throw error;
@@ -90,17 +91,6 @@ class App extends Component {
 
   render () {
     const { view, loggedIn, email, username, password } = this.state;
-    let currentState = this.state;
-
-    const renderDashboard = () => {
-      
-      return  ( 
-              <Dashboard
-                currentState = { currentState }
-                viewChange={this.viewChange}
-              />
-            )
-    }
 
     const renderGameRoom = () => {
       return (
@@ -115,11 +105,13 @@ class App extends Component {
 
 
       if (view==='/login' && loggedIn === true) {
-        return ( 
+        return (
+          
           <Dashboard
-            currentState = { currentState }
+            currentState = { this.state }
             viewChange={this.viewChange}
           />
+          
         )
       } else if (view==='/login' && loggedIn === false){
         return (
@@ -139,10 +131,10 @@ class App extends Component {
          
         <h1>CodeQuest Fellowship</h1>
         {renderLanding()}
-        <Switch>
+        {/* <Switch>
           <Route path="/dashboard" render={renderDashboard}/>
           <Route path="/games/:game*" render={renderGameRoom}/>
-        </Switch>
+        </Switch> */}
       </div>
     </Router>
       
