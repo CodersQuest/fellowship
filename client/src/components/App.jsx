@@ -131,7 +131,7 @@ class App extends Component {
         {renderLanding()}
         <Switch>
           {/* <Route path="/dashboard" render={renderDashboard}/> */}
-          <Route path="/games/:game*" render={renderGameRoom}/>
+          <Route path="/games/:game*" component={GameRoom}/>
         </Switch>
       </div>
     </Router>

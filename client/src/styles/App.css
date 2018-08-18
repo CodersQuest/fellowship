@@ -12,7 +12,7 @@
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
   "users users settings"
-  "game game log"
+  "tokens game log"
   ". dice logchat"
 }
 
@@ -38,7 +38,7 @@ canvas {
 }
 
 #tokenlist {
-  grid-area: game;
+  grid-area: tokens;
   position:relative;
   z-index: 8;
 }
