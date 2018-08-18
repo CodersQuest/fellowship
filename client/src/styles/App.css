@@ -37,6 +37,12 @@ canvas {
   z-index: auto;
 }
 
+#tokenlist {
+  grid-area: game;
+  position:relative;
+  z-index: 8;
+}
+
 #battleLog {
   grid-area: log;
   background-color: aquamarine;

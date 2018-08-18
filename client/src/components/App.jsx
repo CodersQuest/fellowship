@@ -129,10 +129,10 @@ class App extends Component {
          
         <h1>CodeQuest Fellowship</h1>
         {renderLanding()}
-        {/* <Switch>
-          <Route path="/dashboard" render={renderDashboard}/>
+        <Switch>
+          {/* <Route path="/dashboard" render={renderDashboard}/> */}
           <Route path="/games/:game*" render={renderGameRoom}/>
-        </Switch> */}
+        </Switch>
       </div>
     </Router>
       

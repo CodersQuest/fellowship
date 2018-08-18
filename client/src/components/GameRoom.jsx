@@ -4,7 +4,12 @@ import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
+<<<<<<< HEAD
 import { updateBattleLog } from '../socketClient.js';
+=======
+import TokenTemplateList from './TokenTemplateList.jsx';
+import {eevee, ninetails, clefairy, lugia} from '../templateImages/tokenData.js';
+>>>>>>> create draggable static image tokens and tokenlist and tokenlistitem in react
 
 class GameRoom extends Component {
   constructor(props) {
@@ -14,6 +19,7 @@ class GameRoom extends Component {
       players: [],
       tokens: [],
       log: [],
+      tokenImages: [eevee, ninetails, clefairy, lugia]
     }
     this.updateBattleLog = updateBattleLog.bind(this);
   }
@@ -26,6 +32,7 @@ class GameRoom extends Component {
     return (
       <Fragment>
         <div id="gameContainer">
+          <TokenTemplateList tokenImages={this.state.tokenImages}/>
           <BattleMap />   
 
           <BattleLog />
