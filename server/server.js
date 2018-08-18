@@ -1,16 +1,21 @@
 const express = require('express');
-const socket = require('socket.io');
 const bodyParser = require('body-parser');
 const db = require('../database/schema.js');
-const session = require('express-session');
 const cookieParser = require ('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const auth = require('./authenticate.js')
+const session = require('express-session')({
+  secret: 'anotherwellkeptsecret',
+  cookie: { maxAge: 8*60*60*1000 }, // 8 hours
+  resave: false,
+  saveUninitialized: true
+});
 
 
 const app = express();
+const server = require('http').Server(app);
 const port = process.env.PORT || 3000;
 
 
@@ -18,12 +23,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
-app.use(session({
-  secret: 'anotherwellkeptsecret',
-  cookie: { maxAge: 60000 },
-  resave: false,
-  saveUninitialized: true
-}));
+app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -73,7 +73,8 @@ app.post('/login',
     console.log(req.user, ': the req.user logged in')
 
     // on successful login send user to dashboard
-    res.redirect('/dashboard/' + loggedInUserObj.username);
+    // res.redirect('/dashboard/' + loggedInUserObj.username);
+    res.send('/Dashboard');
   });
 
 //logout
@@ -145,17 +146,16 @@ app.get('*', (req, res) => {
 
 
 /***********Requests************/
-app.get('/games/:game', auth, (req, res) => {
-  if(req.params.game) {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
-      if (err) {
-        res.status(500).send(err);
-      }
-    });
-  } else {
-    res.redirect('/dashboard');
-  }
-})
+// app.get('/games/:game', auth, (req, res) => {
+//   console.log(req.params.game);
+//   if(req.params.game) {
+//     res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       }
+//     });
+//   }
+// });
 
 app.get('/dashboard/:id', auth, (req, res) => {
   if (req.user) {
@@ -168,7 +168,7 @@ app.get('/dashboard/:id', auth, (req, res) => {
 /***********Requests************/
 
 /***********Listening to Server************/
-const server = app.listen(port, () => {
+server.listen(port, () => {
   console.log(`listening on port ${port} you peasant!!!`)
 });
 
@@ -176,6 +176,6 @@ const server = app.listen(port, () => {
 
 /***********Socket.io setup************/
 
-require('./socket')(server);
+require('./socket')(server, session);
 
 /***********Socket.io setup************/

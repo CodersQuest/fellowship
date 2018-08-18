@@ -66,9 +66,11 @@ class App extends Component {
     })
   }
 
-  onSubmit() {
+  onSubmit(e) {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
+    e.preventDefault();
+    
     axios.post(view, {
       username: username,
       password: password,
@@ -77,7 +79,9 @@ class App extends Component {
     .then(response => {
       console.log(response);
       //init the client socket connection.
-
+      // update something here based on response url
+      history.pushState({key: response.data}, null, response.data);
+      this.setState
     })
     .catch(error => {
       throw error;
