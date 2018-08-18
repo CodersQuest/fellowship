@@ -12,9 +12,9 @@ const SignUp = ({handleChange, onSubmit, viewChange}) => (
     <input onChange={handleChange} type="text" id="display-email"  name="email"  required />
     <label htmlFor="display-password"> Password:</label>
     <span>
-    <input onChange={handleChange} type="password" name="password" autocomplete="off" required/>
+    <input onChange={handleChange} type="password" name="password" autoComplete="off" required/>
     </span>
-    <button onClick={onSubmit} name="submit" type="submit" value="submit-true">
+    <button onClick={onSubmit} name="submit" type="button" value="submit-true">
     Submit
     </button>
     </form>
