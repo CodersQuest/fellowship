@@ -8,6 +8,18 @@ class TokenTemplateList extends Component {
       this.state ={
         state: null
       }
+      this.handleDragStart = this.handleDragStart.bind(this);
+  }
+
+  handleDragStart(e) {
+    e.target.style.opacity = '0.4';  // this / e.target is the source node.
+  }
+
+  componentDidMount () {
+    var t = document.querySelectorAll(".token-item")
+    t.forEach(token => {
+      token.addEventListener('dragstart', this.handleDragStart, false)
+    })
   }
 
   render () {
@@ -15,7 +27,10 @@ class TokenTemplateList extends Component {
           <div id="tokenlist">
           {this.props.tokenImages.map(url =>
           
-          <TokenTemplateListItem imgUrl={url}/>
+          <TokenTemplateListItem 
+          // handleDragOver={this.handleDragOver}
+          // handleDragStart={this.handleDragStart}
+          imgUrl={url}/>
         
         
         )}
