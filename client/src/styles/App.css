@@ -68,6 +68,10 @@ canvas {
   background: transparent;
   z-index: 5;
   left:0;
-  border: 2px solid;
+  /* border: 2px solid; */
 }
 
+
+.over {
+  border: 3px solid;
+}
