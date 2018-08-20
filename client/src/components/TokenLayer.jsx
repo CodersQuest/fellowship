@@ -44,6 +44,19 @@ class TokenLayer extends Component {
     return false;
   }
 
+   handleDrop (e) {
+    // this / e.target is current target element.
+  
+    if (e.stopPropagation) {
+      e.stopPropagation(); // stops the browser from redirecting.
+    }
+  
+    // See the section on the DataTransfer object.
+  
+    return false;
+  }
+  
+
   componentDidMount() {
     
     var canvas = new fabric.StaticCanvas("canvas-top");
