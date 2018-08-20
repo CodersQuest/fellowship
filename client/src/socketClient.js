@@ -16,11 +16,20 @@ console.log(socket);
 //emit a custom connect event to update socket with user info
 // listens for a response to that event listen for newPlayer
 
+//! General Events
 // joinGame triggers on gameRoom mount
 export const joinGame = roomData => {
   // this emit expects data to be a game room name or id
-  socket.emit('joinGame', data);
+  socket.emit('joinGame', roomData);
 }
+
+export const leaveGame = roomData => {
+  // sends room to leave server side
+  // detaches player from room  
+  socket.emit('leaveGame', roomData);
+}
+
+//! GAMEPLAY EVENTS
 // diceRoll 
 export const diceRoll = rollMsg => {
   // this emits a single dice roll message
@@ -29,11 +38,26 @@ export const diceRoll = rollMsg => {
   // can simply be an object sotring those values and the message can be constructed server side
   socket.emit('diceRoll', rollMsg);
 }
-// updateCurrentPlayers event
 
-// updateBattleLog event
-export const updateBattleLog = () => {
-  socket.on('updateBattleLog', log => {
-    this.setState({battleLog: log});
-  });
+
+// addToken event
+export const addToken = token => {
+  // if we end up not storing the room on the socket
+  // it will be imperative to pass the room through these functions
+  // token should be an object containing the info needed to render to map
+  socket.emit('addToken', token);
+}
+// moveToken event
+export const moveToken = token => {
+  // if we end up not storing the room on the socket
+  // it will be imperative to pass the room through these functions
+  // token should be an object containing the info needed to render to map
+  socket.emit('moveToken', token);
+}
+// remove token event
+export const removeToken = token => {
+  // if we end up not storing the room on the socket
+  // it will be imperative to pass the room through these functions
+  // token should be an object containing the info needed to render to map
+  socket.emit('removeToken', token);
 }
