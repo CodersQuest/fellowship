@@ -11,7 +11,7 @@ const Login = ({handleChange, onSubmit, viewChange}) => (
         <form >
 
           <div className="field">
-            <label classsName="label"> username </label>
+            <label className="label"> username </label>
             <div className="control has-icons-left has-icons-right">
               <input className="input is-success" type="text" placeholder="username" onChange={handleChange} type="text" id="display-name" name="username"  required/>
               <span className="icon is-small is-left"/>
@@ -20,7 +20,7 @@ const Login = ({handleChange, onSubmit, viewChange}) => (
           </div>
 
           <div className="field">
-            <label classsName="label"> password </label>
+            <label className="label"> password </label>
             <div className="control has-icons-left has-icons-right">
               <input className="input is-success" type="text" placeholder="password" onChange={handleChange} type="text" id="display-name" name="password"  required/>
               <span className="icon is-small is-left"/>
