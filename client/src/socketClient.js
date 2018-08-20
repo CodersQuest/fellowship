@@ -28,6 +28,13 @@ export const leaveGame = roomData => {
   // detaches player from room  
   socket.emit('leaveGame', roomData);
 }
+//! The following is a crucial event to connect the socket to a player
+// should run on every component in case a player disconnects and reconnects
+// server side will update the player with the correct socket info
+export const playerConnect = data => {
+  // this event connects our socket to a playerID
+  socket.emit('playerConnect', data);
+}
 
 //! GAMEPLAY EVENTS
 // diceRoll 
