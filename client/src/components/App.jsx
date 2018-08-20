@@ -18,12 +18,14 @@ class App extends Component {
           password: '',
           email:'',
           loggedIn: false,
+          currentUser: null,
           clientSocketId: 0,
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.joinGame = this.joinGame.bind(this);
   }
 
 
@@ -37,6 +39,13 @@ class App extends Component {
     this.setState({
       view: text
     })
+  }
+
+
+
+  joinGame(gameObject) {
+    console.log(gameObject)
+    // update state for currentUser
   }
 
   componentDidMount () {
@@ -77,7 +86,7 @@ class App extends Component {
       email: email
     })
     .then((response) => {
-      //console.log(response);
+      //console.log(response.data);
       this.setState({
         loggedIn: true
       })
@@ -98,12 +107,13 @@ class App extends Component {
       }
 
 
-      if (view==='/login' && loggedIn === true) {
+      if (view ==='/login' && loggedIn === true) {
         return (
           
           <Dashboard
-            currentState = { this.state }
+            currentState={ this.state }
             viewChange={this.viewChange}
+            joinGame={this.joinGame}
           />
           
         )
