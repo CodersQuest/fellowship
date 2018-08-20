@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from '../styles/App.css'
-
+const listItemStyle = {
+  width: 75,
+  height: 75
+}
 const GamesListItem = ({game}) => {
 
   return (
@@ -8,17 +11,20 @@ const GamesListItem = ({game}) => {
       <ul>
         <li>
         <div className="wrapper">
-          <div className="gameImage">
-            <img src={game.imageUrL}/>
-          </div>
-          <div className="nested">
-            <div className="gameName">
-              {game.gameName}
-            </div>
-            <div className="gameDescription">
-              {game.description}
-            </div>
-          </div>
+          <span className="gameImage">
+            <img style={listItemStyle}
+            src={game.gameImg}/>
+          </span>
+          <span className="gameName">
+            {game.gameName}
+          </span>
+          <span className="gameId">
+            {game.gameId}
+          </span>
+          <span className="gameDescription">
+            {game.gameDesc}
+          </span>
+          <span><button type='button'>Join Game</button></span>
         </div>
         </li>
       </ul>
