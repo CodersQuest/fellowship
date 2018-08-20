@@ -52,6 +52,19 @@ module.exports = function(server, session) {
       //! attach roomID to the socket
     });
 
+    socket.on('diceRoll', data => {
+      //! should have game and room attached
+      // find game, add dice roll message to game's log
+      // send updated log back to clients in room. 
+    });
+
+    socket.on('tokenMove', data => {
+      //! should have game and room attached
+      // grab game ID from data and lookup
+      // update the token in the list on the game
+      // send the updated token list back to all clients in the room
+    });
+
   });
   io.on('socketConnect', userData => {
 
