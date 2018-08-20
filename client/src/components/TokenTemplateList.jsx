@@ -14,6 +14,9 @@ class TokenTemplateList extends Component {
 
   handleDragStart(e) {
     e.target.style.opacity = '0.4';  // this / e.target is the source node.
+    // dragSrcEl = e.target;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.innerHTML);
   }
 
   handleDragEnd(e) {

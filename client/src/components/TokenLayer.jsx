@@ -9,10 +9,12 @@ class TokenLayer extends Component {
         padding: 0,
         canvasWidth: 0,
         canvasHeight: 0,
+        canvas: null
     }
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
+    this.handleDrop = this.handleDrop.bind(this);
     //may have to redo dimensions to match dynamic render of under-canvas layer
   }
   handleDragEnter(e) {
@@ -39,8 +41,9 @@ class TokenLayer extends Component {
     if (e.preventDefault) {
       e.preventDefault(); // Necessary. Allows us to drop.
     }
-    e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
-  
+    // e.dataTransfer.dropEffect = 'copy';  // See the section on the DataTransfer object.
+    // console.log(e.dataTransfer.files, 'data')
+
     return false;
   }
 
@@ -51,21 +54,39 @@ class TokenLayer extends Component {
       e.stopPropagation(); // stops the browser from redirecting.
     }
   
-    // See the section on the DataTransfer object.
-  
+      //create image object from e.target.src
+      //add to canvas
+
+    var img = document.querySelector('#tokenimage .token-item');
+
+    console.log('event: ', e);
+
+    var newImage = new fabric.Image(img, {
+        width: img.width,
+        height: img.height,
+        // Set the center of the new object based on the event coordinates relative
+        // to the canvas container.
+        left: e.layerX,
+        top: e.layerY
+    });
+    this.state.canvas.add(newImage);
     return false;
   }
   
 
   componentDidMount() {
     
-    var canvas = new fabric.StaticCanvas("canvas-top");
+    var c = new fabric.StaticCanvas("canvas-top");
+    this.setState({
+      canvas: c
+    })
 
     var t = document.querySelectorAll('#canvas-top');
     t.forEach(tokenTarget => {
       tokenTarget.addEventListener('dragenter', this.handleDragEnter, false)
       tokenTarget.addEventListener('dragover', this.handleDragOver, false)
       tokenTarget.addEventListener('dragleave', this.handleDragLeave, false)
+      tokenTarget.addEventListener('drop', this.handleDrop, false)
     })
 
 
