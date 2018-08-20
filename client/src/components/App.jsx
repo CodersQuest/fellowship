@@ -70,6 +70,7 @@ class App extends Component {
   onSubmit(e) {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
+    console.log('From onSubmit' ,view.length);
     e.preventDefault();
     
     axios.post(view, {
@@ -78,7 +79,7 @@ class App extends Component {
       email: email
     })
     .then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       this.setState({
         loggedIn: true
       })

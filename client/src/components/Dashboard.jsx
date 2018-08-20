@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList.jsx';
-import styles from '../styles/App.css'
+import styles from '../styles/App.css';
+import { defaultGameImage } from '../templateImages/tokenData';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import users from './userData';
@@ -16,15 +17,17 @@ class Dashboard extends Component {
     this.state = {
       createdGame: '',
       createdGameDesc: '',
-      createdGameImg: '',
+      createdGameImg: defaultGameImage,
+      createdGameId: 0,
       userGamesData:[],
       userObject: null,
     }
-
+    console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.joinGame = this.joinGame.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
   }
 
@@ -43,6 +46,9 @@ class Dashboard extends Component {
     });
   }
 
+  joinGame(event) {
+
+  }
   validateGameName(gameName) {
     //check DB to find out if gameName exist
 
@@ -74,7 +80,8 @@ class Dashboard extends Component {
   * @param {Object} player represents logged in player passed to
   * 'Dashboard' as Prop
   */
-  createNewGame(gameName, gameDescription, gameImage) {
+  createNewGame() {
+    
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
@@ -94,13 +101,14 @@ class Dashboard extends Component {
           gameUrl: '/foo', ///gameUrl,
           gameDescription: gameDescription,
           gameImage: gameImage,
+
         }
       ])
 
       this.setState({
-        userObject: newUser
+        userObject: newUser,
+
       })
-      
 
       
     } else {
@@ -135,7 +143,7 @@ class Dashboard extends Component {
               onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
             />
           </div>
-          <button type="submit" onSubmit={() => {this.createNewGame(this.state.createdGame, this.state.createdGameDesc, this.state.createdGameImg)}}>Create New Game</button>
+          <button type="button" onClick={this.createNewGame}>`Create New Game`</button>
           {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
         </form>
       </div>
