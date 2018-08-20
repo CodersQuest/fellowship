@@ -27,7 +27,6 @@ class Dashboard extends Component {
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.joinGame = this.joinGame.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
   }
 
@@ -118,6 +117,7 @@ class Dashboard extends Component {
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
+
     const ShowUserGameOption = () => {
       return (
         <div className="player-options">
@@ -151,7 +151,10 @@ class Dashboard extends Component {
         <div className="dashBoard">
           <h1> Dashboard </h1>
             <ShowUserGameOption />
-            <GamesList games={data} />
+            <GamesList
+              games={data}
+              joinGame={this.props.joinGame}
+            />
           </div>
       )
     } else {

@@ -25,6 +25,7 @@ class App extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.joinGame = this.joinGame.bind(this);
   }
 
 
@@ -42,8 +43,9 @@ class App extends Component {
 
 
 
-  joinGame(e, userObj) {
-
+  joinGame(gameObject) {
+    console.log(gameObject)
+    // update state for currentUser
   }
 
   componentDidMount () {
@@ -109,8 +111,9 @@ class App extends Component {
         return (
           
           <Dashboard
-            currentState = { this.state }
+            currentState={ this.state }
             viewChange={this.viewChange}
+            joinGame={this.joinGame}
           />
           
         )

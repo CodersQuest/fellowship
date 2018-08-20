@@ -4,7 +4,7 @@ const listItemStyle = {
   width: 75,
   height: 75
 }
-const GamesListItem = ({game}) => {
+const GamesListItem = ({game, joinGame}) => {
 
   return (
     <div>
@@ -24,7 +24,9 @@ const GamesListItem = ({game}) => {
           <span className="gameDescription">
             {game.gameDesc}
           </span>
-          <span><button type='button'>Join Game</button></span>
+          <span><button type='button'
+            onClick={() => joinGame(game)}
+          >Join Game</button></span>
         </div>
         </li>
       </ul>
