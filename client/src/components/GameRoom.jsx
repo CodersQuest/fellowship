@@ -4,7 +4,7 @@ import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
-import { updateBattleLog } from '../socketClient.js';
+import { diceRoll, addToken, removeToken, moveToken } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../templateImages/tokenData.js';
 
@@ -18,13 +18,21 @@ class GameRoom extends Component {
       log: [],
       tokenImages: [eevee, ninetails, clefairy, lugia]
     }
-    this.updateBattleLog = updateBattleLog.bind(this);
+    this.rollDice = this.rollDice.bind(this);
   }
   
   componentDidMount() {
-    this.updateBattleLog();
+
   }
 
+  rollDice(value) {
+    // capture the dice clicked's value
+    // roll the die and turn to string
+    // should also have user info and eventually context
+    // may want to consider also handling multiple rolls
+    // after message is ready, pass to diceRoll function for socket event
+    console.log(value);
+  }
   render() {
     return (
       <Fragment>
@@ -35,7 +43,7 @@ class GameRoom extends Component {
           <BattleLog />
           <GameProfiles />
           <GameOptions />
-          <DiceTray />
+          <DiceTray rollDice={this.rollDice}/>
         </div>
       </Fragment>
     )

@@ -18,6 +18,7 @@ module.exports = function(server, session) {
   io.on("connection", function(socket) {
     // player has connected
     console.log("Player connected", socket.id);
+
     socket.on('playerConnect', userData => {
       socket.username = userData.username;
       socket.uid = userData.uid;
@@ -50,6 +51,9 @@ module.exports = function(server, session) {
 
     socket.on('joinGame', socket => {
       //! attach roomID to the socket
+      // should check the gameID and query the DB
+      // upon response should check if the game exists
+
     });
 
     socket.on('diceRoll', data => {
@@ -64,9 +68,6 @@ module.exports = function(server, session) {
       // update the token in the list on the game
       // send the updated token list back to all clients in the room
     });
-
-  });
-  io.on('socketConnect', userData => {
 
   });
 };
