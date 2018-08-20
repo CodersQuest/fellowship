@@ -15,6 +15,7 @@ class TokenTemplateList extends Component {
   handleDragStart(e) {
     e.target.style.opacity = '0.4';  // this / e.target is the source node.
     // dragSrcEl = e.target;
+    e.target.classList.add('target-image')
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', this.innerHTML);
   }
@@ -26,6 +27,8 @@ class TokenTemplateList extends Component {
     // token.classList.remove('over');
     // });
     e.target.style.opacity = '1';
+    e.target.classList.remove('target-image')
+
   }
 
   componentDidMount () {

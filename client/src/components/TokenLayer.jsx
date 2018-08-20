@@ -54,12 +54,10 @@ class TokenLayer extends Component {
       e.stopPropagation(); // stops the browser from redirecting.
     }
   
-      //create image object from e.target.src
+      //create image object from image dragged
       //add to canvas
-
-    var img = document.querySelector('#tokenimage .token-item');
-
-    console.log('event: ', e);
+    var img = document.querySelector('.target-image');
+    // console.log('event: ', e);
 
     var newImage = new fabric.Image(img, {
         width: img.width,
@@ -76,7 +74,7 @@ class TokenLayer extends Component {
 
   componentDidMount() {
     
-    var c = new fabric.StaticCanvas("canvas-top");
+    var c = new fabric.StaticCanvas('canvas-top');
     this.setState({
       canvas: c
     })
