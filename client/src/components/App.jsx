@@ -7,7 +7,7 @@ import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
 import Helpers from '../../helpers';
-
+import 'bulma/css/bulma.css';
 
 class App extends Component {
   constructor(props) {

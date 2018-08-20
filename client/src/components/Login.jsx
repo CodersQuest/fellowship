@@ -1,14 +1,14 @@
 import React from 'react';
 
+
 const Login = ({handleChange, onSubmit, viewChange}) => (
 
     <div className="container">
-      <div className="hero">
-        <p onClick={()=> viewChange('/signup')}>Sign Up</p>
-
-        <h3>Login</h3>
+      <div className="centerall">
 
         <form >
+
+          <h3>Login</h3>
 
           <div className="field">
             <label className="label"> username </label>
@@ -30,6 +30,9 @@ const Login = ({handleChange, onSubmit, viewChange}) => (
 
           <button className="button is-fullwidth" onClick={onSubmit} name="submit" type="submit" value="submit-true">
             Login
+          </button>
+          <button className="button is-fullwidth">
+            <p onClick={()=> viewChange('/signup')}>Sign Up</p>
           </button>
           
         </form>
