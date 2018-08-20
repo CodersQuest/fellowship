@@ -7,7 +7,7 @@ import DiceTray from "./DiceTray.jsx";
 import { diceRoll, addToken, removeToken, moveToken } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../templateImages/tokenData.js';
-
+ 
 class GameRoom extends Component {
   constructor(props) {
     super(props);
