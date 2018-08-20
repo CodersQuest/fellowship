@@ -77,7 +77,7 @@ class App extends Component {
       email: email
     })
     .then((response) => {
-      //console.log(response);
+      console.log(response.data);
       this.setState({
         loggedIn: true
       })
