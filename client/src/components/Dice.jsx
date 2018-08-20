@@ -6,8 +6,8 @@ var style = {
   padding: 5
 }
 const Dice = (props) => (
-  <div>
-    <img src={props.image} style={style}/>
+  <div id="dieRoller">
+    <img src={props.image} style={style} onClick={() => props.rollDice(props.value)}/>
   </div>
 )
 

@@ -18,6 +18,7 @@ class GameRoom extends Component {
       log: [],
       tokenImages: [eevee, ninetails, clefairy, lugia]
     }
+    this.rollDice = this.rollDice.bind(this);
   }
   
   componentDidMount() {
@@ -30,6 +31,7 @@ class GameRoom extends Component {
     // should also have user info and eventually context
     // may want to consider also handling multiple rolls
     // after message is ready, pass to diceRoll function for socket event
+    console.log(value);
   }
   render() {
     return (
@@ -41,7 +43,7 @@ class GameRoom extends Component {
           <BattleLog />
           <GameProfiles />
           <GameOptions />
-          <DiceTray />
+          <DiceTray rollDice={this.rollDice}/>
         </div>
       </Fragment>
     )
