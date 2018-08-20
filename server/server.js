@@ -134,10 +134,12 @@ app.get('/me', auth, function(req, res){
 /***********Redirects************/
 
 app.get('*', (req, res) => {
-  res.send('/testing');
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  });
 });
-
-
 /***********Redirects************/
 
 
