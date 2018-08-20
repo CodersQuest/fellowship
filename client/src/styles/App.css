@@ -5,10 +5,10 @@
 
 #gameContainer {
   display: grid;
-  width: 80vw;
-  height: 80vh;
+  width: 98vw;
+  height: 98vh;
   grid-gap: 1em;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
   "users users settings"
