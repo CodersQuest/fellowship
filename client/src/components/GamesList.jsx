@@ -11,7 +11,7 @@ const GamesList = ({games}) => {
           game = { game } key = { game._id }
         />
        )
-     })
+     }) 
      }
     </div>
   );
