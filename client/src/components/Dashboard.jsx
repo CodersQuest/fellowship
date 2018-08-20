@@ -27,7 +27,7 @@ class Dashboard extends Component {
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.joinGame = this.joinGame.bind(this);
+    // this.joinGame = this.joinGame.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
   }
 
@@ -46,9 +46,6 @@ class Dashboard extends Component {
     });
   }
 
-  joinGame(event) {
-
-  }
   validateGameName(gameName) {
     //check DB to find out if gameName exist
 

@@ -40,6 +40,12 @@ class App extends Component {
     })
   }
 
+
+
+  joinGame(e, userObj) {
+
+  }
+
   componentDidMount () {
     axios.get('/me').then(res=> {
       if (res.data.user) {
@@ -70,7 +76,6 @@ class App extends Component {
   onSubmit(e) {
     //post request to db on submit button
     const { view , email, username, password } = this.state;
-    console.log('From onSubmit' ,view.length);
     e.preventDefault();
     
     axios.post(view, {
