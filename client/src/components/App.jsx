@@ -18,6 +18,7 @@ class App extends Component {
           password: '',
           email:'',
           loggedIn: false,
+          currentUser: null,
           clientSocketId: 0,
       };
     this.handleChange = this.handleChange.bind(this);
