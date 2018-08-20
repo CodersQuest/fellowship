@@ -4,3 +4,7 @@ module.exports ={
     clefairy: require('./clefairy.png'),
     ninetails: require('./9tails.png')
 }
+
+module.exports = {
+    defaultGameImage: require('../../src/templateImages/defaultGameImage.png')
+}
