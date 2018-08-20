@@ -98,7 +98,7 @@ class App extends Component {
       }
 
 
-      if (view==='/login' && loggedIn === true) {
+      if (view ==='/login' && loggedIn === true) {
         return (
           
           <Dashboard
