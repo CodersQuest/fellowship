@@ -7,6 +7,7 @@ module.exports = function (req, res, next) {
     }
     // if they aren't redirect them to the login page
     else {
+        console.log('Redirect from AUTH')
         res.redirect('/login');
     }
 };
