@@ -28,7 +28,7 @@ class App extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
-    // this.joinGame = this.joinGame.bind(this);
+    this.joinGame = this.joinGame.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.setUser = this.setUser.bind(this);
 
@@ -46,7 +46,17 @@ class App extends Component {
       view: text
     })
   }
+  
+  joinGame(game) {
+    console.log(game);
+    this.props.history.push(`/games/${game.gameId}`);
+    // update state for currentUser
+    // this.setState({
+    //   currentGame: gameObject
+    // })
+  }
 
+  // get game data
   getCurrentUser() {
     return (
       axios.get('/me').then(res=> {
@@ -194,8 +204,9 @@ class App extends Component {
                 // currentState={ this.state }
                 isLoggedIn={loggedIn}
                 viewChange={this.viewChange}
-                // joinGame={this.joinGame}
-                getCurrentUser={this.getCurrentUser}
+                joinGame={this.joinGame}
+                // getCurrentUser={this.getCurrentUser}
+                currentUser={currentUser}
                 {...props}
               />
             )} 

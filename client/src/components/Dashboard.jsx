@@ -20,7 +20,6 @@ class Dashboard extends Component {
       createdGameImg: defaultGameImage,
       createdGameId: 0,
       userGamesData:[],
-      userObject: null,
     }
     console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
@@ -28,12 +27,12 @@ class Dashboard extends Component {
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
-    this.joinGame = this.joinGame.bind(this);
+    // this.joinGame = this.joinGame.bind(this);
 
   }
 
   componentDidMount () {
-    this.props.getCurrentUser();
+    
   }
 
   handleChange(e, attr) {
@@ -107,15 +106,6 @@ class Dashboard extends Component {
     } else {
       // notifiy user that they have reached max allowed games
     }
-  }
-  
-  joinGame(game) {
-    console.log(game);
-    this.props.history.push(`/games/${game.gameId}`);
-    // update state for currentUser
-    // this.setState({
-    //   currentGame: gameObject
-    // })
   }
 
   
