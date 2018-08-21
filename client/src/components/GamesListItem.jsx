@@ -11,27 +11,44 @@ const GamesListItem = ({game, joinGame}) => {
       <ul>
         <li>
           <div className="box">
-            <div className="container">
-              <span className="gameImage">
-                <img style={listItemStyle}
-                src={game.gameImg}/>
-              </span>
-              <span className="gameName">
-                {game.gameName}
-              </span>
-              <span className="gameId">
-                {game.gameId}
-              </span>
-              <span className="gameDescription">
-                {game.gameDesc}
-              </span>
-              <span><button type='button'
-                onClick={() => joinGame(game)}
-              >Join Game</button>
-              </span>
-            </div>
-          </div>
+            <article className="media">
+              <div className="media-left">
+                <figure className="gameImage">
+                  <img style={listItemStyle}
+                  src={game.gameImg}/>
+                </figure>
+              </div>
+              <div className="media-content">
+                <div className="content">
+                  <p>
+                    <span className="gameName is-size-5 has-text-weight-bold">
+                      {game.gameName}
+                    </span>
 
+                  </p>
+                  <span className="gameId is-size-5">
+                    {game.gameId}
+                  </span>
+                  <span className="gameDescription is-size-5">
+                    {game.gameDesc}
+                  </span>
+                </div>
+
+              </div>
+              
+
+                <span>
+                  <button type='button'
+                    onClick={() => joinGame(game)}>
+                      <a className="button is-small is-info">
+                        Join Game
+                      </a>
+                  </button>
+                </span>
+
+            </article>
+
+          </div>
 
         </li>
       </ul>
