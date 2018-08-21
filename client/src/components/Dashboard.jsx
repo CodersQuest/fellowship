@@ -28,6 +28,8 @@ class Dashboard extends Component {
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
+    this.joinGame = this.joinGame.bind(this);
+
   }
 
   componentDidMount () {
@@ -107,11 +109,22 @@ class Dashboard extends Component {
     }
   }
   
+  joinGame(game) {
+    console.log(game)
+    this.props.history.push(`/games/${game.gameId}`);
+    // update state for currentUser
+    // this.setState({
+    //   currentGame: gameObject
+    // })
+  }
 
   
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
+    console.log(this.props);
+
+    if(!this.props.isLoggedIn) return <Redirect to="/login" />;
     
     const ShowNavbar = () => {
       return (
@@ -177,31 +190,29 @@ class Dashboard extends Component {
       </div>
       )
     }
-    if (this.props.currentState.loggedIn) {
-      return (
-        <div className="dashBoard">
-          <ShowNavbar />
+    
+    return (
+      <div className="dashBoard">
+        <ShowNavbar />
 
-          <div className="columns is-desktop">
+        <div className="columns is-desktop">
 
-            <div className="column is-two-thirds">
-              <GamesList
-                games={data}
-                joinGame={this.props.joinGame}
-              />
+          <div className="column is-two-thirds">
+            <GamesList
+              games={data}
+              joinGame={this.joinGame}
+            />
 
-            </div>
-            <div className="column is-one-third">
-              <ShowUserGameOption />
+          </div>
+          <div className="column is-one-third">
+            <ShowUserGameOption />
 
-            </div>
-          </div> 
+          </div>
+        </div> 
 
-        </div>
-      )
-    } else {
-      return 'User not authenticated';
-    }
+      </div>
+    )
+    
 
   }
   

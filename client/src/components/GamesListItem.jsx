@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import styles from '../styles/App.css'
 const listItemStyle = {
   width: 75,
@@ -38,12 +39,13 @@ const GamesListItem = ({game, joinGame}) => {
               
 
                 <span>
-                  <button type='button'
+                  <Link to={`/games/${game.gameId}`}>Join Game</Link>
+                  {/* <button type='button'
                     onClick={() => joinGame(game)}>
                       <a className="button is-small is-info">
                         Join Game
                       </a>
-                  </button>
+                  </button> */}
                 </span>
 
             </article>

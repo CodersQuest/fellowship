@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
+
 import BattleMap from './BattleMap.jsx';
 import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
@@ -7,6 +9,7 @@ import DiceTray from "./DiceTray.jsx";
 import { diceRoll, addToken, removeToken, moveToken } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
+import gamesList from './dashBoardDummyData.js';
  
 class GameRoom extends Component {
   constructor(props) {
@@ -22,7 +25,15 @@ class GameRoom extends Component {
   }
   
   componentDidMount() {
+    this.getGameData(this.props.match.params.gameId);
+  }
 
+  getGameData(gameId) {
+    const currentGame = gamesList.find((game) => {
+      return game.gameId === gameId;
+    })
+    this.setState({ currentGame })
+    //console.log(game, gameId);
   }
 
   rollDice(value) {
@@ -34,6 +45,20 @@ class GameRoom extends Component {
     console.log(value);
   }
   render() {
+    console.log(this.props);
+    if (this.props.currentUser === null)  {
+      return (
+        <Redirect 
+          to={{
+            pathname: "/login",
+            state: {
+              from: this.props.location.pathname
+            }
+          }}
+        />
+      )
+    }
+
     return (
       <Fragment>
         <div id="gameContainer">
