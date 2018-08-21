@@ -8,7 +8,11 @@ const GamesList = ({games, joinGame}) => {
      {games.map(function (game) {
        return (
         <GamesListItem
+<<<<<<< HEAD
           key={game.gameName}
+=======
+          key={game.gameName} 
+>>>>>>> fixed minor thing
           game = { game }
           joinGame={joinGame}
         />
