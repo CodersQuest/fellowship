@@ -69,12 +69,16 @@ app.post('/login',
     const loggedInUserObj = req.user;
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
+    // console.log(res.user);
     console.log(req.session, 'sessh')
     console.log(req.user, ': the req.user logged in')
 
     // on successful login send user to dashboard
     // res.redirect('/dashboard/' + loggedInUserObj.username);
-    res.send('/Dashboard');
+    res.send({
+      status: 'Login successful!',
+      user: req.user
+    });
   });
 
 //logout
