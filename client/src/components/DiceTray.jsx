@@ -34,7 +34,7 @@ const dice = [{
 const DiceTray = (props) => (
   <div id="diceTray">
     <div>
-      <label for="numRolls"># of Rolls </label>
+      <label htmlFor="numRolls"># of Rolls </label>
       <input id="numRolls" type="number" defaultValue="1" min="1" max="20"/>
     </div>
     {dice.map((die) => (

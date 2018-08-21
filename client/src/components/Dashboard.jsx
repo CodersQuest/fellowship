@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css';
-import { defaultGameImage } from '../templateImages/tokenData';
+import { defaultGameImage } from '../images/imageData';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import users from './userData';
@@ -31,12 +31,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    axios.get('/me').then(res=> {
-      this.setState({userObject: res.data.user})
-      console.log(res.data.user, 'res from /me')
-    }).catch(error => {
-      window.location.href='/login'
-    })
+    this.props.getCurrentUser();
   }
 
   handleChange(e, attr) {

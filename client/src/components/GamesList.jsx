@@ -7,7 +7,8 @@ const GamesList = ({games, joinGame}) => {
     <div className="gamesList">
      {games.map(function (game) {
        return (
-        <GamesListItem 
+        <GamesListItem
+          key={game.gameName} 
           game = { game } key = { game._id }
           joinGame={joinGame}
         />
