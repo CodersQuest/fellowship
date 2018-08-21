@@ -14,14 +14,13 @@ class TokenTemplateList extends Component {
 
   handleDragStart(e) {
     e.target.style.opacity = '0.4'; 
-    e.target.classList.add('target-image')
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', this.innerHTML);
+    e.target.classList.add('target-image');
+    // e.dataTransfer.effectAllowed = 'copy';
   }
 
   handleDragEnd(e) {
     e.target.style.opacity = '1';
-    e.target.classList.remove('target-image')
+    e.target.classList.remove('target-image');
 
   }
 
@@ -39,6 +38,7 @@ class TokenTemplateList extends Component {
         {this.props.tokenImages.map(url =>
 
           <TokenTemplateListItem
+            key={url}
             imgUrl={url} />
 
 
