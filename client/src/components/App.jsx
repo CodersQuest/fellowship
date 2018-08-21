@@ -7,7 +7,7 @@ import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
 import Helpers from '../../helpers';
-
+import 'bulma/css/bulma.css';
 
 class App extends Component {
   constructor(props) {
@@ -137,7 +137,7 @@ class App extends Component {
     <Router>
      <div>
          
-        <h1>CodeQuest Fellowship</h1>
+        <h1 className="title is-1 is-uppcase has-text-centered">CodeQuest Fellowship</h1>
         {renderLanding()}
         <Switch>
           {/* <Route path="/dashboard" render={renderDashboard}/> */}
