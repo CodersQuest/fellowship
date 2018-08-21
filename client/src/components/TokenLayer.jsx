@@ -11,6 +11,7 @@ class TokenLayer extends Component {
         canvasHeight: 0,
         canvas: null
     }
+    // this.canvas = null
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
@@ -48,7 +49,10 @@ class TokenLayer extends Component {
         left: e.layerX,//round to nearest 50 value
         top: e.layerY//round to nearest 50 value
     });
-    this.state.canvas.add(newImage);
+    var c = this.state.canvas.add(newImage);
+    this.setState({
+      canvas: c
+    })
     
 
     return false;
