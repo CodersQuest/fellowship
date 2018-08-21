@@ -27,7 +27,6 @@ class Dashboard extends Component {
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
-    // this.joinGame = this.joinGame.bind(this);
 
   }
 
@@ -204,7 +203,8 @@ class Dashboard extends Component {
           <div className="column is-two-thirds">
             {this.state.userGamesData.length > 0 ? <GamesList
               games={this.state.userGamesData}
-              joinGame={this.joinGame}
+              joinGame={this.props.joinGame}
+              history={this.props.history}
             /> : null}
 
           </div>

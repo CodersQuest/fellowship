@@ -22,7 +22,7 @@ class App extends Component {
           email:'',
           loggedIn: false,
           currentUser: null,
-          currentGame: null,
+          currentGame: {},
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -49,11 +49,12 @@ class App extends Component {
   
   joinGame(game) {
     console.log(game);
-    this.props.history.push(`/games/${game.gameId}`);
-    // update state for currentUser
-    // this.setState({
-    //   currentGame: gameObject
-    // })
+    // update state for currentGame
+    this.setState({
+      currentGame: game
+    })
+    // this.props.history.push(`/games/${game.gameId}`);
+    // window.location.href=`/games/:${this.state.currentGame.gameId}`
   }
 
   // get game data
@@ -70,16 +71,6 @@ class App extends Component {
       })
     )
   }
-
-
-  // joinGame(gameObject) {
-  //   console.log(gameObject)
-  //   // update state for currentUser
-  //   this.setState({
-  //     currentGame: gameObject
-  //   })
-
-  // }
 
   componentDidMount () {
     axios.get('/me').then(res=> {
@@ -228,6 +219,7 @@ class App extends Component {
             render={(props) => (
               <GameRoom
                 currentUser={currentUser}
+                currentGame={currentGame}
                 {...props}
               /> 
             )} 
