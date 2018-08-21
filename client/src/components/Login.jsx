@@ -2,13 +2,13 @@ import React from 'react';
 
 
 const Login = ({handleChange, onSubmit, viewChange}) => (
-
+    
     <div className="container">
       <div className="centerall">
-
+        
         <form >
 
-          <h3>Login</h3>
+          <h3 className="is-size-3">Login</h3>
 
           <div className="field">
             <label className="label"> username </label>

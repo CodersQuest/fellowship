@@ -127,7 +127,7 @@ class App extends Component {
     <Router>
      <div>
          
-        <h1>CodeQuest Fellowship</h1>
+        <h1 className="title is-1 is-uppcase has-text-centered">CodeQuest Fellowship</h1>
         {renderLanding()}
         <Switch>
           {/* <Route path="/dashboard" render={renderDashboard}/> */}
