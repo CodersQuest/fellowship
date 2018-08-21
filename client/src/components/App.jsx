@@ -26,6 +26,7 @@ class App extends Component {
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
     this.joinGame = this.joinGame.bind(this);
+    this.getCurrentUser = this.getCurrentUser.bind(this);
   }
 
 
@@ -41,11 +42,20 @@ class App extends Component {
     })
   }
 
+  getCurrentUser() {
+    axios.get('/me').then(res=> {
+      this.setState({userObject: res.data.user})
+      console.log(res.data.user, 'res from /me')
+    }).catch(error => {
+      window.location.href='/login'
+    })
+  }
 
 
   joinGame(gameObject) {
     console.log(gameObject)
     // update state for currentUser
+
   }
 
   componentDidMount () {
@@ -125,7 +135,7 @@ class App extends Component {
         return  ( 
           <SignUp viewChange={this.viewChange} onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
         )
-      } else if (view === '/game' && loggedIn === true) {
+      } else if (view === '/games' && loggedIn === true) {
         return (
           <GameRoom />
         )
