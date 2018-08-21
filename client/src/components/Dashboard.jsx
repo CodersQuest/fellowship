@@ -110,7 +110,7 @@ class Dashboard extends Component {
   }
   
   joinGame(game) {
-    console.log(game)
+    console.log(game);
     this.props.history.push(`/games/${game.gameId}`);
     // update state for currentUser
     // this.setState({

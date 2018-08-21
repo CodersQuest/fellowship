@@ -20,25 +20,30 @@ module.exports = function(server, session) {
     console.log("Player connected", socket.id);
 
     socket.on('playerConnect', userData => {
-      socket.username = userData.username;
-      socket.uid = userData.uid;
-      socket.room = null;
-      socket.isInGame = false;
-      if (!players[socket.uid]) {
-        // add player to players object
-        players[socket.uid] = {
-          socket: socket.id,
-          username: socket.username,
-          room: socket.room,
-          uid: socket.uid,
-        };
-        socket.emit('newPlayer', 'New Player Established');
-      } else if (players[socket.uid]) {
-        if (players[socket.uid].socket !== socket.id) {
-          // overwrite the socket with the new socket.id
-          socket.emit('newPlayer', 'Existing Player Updated');
+      console.log('in socket', userData);
+      if (userData) {
+        socket.username = userData.username;
+        socket.uid = userData._id;
+        socket.room = null;
+        socket.isInGame = false;
+        if (!players[socket.uid]) {
+          // add player to players object
+          players[socket.uid] = {
+            socket: socket.id,
+            username: socket.username,
+            room: socket.room,
+            uid: socket.uid,
+          };
+          socket.emit('newPlayer', 'New Player Established');
+        } else if (players[socket.uid]) {
+          if (players[socket.uid].socket !== socket.id) {
+            // overwrite the socket with the new socket.id
+            players[socket.uid].socket = socket.id;
+            socket.emit('newPlayer', 'Existing Player Updated');
+          }
         }
       }
+      console.log(players);
     });
 
     socket.on("disconnect", function() {
