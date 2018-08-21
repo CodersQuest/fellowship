@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
-
 import BattleMap from './BattleMap.jsx';
 import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
-import { diceRoll, addToken, removeToken, moveToken } from '../socketClient.js';
+import { diceRoll, addToken, removeToken, moveToken, playerConnect } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
 import gamesList from './dashBoardDummyData.js';
@@ -23,9 +22,12 @@ class GameRoom extends Component {
     }
     this.rollDice = this.rollDice.bind(this);
   }
-  
-  componentDidMount() {
+  componentWillMount() {
     this.getGameData(this.props.match.params.gameId);
+  }
+  componentDidMount() {
+    console.log(this.props.currentUser);
+    playerConnect(this.props.currentUser);
   }
 
   getGameData(gameId) {
@@ -44,8 +46,8 @@ class GameRoom extends Component {
     // after message is ready, pass to diceRoll function for socket event
     console.log(value);
   }
+  
   render() {
-    console.log(this.props);
     if (this.props.currentUser === null)  {
       return (
         <Redirect 

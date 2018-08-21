@@ -31,11 +31,11 @@ export const withSocket = (Component) => {
     }
 
     updateState(type, data) {
-      this.setState({type}: data});
+      this.setState({[type]: data});
     }
 
-    render () {
-      return <Component logs={this.state.logs} tokens={this.state.tokens} players={this.state.players}/>
+    render() {
+      return (<Component logs={this.state.logs} tokens={this.state.tokens} players={this.state.players}/>)
     }
   }
 }

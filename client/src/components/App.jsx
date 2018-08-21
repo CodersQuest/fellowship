@@ -133,7 +133,7 @@ class App extends Component {
   }
 
   render () {
-    const { view, currentUser, loggedIn, email, username, password } = this.state;
+    const { view, currentUser, currentGame, loggedIn, email, username, password } = this.state;
 
     // login /
     // signup
