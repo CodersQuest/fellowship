@@ -31,7 +31,6 @@ canvas {
 
 #battleMap {
   grid-area: game;
-  padding-left: 15em;
   overflow: auto;
   position: relative;
   z-index: auto;
@@ -41,6 +40,8 @@ canvas {
   grid-area: tokens;
   position:relative;
   z-index: 8;
+  padding-left: 0.5em;
+
 }
 
 #battleLog {
@@ -68,7 +69,6 @@ canvas {
   background: transparent;
   z-index: 5;
   left:0;
-  /* border: 2px solid; */
 }
 
 
