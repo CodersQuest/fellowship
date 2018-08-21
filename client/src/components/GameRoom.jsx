@@ -44,6 +44,7 @@ class GameRoom extends Component {
     // after message is ready, pass to diceRoll function for socket event
     console.log(value);
   }
+  
   render() {
     console.log(this.props);
     if (this.props.currentUser === null)  {
