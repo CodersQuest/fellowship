@@ -54,10 +54,11 @@ module.exports = function(server, session) {
       io.emit("new message", data);
     });
 
-    socket.on('joinGame', socket => {
+    socket.on('joinGame', game => {
       //! attach roomID to the socket
       // should check the gameID and query the DB
       // upon response should check if the game exists
+      console.log(game);
 
     });
 
