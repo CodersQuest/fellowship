@@ -112,41 +112,47 @@ class Dashboard extends Component {
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
-
-    const ShowUserGameOption = () => {
+    
+    const ShowNavbar = () => {
       return (
-
-      <div>
-
-        <div className="player-options">
-          
-          <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
+          <nav className="navbar is-transparent is-success" role="navigation" aria-label="main navigation">
 
             <div className="navbar-brand">
-              <a className="navbar-item" href="#"> Dashboard </a>
-              <div class="field is-grouped">
-                <p className="control" onClick={()=> this.props.viewChange('/logout')}>
-                  <a className="button is-link">
-                    Logout
-                  </a>
-                </p>
-                <p onClick={()=> this.props.viewChange('/game')}>
-                  <a className="button is-link">
-                    Go To Game Page
-                  </a>
-                </p>
+              <a className="navbar-brand is-size-1" href="#"> Dashboard </a>
+
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div class="field is-grouped">
+                    <p className="control" onClick={()=> this.props.viewChange('/logout')}>
+                      <a className="button is-link">
+                        Logout
+                      </a>
+                    </p>
+                    <p onClick={()=> this.props.viewChange('/game')}>
+                      <a className="button is-link">
+                        Go To Game Page
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
+
+
             </div>
           </nav>
-
-
- 
-
-
+        
+      )
+    };
+    const ShowUserGameOption = () => {
+      return (
+      <div>
+        <div className="player-options">
           <form>
             <div className="input-wrapper">
               <label>Enter Game Name:</label>
               <input type="text"
+                className="input"
+                placeholder="game name"
                 name = "game-name"
                 value = {createdGame}
                 onChange = {(e) => { this.handleChange(e, 'createdGame') }}
@@ -155,6 +161,9 @@ class Dashboard extends Component {
             <div className="input-wrapper">
               <label>Enter Game description:</label>
               <textarea
+                className="textarea"
+                placeholder="game description"
+                rows="10"
                 name = "game-description"
                 value = {createdGameDesc}
                 onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
@@ -165,14 +174,14 @@ class Dashboard extends Component {
           </form>
         </div>
       </div>
-
       )
     }
     if (this.props.currentState.loggedIn) {
       return (
         <div className="dashBoard">
+          <ShowNavbar />
 
-          <div className="columns">
+          <div className="columns is-desktop">
 
             <div className="column is-two-thirds">
               <GamesList
