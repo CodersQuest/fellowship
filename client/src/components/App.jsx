@@ -19,7 +19,7 @@ class App extends Component {
           email:'',
           loggedIn: false,
           currentUser: null,
-          clientSocketId: 0,
+          currentGame: null,
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -45,8 +45,10 @@ class App extends Component {
   getCurrentUser() {
     return (
       axios.get('/me').then(res=> {
-        this.setState({userObject: res.data.user})
-        console.log(res.data.user, 'res from /me')
+        this.setState({
+          currentUser: res.data.user
+        })
+        console.log(res.data.user, 'res from App.jsx getCurrentUser()')
       }).catch(error => {
         window.location.href='/login'
       })
@@ -57,13 +59,15 @@ class App extends Component {
   joinGame(gameObject) {
     console.log(gameObject)
     // update state for currentUser
+    this.setState({
+      currentGame: gameObject
+    })
 
   }
 
   componentDidMount () {
     axios.get('/me').then(res=> {
       if (res.data.user) {
-
         this.setState({loggedIn: true})
       } else {
         this.setState({loggedIn: false})
@@ -128,7 +132,6 @@ class App extends Component {
             joinGame={this.joinGame}
             getCurrentUser={this.getCurrentUser}
           />
-          
         )
       } else if (view==='/login' && loggedIn === false){
         return (

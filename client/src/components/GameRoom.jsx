@@ -22,7 +22,7 @@ class GameRoom extends Component {
   }
   
   componentDidMount() {
-
+    
   }
 
   rollDice(value) {
