@@ -19,7 +19,7 @@ class Dashboard extends Component {
       createdGameDesc: '',
       createdGameImg: defaultGameImage,
       createdGameId: 0,
-      userGamesData:[],
+      userGamesData: [],
     }
     console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
@@ -31,8 +31,19 @@ class Dashboard extends Component {
 
   }
 
-  componentDidMount () {
-    
+  getUserGames() {
+    if (this.props.currentUser) {
+      const currentUserGames = this.props.currentUser.gamesPartOf;
+      // iterate over currentUserGames array to get individual gameId
+
+      // make axios call to /getgamedata endpoint
+      // set state with fake data
+      console.log('UpdatingState in getUserGames');
+      this.setState({
+        userGamesData: data,
+      })
+    } 
+
   }
 
   handleChange(e, attr) {
@@ -107,8 +118,11 @@ class Dashboard extends Component {
       // notifiy user that they have reached max allowed games
     }
   }
-
   
+  
+  componentDidMount () {
+    this.getUserGames()
+  }
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
@@ -188,10 +202,10 @@ class Dashboard extends Component {
         <div className="columns is-desktop">
 
           <div className="column is-two-thirds">
-            <GamesList
-              games={data}
+            {this.state.userGamesData.length > 0 ? <GamesList
+              games={this.state.userGamesData}
               joinGame={this.joinGame}
-            />
+            /> : null}
 
           </div>
           <div className="column is-one-third">
