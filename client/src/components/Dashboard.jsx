@@ -31,7 +31,7 @@ class Dashboard extends Component {
   }
 
   componentDidMount () {
-    {getCurrentUser}
+    this.props.getCurrentUser();
   }
 
   handleChange(e, attr) {

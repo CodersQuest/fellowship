@@ -43,12 +43,14 @@ class App extends Component {
   }
 
   getCurrentUser() {
-    axios.get('/me').then(res=> {
-      this.setState({userObject: res.data.user})
-      console.log(res.data.user, 'res from /me')
-    }).catch(error => {
-      window.location.href='/login'
-    })
+    return (
+      axios.get('/me').then(res=> {
+        this.setState({userObject: res.data.user})
+        console.log(res.data.user, 'res from /me')
+      }).catch(error => {
+        window.location.href='/login'
+      })
+    )
   }
 
 
@@ -124,6 +126,7 @@ class App extends Component {
             currentState={ this.state }
             viewChange={this.viewChange}
             joinGame={this.joinGame}
+            getCurrentUser={this.getCurrentUser}
           />
           
         )
