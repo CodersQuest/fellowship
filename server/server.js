@@ -134,7 +134,6 @@ app.get('/me', auth, function(req, res){
 
 /***********Passport************/
 
-<<<<<<< HEAD
 /***********Redirects************/
 
 app.get('*', (req, res) => {
@@ -145,9 +144,6 @@ app.get('*', (req, res) => {
   });
 });
 /***********Redirects************/
-=======
-
->>>>>>> TS issue wth login authentication
 
 
 /***********Requests************/
