@@ -34,7 +34,7 @@ class TokenTemplateList extends Component {
 
   render() {
     return (
-      <div id="tokenlist">
+      <div id="tokenlist" className="column">
         {this.props.tokenImages.map(url =>
 
           <TokenTemplateListItem

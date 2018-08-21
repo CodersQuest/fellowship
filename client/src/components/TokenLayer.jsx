@@ -96,7 +96,7 @@ class TokenLayer extends Component {
   render () {
     return (
         <div id="token-layer">
-        <canvas id="canvas-top"  
+        <canvas id="canvas-top" 
         width={this.state.boardWidth} 
         height={this.state.boardHeight}
         ></canvas>  
