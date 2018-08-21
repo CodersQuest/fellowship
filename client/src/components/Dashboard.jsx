@@ -112,45 +112,91 @@ class Dashboard extends Component {
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
+    
+    const ShowNavbar = () => {
+      return (
+          <nav className="navbar is-transparent is-success" role="navigation" aria-label="main navigation">
 
+            <div className="navbar-brand">
+              <a className="navbar-brand is-size-1" href="#"> Dashboard </a>
+
+              <div className="navbar-end">
+                <div className="navbar-item">
+                  <div class="field is-grouped">
+                    <p className="control" onClick={()=> this.props.viewChange('/logout')}>
+                      <a className="button is-link">
+                        Logout
+                      </a>
+                    </p>
+                    <p onClick={()=> this.props.viewChange('/game')}>
+                      <a className="button is-link">
+                        Go To Game Page
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </nav>
+        
+      )
+    };
     const ShowUserGameOption = () => {
       return (
+      <div>
         <div className="player-options">
-        <form>
-        <p onClick={()=> this.props.viewChange('/logout')}>Logout</p>
-        <p onClick={()=> this.props.viewChange('/game')}>Go To Game Page</p>
-          <div className="input-wrapper">
-            <label>Enter Game Name:</label>
-            <input type="text"
-              name = "game-name"
-              value = {createdGame}
-              onChange = {(e) => { this.handleChange(e, 'createdGame') }}
-            />
-          </div>
-          <div className="input-wrapper">
-            <label>Enter Game description:</label>
-            <textarea
-              name = "game-description"
-              value = {createdGameDesc}
-              onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
-            />
-          </div>
-          <button type="button" onClick={this.createNewGame}>`Create New Game`</button>
-          {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
-        </form>
+          <form>
+            <div className="input-wrapper">
+              <label>Enter Game Name:</label>
+              <input type="text"
+                className="input"
+                placeholder="game name"
+                name = "game-name"
+                value = {createdGame}
+                onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label>Enter Game description:</label>
+              <textarea
+                className="textarea"
+                placeholder="game description"
+                rows="10"
+                name = "game-description"
+                value = {createdGameDesc}
+                onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+              />
+            </div>
+            <button type="button" onClick={this.createNewGame}>`Create New Game`</button>
+            {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
+          </form>
+        </div>
       </div>
       )
     }
     if (this.props.currentState.loggedIn) {
       return (
         <div className="dashBoard">
-          <h1> Dashboard </h1>
-            <ShowUserGameOption />
-            <GamesList
-              games={data}
-              joinGame={this.props.joinGame}
-            />
-          </div>
+          <ShowNavbar />
+
+          <div className="columns is-desktop">
+
+            <div className="column is-two-thirds">
+              <GamesList
+                games={data}
+                joinGame={this.props.joinGame}
+              />
+
+            </div>
+            <div className="column is-one-third">
+              <ShowUserGameOption />
+
+            </div>
+          </div> 
+
+        </div>
       )
     } else {
       return 'User not authenticated';

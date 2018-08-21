@@ -12,17 +12,13 @@ const SignUp = ({handleChange, onSubmit, viewChange}) => (
 
       <div className="field">
         <label className="label" > Name: </label>
-          <div className="control has-icons-left has-icons-right">
           <input className="input is-success" onChange={handleChange} type="text" placeholder="create username" id="display-name" name="username"  required />
         </div>
-      </div>
 
       <div className="field">
         <label className="label"> Email:</label>
-        <div className="control has-icons-left has-icons-right">
           <input className="input is-success" onChange={handleChange} type="text" placeholder="email" id="display-email"  name="email"  required />
         </div>
-      </div>
 
       <div className="field">
         <label className="label"> Password:</label>
