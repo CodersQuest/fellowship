@@ -139,6 +139,10 @@ class Dashboard extends Component {
             </div>
           </nav>
 
+
+ 
+
+
           <form>
             <div className="input-wrapper">
               <label>Enter Game Name:</label>
@@ -167,12 +171,23 @@ class Dashboard extends Component {
     if (this.props.currentState.loggedIn) {
       return (
         <div className="dashBoard">
-            <ShowUserGameOption />
-            <GamesList
-              games={data}
-              joinGame={this.props.joinGame}
-            />
-          </div>
+
+          <div className="columns">
+
+            <div className="column is-two-thirds">
+              <GamesList
+                games={data}
+                joinGame={this.props.joinGame}
+              />
+
+            </div>
+            <div className="column is-one-third">
+              <ShowUserGameOption />
+
+            </div>
+          </div> 
+
+        </div>
       )
     } else {
       return 'User not authenticated';
