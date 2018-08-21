@@ -40,6 +40,8 @@ canvas {
   grid-area: tokens;
   position:relative;
   z-index: 8;
+  padding-left: 0.5em;
+
 }
 
 #battleLog {
