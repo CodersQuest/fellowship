@@ -115,36 +115,58 @@ class Dashboard extends Component {
 
     const ShowUserGameOption = () => {
       return (
+
+      <div>
+
         <div className="player-options">
-        <form>
-        <p onClick={()=> this.props.viewChange('/logout')}>Logout</p>
-        <p onClick={()=> this.props.viewChange('/game')}>Go To Game Page</p>
-          <div className="input-wrapper">
-            <label>Enter Game Name:</label>
-            <input type="text"
-              name = "game-name"
-              value = {createdGame}
-              onChange = {(e) => { this.handleChange(e, 'createdGame') }}
-            />
-          </div>
-          <div className="input-wrapper">
-            <label>Enter Game description:</label>
-            <textarea
-              name = "game-description"
-              value = {createdGameDesc}
-              onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
-            />
-          </div>
-          <button type="button" onClick={this.createNewGame}>`Create New Game`</button>
-          {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
-        </form>
+          
+          <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
+
+            <div className="navbar-brand">
+              <a className="navbar-item" href="#"> Dashboard </a>
+              <div class="field is-grouped">
+                <p className="control" onClick={()=> this.props.viewChange('/logout')}>
+                  <a className="button is-link">
+                    Logout
+                  </a>
+                </p>
+                <p onClick={()=> this.props.viewChange('/game')}>
+                  <a className="button is-link">
+                    Go To Game Page
+                  </a>
+                </p>
+              </div>
+            </div>
+          </nav>
+
+          <form>
+            <div className="input-wrapper">
+              <label>Enter Game Name:</label>
+              <input type="text"
+                name = "game-name"
+                value = {createdGame}
+                onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+              />
+            </div>
+            <div className="input-wrapper">
+              <label>Enter Game description:</label>
+              <textarea
+                name = "game-description"
+                value = {createdGameDesc}
+                onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+              />
+            </div>
+            <button type="button" onClick={this.createNewGame}>`Create New Game`</button>
+            {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
+          </form>
+        </div>
       </div>
+
       )
     }
     if (this.props.currentState.loggedIn) {
       return (
         <div className="dashBoard">
-          <h1> Dashboard </h1>
             <ShowUserGameOption />
             <GamesList
               games={data}
