@@ -31,7 +31,7 @@ class TokenLayer extends Component {
     if (e.preventDefault) {
       e.preventDefault(); // Necessary. Allows us to drop.
     }
-    e.dataTransfer.effectAllowed = 'copy';
+    e.dataTransfer.effectAllowed = 'move';
 
     return false;
   }
@@ -42,12 +42,38 @@ class TokenLayer extends Component {
       e.stopPropagation(); // stops the browser from redirecting.
     }
     var img = document.querySelector('.target-image');
-    // console.log('event: ', e);
+
+    var snapToBlock = (location) => {
+      var result = null;
+      var hundreths = 0;
+      var num = 0;
+      location = location.toString();
+      if (location.length > 2) {
+        hundreths = Number(location.slice(0,location.length-2))
+        num = Number(location.split('').splice(1,2).join(''))
+      } else {
+          num = Number(location);
+      }
+
+      if (num < 25) {
+          num = '00';
+      } else if (25 <= num && num <= 75) {
+          num = 50;
+      } else if (75 < num) {
+          hundreths++;
+          num = '00';
+      }
+     result = Number(hundreths.toString() + num.toString())
+
+
+      return result;
+    }
+    console.log('event: ', e);
     var newImage = new fabric.Image(img, {
-        width: img.width,
-        height: img.height,
-        left: e.layerX,//round to nearest 50 value
-        top: e.layerY//round to nearest 50 value
+        width: 100,
+        height: 100,
+        left: snapToBlock(e.layerX),
+        top: snapToBlock(e.layerY)
     });
     var c = this.state.canvas.add(newImage);
     this.setState({
@@ -76,7 +102,7 @@ class TokenLayer extends Component {
   
   
   componentDidMount() { 
-    var c = new fabric.Canvas('canvas-top');
+    var c = new fabric.StaticCanvas('canvas-top');
     //i want to not have to store this in a state, but
     //without this, it's almost impossible to reference the canvas in another function
     this.setState({
