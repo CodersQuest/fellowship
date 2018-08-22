@@ -19,21 +19,30 @@ class Dashboard extends Component {
       createdGameDesc: '',
       createdGameImg: defaultGameImage,
       createdGameId: 0,
-      userGamesData:[],
-      userObject: null,
+      userGamesData: [],
     }
-    console.log(this.props);
+    // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
-    this.joinGame = this.joinGame.bind(this);
 
   }
 
-  componentDidMount () {
-    this.props.getCurrentUser();
+  getUserGames() {
+    if (this.props.currentUser) {
+      const currentUserGames = this.props.currentUser.gamesPartOf;
+      // iterate over currentUserGames array to get individual gameId
+
+      // make axios call to /getgamedata endpoint
+      // set state with fake data
+      //console.log('UpdatingState in getUserGames');
+      this.setState({
+        userGamesData: data,
+      })
+    } 
+
   }
 
   handleChange(e, attr) {
@@ -109,20 +118,14 @@ class Dashboard extends Component {
     }
   }
   
-  joinGame(game) {
-    console.log(game);
-    this.props.history.push(`/games/${game.gameId}`);
-    // update state for currentUser
-    // this.setState({
-    //   currentGame: gameObject
-    // })
-  }
-
   
+  componentDidMount () {
+    this.getUserGames()
+  }
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
 
     if(!this.props.isLoggedIn) return <Redirect to="/login" />;
     
@@ -198,10 +201,11 @@ class Dashboard extends Component {
         <div className="columns is-desktop">
 
           <div className="column is-two-thirds">
-            <GamesList
-              games={data}
-              joinGame={this.joinGame}
-            />
+            {this.state.userGamesData.length > 0 ? <GamesList
+              games={this.state.userGamesData}
+              joinGame={this.props.joinGame}
+              history={this.props.history}
+            /> : null}
 
           </div>
           <div className="column is-one-third">

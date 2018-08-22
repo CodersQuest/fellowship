@@ -118,7 +118,6 @@ app.post('/signup', (req, res) => {
 
 
 app.get('/me', auth, function(req, res){
-
   if (req.user) {
 
 
@@ -168,6 +167,19 @@ app.get('/dashboard/:id', auth, (req, res) => {
 });
 
 /***********Requests************/
+
+/***********Redirects************/
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  });
+});
+
+
+/***********Redirects************/
 
 /***********Listening to Server************/
 server.listen(port, () => {

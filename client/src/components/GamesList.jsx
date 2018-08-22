@@ -2,7 +2,7 @@ import React from 'react';
 import GamesListItem from './GamesListItem.jsx';
 import styles from '../styles/App.css'
 
-const GamesList = ({games, joinGame}) => {
+const GamesList = ({games, joinGame, history}) => {
   return (
     <div className="gamesList">
      {games.map(function (game) {
@@ -11,6 +11,7 @@ const GamesList = ({games, joinGame}) => {
           key={game.gameName}
           game = { game }
           joinGame={joinGame}
+          history={history}
         />
        )
      }) 

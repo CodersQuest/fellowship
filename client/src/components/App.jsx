@@ -22,13 +22,13 @@ class App extends Component {
           email:'',
           loggedIn: false,
           currentUser: null,
-          currentGame: null,
+          currentGame: {},
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
-    // this.joinGame = this.joinGame.bind(this);
+    this.joinGame = this.joinGame.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.setUser = this.setUser.bind(this);
 
@@ -46,7 +46,18 @@ class App extends Component {
       view: text
     })
   }
+  
+  joinGame(game) {
+    console.log(game);
+    // update state for currentGame
+    this.setState({
+      currentGame: game
+    })
+    // this.props.history.push(`/games/${game.gameId}`);
+    // window.location.href=`/games/:${this.state.currentGame.gameId}`
+  }
 
+  // get game data
   getCurrentUser() {
     return (
       axios.get('/me').then(res=> {
@@ -60,16 +71,6 @@ class App extends Component {
       })
     )
   }
-
-
-  // joinGame(gameObject) {
-  //   console.log(gameObject)
-  //   // update state for currentUser
-  //   this.setState({
-  //     currentGame: gameObject
-  //   })
-
-  // }
 
   componentDidMount () {
     axios.get('/me').then(res=> {
@@ -194,8 +195,9 @@ class App extends Component {
                 // currentState={ this.state }
                 isLoggedIn={loggedIn}
                 viewChange={this.viewChange}
-                // joinGame={this.joinGame}
-                getCurrentUser={this.getCurrentUser}
+                joinGame={this.joinGame}
+                // getCurrentUser={this.getCurrentUser}
+                currentUser={currentUser}
                 {...props}
               />
             )} 
@@ -216,7 +218,9 @@ class App extends Component {
           <Route path="/games/:gameId" 
             render={(props) => (
               <GameRoom
+                isLoggedIn={loggedIn}
                 currentUser={currentUser}
+                currentGame={currentGame}
                 {...props}
               /> 
             )} 

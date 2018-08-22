@@ -11,6 +11,7 @@ const sharedSession = require('express-socket.io-session');
 // it's a good idea to track these things separately.
 var games = {}, players = {}, rooms = {};
 
+
 // declare module constructor that is passed the http server to bind to
 module.exports = function(server, session) {
   let io = socketIo.listen(server);
@@ -43,7 +44,7 @@ module.exports = function(server, session) {
           }
         }
       }
-      console.log(players);
+      console.log('Current players: ', players);
     });
 
     socket.on("disconnect", function() {
@@ -56,9 +57,11 @@ module.exports = function(server, session) {
 
     socket.on('joinGame', game => {
       //! attach roomID to the socket
+      const roomID = game.gameId;
+      console.log('joinGame roomId', roomID)
       // should check the gameID and query the DB
       // upon response should check if the game exists
-      console.log(game);
+      // console.log('Socket - joinGame init: ', game);
 
     });
 

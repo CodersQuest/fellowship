@@ -5,7 +5,7 @@ const listItemStyle = {
   width: 75,
   height: 75
 }
-const GamesListItem = ({game, joinGame}) => {
+const GamesListItem = ({game, joinGame, history}) => {
 
   return (
     <div>
@@ -39,13 +39,16 @@ const GamesListItem = ({game, joinGame}) => {
               
 
                 <span>
-                  <Link to={`/games/${game.gameId}`}>Join Game</Link>
-                  {/* <button type='button'
-                    onClick={() => joinGame(game)}>
+                  {/* <Link to={`/games/${game.gameId}`}>Join Game</Link> */}
+                  <button type='button'
+                    onClick={() => {
+                      joinGame(game);
+                      history.push(`/games/${game.gameId}`);
+                    }}>
                       <a className="button is-small is-info">
                         Join Game
                       </a>
-                  </button> */}
+                  </button>
                 </span>
 
             </article>
