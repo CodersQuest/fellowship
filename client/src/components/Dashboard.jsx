@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-ro
 import data from './dashBoardDummyData.js';
 import users from './userData';
 import { PromiseProvider } from 'mongoose';
+import CreateGameModal from './CreateGameModal.jsx';
+// import Navbar from './Navbar.jsx';
 
 // get request on load
 
@@ -20,13 +22,15 @@ class Dashboard extends Component {
       createdGameImg: defaultGameImage,
       createdGameId: 0,
       userGamesData: [],
-    }
+      modalState: false
+    };
     // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
 
   }
 
@@ -117,6 +121,13 @@ class Dashboard extends Component {
       // notifiy user that they have reached max allowed games
     }
   }
+
+  toggleModal() {
+    this.setState((prev, props) => {
+      const newState = !prev.modalState;
+      return { modalState: newState };
+    });
+  }
   
   
   componentDidMount () {
@@ -137,90 +148,90 @@ class Dashboard extends Component {
               <a className="navbar-brand is-size-1 has-text-white" href="#"> Dashboard </a>
             </div>
 
-              <div className="navbar-end">
-                <div className="navbar-item">
-                  <div className="field is-grouped">
-                    <p className="control" onClick={()=> this.props.viewChange('/logout')}>
-                      <a className="button is-link">
-                        Logout
-                      </a>
-                    </p>
-                    <p onClick={()=> this.props.viewChange('/game')}>
-                      <a className="button is-link">
-                        Go To Game Page
-                      </a>
-                    </p>
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="field is-grouped">
+
+                  <p className="control" onClick={this.toggleModal}>
+                    <a className="button is-link">
+                      Create New Game
+                    </a>
+                  </p>
+                  
+                  <div>
+                    <CreateGameModal
+                      closeModal={this.toggleModal}
+                      modalState={this.state.modalState}
+                      title="Create a new game"
+                    >
+                      <div className="input-wrapper is-size-4">
+                        <label>Enter Game Name:</label>
+                          <input type="text"
+                            className="input"
+                            placeholder="Enter Game Name"
+                            name = "game-name"
+                            value = {createdGame}
+                            onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+                          />
+                          </div>
+                          <div className="input-wrapper is-size-4">
+                            <label>Enter Game description:</label>
+                            <textarea
+                              className="textarea"
+                              placeholder="Enter Game Description"
+                              rows="10"
+                              name = "game-description"
+                              value = {createdGameDesc}
+                              onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+                            />
+                          </div>
+                          <button type="button" onClick={this.createNewGame}>
+                            <a className="button">
+                              Create New Game
+                            </a>
+                          </button>
+                          {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
+
+                    </CreateGameModal>
+
                   </div>
+          
+                  <p className="control" onClick={()=> this.props.viewChange('/game')}>
+                    <a className="button is-link">
+                      Go To Game Page
+                    </a>
+                  </p>
+
+                  <p onClick={()=> this.props.viewChange('/logout')}>
+                    <a className="button is-link">
+                      Logout
+                    </a>
+                  </p>
                 </div>
               </div>
+            </div>
           </nav>
       )
     };
-    const ShowUserGameOption = () => {
-      return (
-      <div>
-        <div className="player-options">
-          <form>
-            <div className="input-wrapper is-size-4">
-              <label>Enter Game Name:</label>
-              <input type="text"
-                className="input"
-                placeholder="game name"
-                name = "game-name"
-                value = {createdGame}
-                onChange = {(e) => { this.handleChange(e, 'createdGame') }}
-              />
-            </div>
-            <div className="input-wrapper is-size-4">
-              <label>Enter Game description:</label>
-              <textarea
-                className="textarea"
-                placeholder="game description"
-                rows="10"
-                name = "game-description"
-                value = {createdGameDesc}
-                onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
-              />
-            </div>
-            <button type="button" onClick={this.createNewGame}>
-              <a className="button">
-                Create New Game
-              </a>
-            </button>
-            {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
-          </form>
-        </div>
-      </div>
-      )
-    }
     
     return (
       <div className="dashBoard">
         <ShowNavbar />
 
-        <div className="columns is-desktop">
-
-          <div className="column is-two-thirds">
-            {this.state.userGamesData.length > 0 ? <GamesList
-              games={this.state.userGamesData}
-              joinGame={this.props.joinGame}
-              history={this.props.history}
-            /> : null}
-
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              {this.state.userGamesData.length > 0 ? <GamesList
+                games={this.state.userGamesData}
+                joinGame={this.props.joinGame}
+                history={this.props.history}
+              /> : null}
+            </div>
           </div>
-          <div className="column is-one-third">
-            <ShowUserGameOption />
-
-          </div>
-        </div> 
-
+        </section>
       </div>
     )
-    
-
   }
-  
 };
 
 export default Dashboard;
-//
