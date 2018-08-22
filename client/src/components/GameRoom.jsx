@@ -5,7 +5,7 @@ import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
-import { diceRoll, addToken, removeToken, moveToken, playerConnect } from '../socketClient.js';
+import { diceRoll, addToken, removeToken, moveToken, playerConnect, socket } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
 import gamesList from './dashBoardDummyData.js';
@@ -22,20 +22,13 @@ class GameRoom extends Component {
     }
     this.rollDice = this.rollDice.bind(this);
   }
-  componentWillMount() {
-    this.getGameData(this.props.match.params.gameId);
-  }
+  
   componentDidMount() {
     console.log(this.props.currentUser);
     playerConnect(this.props.currentUser);
-  }
-
-  getGameData(gameId) {
-    const currentGame = gamesList.find((game) => {
-      return game.gameId === gameId;
+    socket.on('newPlayer', (data) => {
+      console.log(socket.room)
     })
-    this.setState({ currentGame })
-    //console.log(game, gameId);
   }
 
   rollDice(value) {
@@ -48,6 +41,8 @@ class GameRoom extends Component {
   }
   
   render() {
+    const isLoggedIn = this.props.isLoggedIn;
+    console.log(isLoggedIn)
     if (this.props.currentUser === null)  {
       return (
         <Redirect 
@@ -62,20 +57,34 @@ class GameRoom extends Component {
     }
     
 
-    return (
-      <Fragment>
-        <div id="gameContainer">
-          <TokenTemplateList tokenImages={this.state.tokenImages}/>
-          <BattleMap />   
-
-          <BattleLog />
-          <GameProfiles />
-          <GameOptions />
-          <DiceTray rollDice={this.rollDice}/>
-        </div>
-      </Fragment>
-    )
-  }
+    if ( isLoggedIn && (this.props.currentGame).hasOwnProperty('gameId') ) {
+      return (
+        <Fragment>
+          <div id="gameContainer">
+            <TokenTemplateList tokenImages={this.state.tokenImages}/>
+            <BattleMap />   
+  
+            <BattleLog />
+            <GameProfiles />
+            <GameOptions />
+            <DiceTray rollDice={this.rollDice}/>
+          </div>
+        </Fragment>
+      )
+    } else {
+      return (
+        <Redirect 
+          to={{
+            pathname: "/",
+            state: {
+              from: this.props.location.pathname
+            }
+          }}
+        />
+      )
+    }
+    
+  } // end render()
 }
 
 export default GameRoom;

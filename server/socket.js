@@ -11,6 +11,7 @@ const sharedSession = require('express-socket.io-session');
 // it's a good idea to track these things separately.
 var games = {}, players = {}, rooms = {};
 
+
 // declare module constructor that is passed the http server to bind to
 module.exports = function(server, session) {
   let io = socketIo.listen(server);

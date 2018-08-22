@@ -21,7 +21,7 @@ class Dashboard extends Component {
       createdGameId: 0,
       userGamesData: [],
     }
-    console.log(this.props);
+    // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
     this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
@@ -37,7 +37,7 @@ class Dashboard extends Component {
 
       // make axios call to /getgamedata endpoint
       // set state with fake data
-      console.log('UpdatingState in getUserGames');
+      //console.log('UpdatingState in getUserGames');
       this.setState({
         userGamesData: data,
       })
@@ -125,7 +125,7 @@ class Dashboard extends Component {
   
   render () {
     const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
-    console.log(this.props);
+    // console.log(this.props);
 
     if(!this.props.isLoggedIn) return <Redirect to="/login" />;
     

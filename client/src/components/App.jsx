@@ -218,6 +218,7 @@ class App extends Component {
           <Route path="/games/:gameId" 
             render={(props) => (
               <GameRoom
+                isLoggedIn={loggedIn}
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}
