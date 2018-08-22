@@ -2,7 +2,6 @@ let socketio = require('socket.io-client');
 
 export const socket = socketio.connect('http://localhost:3000');
 
-console.log(socket);
 
 // For client side events, we will want to follow a pattern of making a function for the client action
 // within said function we will execute our emit

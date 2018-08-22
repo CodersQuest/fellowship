@@ -25,21 +25,25 @@ module.exports = function(server, session) {
       if (userData) {
         socket.username = userData.username;
         socket.uid = userData._id;
-        socket.room = null;
-        socket.isInGame = false;
         if (!players[socket.uid]) {
+          socket.room = null;
+          socket.isInGame = false;
           // add player to players object
           players[socket.uid] = {
             socket: socket.id,
             username: socket.username,
             room: socket.room,
             uid: socket.uid,
+            isInGame: socket.isInGame
           };
           socket.emit('newPlayer', 'New Player Established');
         } else if (players[socket.uid]) {
           if (players[socket.uid].socket !== socket.id) {
             // overwrite the socket with the new socket.id
             players[socket.uid].socket = socket.id;
+            //
+            socket.room = players[socket.uid].room;
+            socket.isInGame = players[socket.uid].isInGame;
             socket.emit('newPlayer', 'Existing Player Updated');
           }
         }
@@ -57,15 +61,26 @@ module.exports = function(server, session) {
 
     socket.on('joinGame', game => {
       //! attach roomID to the socket
-      if (game) {
+      if (game && (socket.isInGame === false) ) {
         const roomID = game.gameId;
         if ( !(games[roomID]) ) {
+          // add currentPlayer holder to passed game
+          rooms[roomID] = []; // add player information to this rooms holder
+
           // add currentGame from connected player to games
           games[game.gameId] = game;
-          console.log(games);
-          socket.emit('gameStatusUpdated', `New game added: ${JSON.stringify(games)}`)
+          socket.room = roomID;
+          // associate room to player
+          players[socket.uid].room = roomID;
+          players[socket.uid].isInGame = true;
+          socket.isInGame = true;
+          // join room
+          socket.join(roomID);
+          rooms.roomID.push({player: socket.username, image: '', })
+          io.in(socket.room).emit('gameStatusUpdated', ``)
           
         } else if (games[roomID]) {
+
           socket.emit('gameStatusUpdated', `Game ${roomID} exits` )
         }
       }
