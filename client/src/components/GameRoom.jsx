@@ -36,6 +36,9 @@ class GameRoom extends Component {
     socket.on('newPlayer', (data) => {
       console.log(data);
       joinGame(this.props.currentGame);
+    });
+    socket.on('gameStatusUpdated', (data) => {
+      console.log(data);
     })
   }
 

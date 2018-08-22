@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import socket from '../socketClient.js';
+// import socket from '../socketClient.js';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import createHistory from "history/createBrowserHistory";

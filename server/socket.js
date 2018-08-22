@@ -57,8 +57,19 @@ module.exports = function(server, session) {
 
     socket.on('joinGame', game => {
       //! attach roomID to the socket
-      const roomID = game.gameId;
-      console.log('joinGame roomId', roomID)
+      if (game) {
+        const roomID = game.gameId;
+        if ( !(games[roomID]) ) {
+          // add currentGame from connected player to games
+          games[game.gameId] = game;
+          console.log(games);
+          socket.emit('gameStatusUpdated', `New game added: ${JSON.stringify(games)}`)
+          
+        } else if (games[roomID]) {
+          socket.emit('gameStatusUpdated', `Game ${roomID} exits` )
+        }
+      }
+      //console.log('joinGame roomId', roomID)
       // should check the gameID and query the DB
       // upon response should check if the game exists
       // console.log('Socket - joinGame init: ', game);
