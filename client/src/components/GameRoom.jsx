@@ -7,8 +7,7 @@ import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
 import { joinGame, diceRoll, addToken, removeToken, moveToken, playerConnect, socket } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
-import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
-import gamesList from './dashBoardDummyData.js';
+import {eevee, ninetails, clefairy, lugia, defaultGameAvatar} from '../images/imageData.js';
  
 class GameRoom extends Component {
   constructor(props) {
@@ -36,6 +35,10 @@ class GameRoom extends Component {
     socket.on('newPlayer', (data) => {
       console.log(data);
       joinGame(this.props.currentGame);
+    });
+    socket.on('gameStatusUpdated', (data) => {
+      console.log(data);
+      
     })
   }
 
