@@ -5,7 +5,7 @@ import BattleLog from "./BattleLog.jsx";
 import GameProfiles from "./GameProfiles.jsx";
 import GameOptions from "./GameOptions.jsx";
 import DiceTray from "./DiceTray.jsx";
-import { diceRoll, addToken, removeToken, moveToken, playerConnect, socket } from '../socketClient.js';
+import { joinGame, diceRoll, addToken, removeToken, moveToken, playerConnect, socket } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
 import gamesList from './dashBoardDummyData.js';
@@ -21,13 +21,21 @@ class GameRoom extends Component {
       tokenImages: [eevee, ninetails, clefairy, lugia]
     }
     this.rollDice = this.rollDice.bind(this);
+    
   }
-  
+
+  syncGameState(joinGame) {
+    const playerCurrentGame = this.props.currentGame;
+    //joinGame(playerCurrentGame);
+  }
+
   componentDidMount() {
+    // need to find out why this is running twice
     console.log(this.props.currentUser);
     playerConnect(this.props.currentUser);
     socket.on('newPlayer', (data) => {
-      console.log(socket.room)
+      console.log(data);
+      joinGame(this.props.currentGame);
     })
   }
 
