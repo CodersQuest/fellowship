@@ -13,16 +13,16 @@
   grid-template-areas: 
   "users users settings"
   "tokens game log"
-  ". dice logchat"
+  "dice dice logchat"
 }
 
 canvas {
-  background: white;
+  background: #11ffee00;
 }
 
 #diceTray {
   grid-area: dice;
-  background-color: slategray;
+  background-color: aquamarine;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -61,12 +61,12 @@ canvas {
 
 #token-layer {
   position: absolute;
-  background:transparent;
+  background-color: #11ffee00;
 }
 
 #canvas-top {
   position: relative;
-  background: transparent;
+  background-color: #11ffee00;
   z-index: 5;
   left:0;
 }

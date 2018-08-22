@@ -15,7 +15,6 @@ class TokenTemplateList extends Component {
   handleDragStart(e) {
     e.target.style.opacity = '0.4'; 
     e.target.classList.add('target-image');
-    // e.dataTransfer.effectAllowed = 'copy';
   }
 
   handleDragEnd(e) {

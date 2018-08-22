@@ -60,6 +60,7 @@ class GameRoom extends Component {
         />
       )
     }
+    
 
     return (
       <Fragment>
