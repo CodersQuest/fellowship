@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import styles from '../styles/App.css'
+import styles from '../styles/App.css';
 const listItemStyle = {
   width: 75,
   height: 75

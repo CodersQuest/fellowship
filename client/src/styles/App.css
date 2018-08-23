@@ -46,7 +46,12 @@ canvas {
 
 #battleLog {
   grid-area: log;
-  background-color: aquamarine;
+  background-color:rgb(51, 53, 54);
+  color: #47ddffdb;
+}
+
+.custom-bg {
+  background: radial-gradient(circle closest-side, #666, #999 575%);
 }
 
 #userProfiles {

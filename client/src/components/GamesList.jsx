@@ -5,7 +5,7 @@ import styles from '../styles/App.css'
 const GamesList = ({games, joinGame, history}) => {
   return (
     <div className="gamesList">
-     {games.map(function (game) {
+     {games.map((game) => {
        return (
         <GamesListItem
           key={game.gameName}
