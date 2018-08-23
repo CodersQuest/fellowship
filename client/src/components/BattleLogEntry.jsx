@@ -1,11 +1,10 @@
 import React from 'react';
 import styles from '../styles/App.css';
 
-const BattleLogEntry = ({handleDisplayLog}) => {
+const BattleLogEntry = ({handleDisplayLog, logentry }) => {
+  
   return (
-    <div className='li-holder'>
-      {handleDisplayLog}
-    </div>
+    <li className='logentry'>{logentry}</li>
   )
 };
 

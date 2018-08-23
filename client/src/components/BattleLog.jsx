@@ -7,11 +7,11 @@ import 'bulma/css/bulma.css';
 class BattleLog extends Component {
   constructor(props) {
     super(props);
-
+    console.log(props);
   }
 
   render() {
-    
+    const logsFromProps = this.props.currentLog; 
     return (
       <div id="battleLog">
         <div className='columns'>
@@ -23,10 +23,13 @@ class BattleLog extends Component {
             <div className='log-display-wrapper'>
               <div className='log-entry-view'>
                 <ul>
-                  <BattleLogEntry
-                    handleDisplayLog={this.props.handleDisplayLog}
-                    {...props}
-                  />
+                  {logsFromProps.map((logentry) => {
+                    <BattleLogEntry
+                      // handleDisplayLog={this.props.handleDisplayLog}
+                      logentry={logentry}
+                      {...this.props}
+                    />
+                  })}
                 </ul>
               </div>
             </div>

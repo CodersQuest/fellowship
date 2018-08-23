@@ -20,15 +20,9 @@ class GameRoom extends Component {
       tokenImages: [eevee, ninetails, clefairy, lugia]
     }
     this.rollDice = this.rollDice.bind(this);
-    this.handleDisplayLog = this.handleDisplayLog.bind(this);
+    // this.updateClientLog = this.updateClientLog.bind(this);
   }
   
-  handleDisplayLog(logArr) {
-    const sortedLog = logArr.map((logentry) => {
-      <li className='logentry'>{logentry}</li>
-    });
-    return sortedLog;
-  }
 
   componentDidMount() {
     // need to find out why this is running twice
@@ -39,8 +33,7 @@ class GameRoom extends Component {
       joinGame(this.props.currentGame);
     });
     socket.on('gameStatusUpdated', (data) => {
-      console.log(data);
-      
+      console.log(data.logs);
     })
   }
 
@@ -55,6 +48,7 @@ class GameRoom extends Component {
   
   render() {
     const isLoggedIn = this.props.isLoggedIn;
+    
     console.log(isLoggedIn)
     if (this.props.currentUser === null)  {
       return (
@@ -71,6 +65,7 @@ class GameRoom extends Component {
     
 
     if ( isLoggedIn && (this.props.currentGame).hasOwnProperty('gameId') ) {
+      
       return (
         <Fragment>
           <div id="gameContainer">
@@ -78,7 +73,8 @@ class GameRoom extends Component {
             <BattleMap />   
   
             <BattleLog 
-              handleDisplayLog={this.handleDisplayLog}
+              // handleDisplayLog={this.handleDisplayLog}
+              currentLog={this.state.log}
               {...this.props}
             />
             <GameProfiles />
