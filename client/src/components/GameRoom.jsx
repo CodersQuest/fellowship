@@ -34,11 +34,15 @@ class GameRoom extends Component {
     });
     socket.on('gameStatusUpdated', (data) => {
       console.log(data.logs);
-    })
+    });
+    socket.on('updateLog', (data) => {
+      console.log(data);
+    });
+
   }
 
   rollDice(value) {
-    const roll = Math.floor(Math.random() * (max - 1 + 1) + 1);
+    const roll = Math.floor(Math.random() * (value - 1 + 1) + 1);
     const user = this.props.currentUser.username;
     //! Add roll context to this later. As well as Bonus modifier.
     diceRoll({
