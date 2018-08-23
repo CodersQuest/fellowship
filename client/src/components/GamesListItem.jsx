@@ -27,9 +27,9 @@ const GamesListItem = ({game, joinGame, history}) => {
                     </span>
 
                   </p>
-                  <span className="gameId is-size-5">
-                    {game.gameId}
-                  </span>
+                  <div className="gameId is-size-5">
+                    {game.gameId}  
+                  </div>
                   <span className="gameDescription is-size-5">
                     {game.gameDesc}
                   </span>
