@@ -26,17 +26,20 @@ class GameRoom extends Component {
 
   componentDidMount() {
     // need to find out why this is running twice
-    console.log(this.props.currentUser);
     playerConnect(this.props.currentUser);
     socket.on('newPlayer', (data) => {
-      console.log(data);
       joinGame(this.props.currentGame);
     });
     socket.on('gameStatusUpdated', (data) => {
-      console.log(data.logs);
+      console.log(data);
+      // data.logs, data.players, data.tokens 
+      this.setState({
+        players: data.players,
+        tokens: data.tokens,
+        log: data.logs
+      })
     });
     socket.on('updateLog', (data) => {
-      console.log(data);
       this.setState({
         log: data
       });
@@ -53,14 +56,11 @@ class GameRoom extends Component {
       roll: roll,
       max: value
     });
-    
-    console.log(value);
   }
   
   render() {
     const isLoggedIn = this.props.isLoggedIn;
     
-    console.log(isLoggedIn)
     if (this.props.currentUser === null)  {
       return (
         <Redirect 
@@ -88,7 +88,9 @@ class GameRoom extends Component {
               currentLog={this.state.log}
               {...this.props}
             />
-            <GameProfiles />
+            <GameProfiles 
+              players={this.state.players}
+            />
             <GameOptions />
             <DiceTray rollDice={this.rollDice}/>
           </div>
