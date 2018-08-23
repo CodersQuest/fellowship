@@ -58,6 +58,10 @@ canvas {
 #userProfiles {
   grid-area: users;
   background-color: aquamarine;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #settings {
