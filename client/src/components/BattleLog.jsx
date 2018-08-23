@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import BattleLogEntry from './BattleLogEntry';
 import 'bulma/css/bulma.css';
 
 // Component to render battle log messages.
 // This includes Dice Rolls, and eventually player messages and spells/skills
-class BattleLog extends React.Component {
+class BattleLog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,9 +13,12 @@ class BattleLog extends React.Component {
     this.handleDisplayLog = this.handleDisplayLog.bind(this);
   }
 
-  handleDisplayLog(logArr) {
-
-  }
+  // handleDisplayLog(logArr) {
+  //   const sortedLog = logArr.map((logentry) => {
+  //     <li className='logentry'>{logentry}</li>
+  //   });
+  //   return sortedLog;
+  // }
 
   render() {
     return (
@@ -28,6 +32,12 @@ class BattleLog extends React.Component {
             <div className='log-display-wrapper'>
               <div className='log-entry-view'>
                 {/* static dom element to be replaced by Component */}
+                <ul>
+                  <BattleLogEntry
+                    handleDisplayLog={this.handleDisplayLog}
+                    {...this.props}
+                  />
+                </ul>
               </div>
             </div>
           </div>
