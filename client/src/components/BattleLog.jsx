@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import BattleLogEntry from './BattleLogEntry';
+import React from 'react';
+import BattleLogEntry from './BattleLogEntry.jsx';
 import 'bulma/css/bulma.css';
 
 // Component to render battle log messages.
@@ -7,20 +7,11 @@ import 'bulma/css/bulma.css';
 class BattleLog extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      logStorage:[],
-    }
-    this.handleDisplayLog = this.handleDisplayLog.bind(this);
+
   }
 
-  // handleDisplayLog(logArr) {
-  //   const sortedLog = logArr.map((logentry) => {
-  //     <li className='logentry'>{logentry}</li>
-  //   });
-  //   return sortedLog;
-  // }
-
   render() {
+    
     return (
       <div id="battleLog">
         <div className='columns'>
@@ -31,11 +22,10 @@ class BattleLog extends Component {
 
             <div className='log-display-wrapper'>
               <div className='log-entry-view'>
-                {/* static dom element to be replaced by Component */}
                 <ul>
                   <BattleLogEntry
-                    handleDisplayLog={this.handleDisplayLog}
-                    {...this.props}
+                    handleDisplayLog={this.props.handleDisplayLog}
+                    {...props}
                   />
                 </ul>
               </div>

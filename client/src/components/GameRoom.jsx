@@ -20,12 +20,14 @@ class GameRoom extends Component {
       tokenImages: [eevee, ninetails, clefairy, lugia]
     }
     this.rollDice = this.rollDice.bind(this);
-    
+    this.handleDisplayLog = this.handleDisplayLog.bind(this);
   }
-
-  syncGameState(joinGame) {
-    const playerCurrentGame = this.props.currentGame;
-    //joinGame(playerCurrentGame);
+  
+  handleDisplayLog(logArr) {
+    const sortedLog = logArr.map((logentry) => {
+      <li className='logentry'>{logentry}</li>
+    });
+    return sortedLog;
   }
 
   componentDidMount() {
@@ -75,7 +77,10 @@ class GameRoom extends Component {
             <TokenTemplateList tokenImages={this.state.tokenImages}/>
             <BattleMap />   
   
-            <BattleLog />
+            <BattleLog 
+              handleDisplayLog={handleDisplayLog}
+              {...this.props}
+            />
             <GameProfiles />
             <GameOptions />
             <DiceTray rollDice={this.rollDice}/>

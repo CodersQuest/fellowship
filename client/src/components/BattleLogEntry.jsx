@@ -3,8 +3,10 @@ import styles from '../styles/App.css';
 
 const BattleLogEntry = ({handleDisplayLog}) => {
   return (
-    {handleDisplayLog}
-  );
-}
+    <div className='li-holder'>
+      {handleDisplayLog}
+    </div>
+  )
+};
 
 export default BattleLogEntry;
