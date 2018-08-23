@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BattleLogEntry from './BattleLogEntry.jsx';
 import 'bulma/css/bulma.css';
 
