@@ -78,7 +78,7 @@ class GameRoom extends Component {
             <BattleMap />   
   
             <BattleLog 
-              handleDisplayLog={handleDisplayLog}
+              handleDisplayLog={this.handleDisplayLog}
               {...this.props}
             />
             <GameProfiles />
