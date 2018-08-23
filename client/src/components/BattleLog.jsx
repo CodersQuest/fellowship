@@ -11,7 +11,6 @@ class BattleLog extends Component {
   }
 
   render() {
-    const logsFromProps = this.props.currentLog; 
     return (
       <div id="battleLog">
         <div className='columns'>
@@ -23,13 +22,13 @@ class BattleLog extends Component {
             <div className='log-display-wrapper'>
               <div className='log-entry-view'>
                 <ul>
-                  {logsFromProps.map((logentry) => {
+                  {this.props.currentLog.map((logentry) => (
                     <BattleLogEntry
                       // handleDisplayLog={this.props.handleDisplayLog}
                       logentry={logentry}
                       {...this.props}
                     />
-                  })}
+                  ))}
                 </ul>
               </div>
             </div>

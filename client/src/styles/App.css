@@ -48,6 +48,7 @@ canvas {
   grid-area: log;
   background-color:rgb(51, 53, 54);
   color: #47ddffdb;
+  overflow-y: scroll;
 }
 
 .custom-bg {

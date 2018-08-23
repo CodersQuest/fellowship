@@ -113,8 +113,15 @@ module.exports = function(server, session) {
 
     socket.on('diceRoll', data => {
       //! should have game and room attached
+      console.log(data);
+      console.log(socket.room);
+      const _game = games[socket.room];
       // find game, add dice roll message to game's log
+      _game.gameLog.push(data); 
+      // only going to keep the most recent 50-70 messages
+      console.log(games[socket.room].gameLog);
       // send updated log back to clients in room. 
+      io.in(socket.room).emit('updateLog', games[socket.room].gameLog); // emit to front end
     });
 
     socket.on('tokenMove', data => {
