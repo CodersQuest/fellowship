@@ -37,6 +37,9 @@ class GameRoom extends Component {
     });
     socket.on('updateLog', (data) => {
       console.log(data);
+      this.setState({
+        log: data
+      });
     });
 
   }
@@ -47,7 +50,8 @@ class GameRoom extends Component {
     //! Add roll context to this later. As well as Bonus modifier.
     diceRoll({
       player: user,
-      roll: roll
+      roll: roll,
+      max: value
     });
     
     console.log(value);
