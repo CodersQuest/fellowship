@@ -38,11 +38,14 @@ class GameRoom extends Component {
   }
 
   rollDice(value) {
-    // capture the dice clicked's value
-    // roll the die and turn to string
-    // should also have user info and eventually context
-    // may want to consider also handling multiple rolls
-    // after message is ready, pass to diceRoll function for socket event
+    const roll = Math.floor(Math.random() * (max - 1 + 1) + 1);
+    const user = this.props.currentUser.username;
+    //! Add roll context to this later. As well as Bonus modifier.
+    diceRoll({
+      player: user,
+      roll: roll
+    });
+    
     console.log(value);
   }
   

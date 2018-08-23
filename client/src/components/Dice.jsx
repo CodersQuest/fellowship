@@ -3,7 +3,8 @@ import React from 'react';
 var style = {
   width: 100,
   height: 100,
-  padding: 5
+  padding: 5,
+  cursor: 'pointer'
 }
 const Dice = (props) => (
   <div id="dieRoller">
