@@ -2,55 +2,61 @@ import React, { Component } from "react";
 import { fabric } from "fabric";
 
 class BattleMap extends Component {
+  handleDragEnter(e) {
+    e.target.classList.add('over');
+  }
+  
+  handleDragLeave(e) {
+    e.target.classList.remove('over');  // this / e.target is previous target element.
+  }
+  
+  handleDragOver(e) {
+    if (e.preventDefault) {
+      e.preventDefault(); // Necessary. Allows us to drop.
+    }
+    e.dataTransfer.effectAllowed = 'copy';
+    return false;
+  }
+
+  handleDrop (e) {
+    if (e.stopPropagation) {
+      e.stopPropagation(); // stops the browser from redirecting.
+    }
+    var img = document.querySelector('.target-image');
+    // console.log('event: ', e);
+    var newImage = new fabric.Image(img, {
+        width: 100,
+        height: 100,
+    });
+    var group = new fabric.Group([newImage], {
+      left: Math.round(e.layerX / 50) * 50,
+      top: Math.round(e.layerY/50) * 50
+    });
+    var c = document.getElementById('canvas').fabric;
+    c.add(group)
+    return false;
+  }
+  
   componentDidMount() {
     // This Works!
     var canvas = new fabric.Canvas("canvas", { selection: false });
-    var grid = 30;
+    document.getElementById('canvas').fabric = canvas
+    var grid = 50;
 
-    for (var i = 0; i < 600 / grid; i++) {
+    for (var i = 0; i < 1500 / grid; i++) {
       canvas.add(
-        new fabric.Line([i * grid, 0, i * grid, 600], {
+        new fabric.Line([i * grid, 0, i * grid, 1500], {
           stroke: "#ccc",
           selectable: false
         })
       );
       canvas.add(
-        new fabric.Line([0, i * grid, 600, i * grid], {
+        new fabric.Line([0, i * grid, 1500, i * grid], {
           stroke: "#ccc",
           selectable: false
         })
       );
     }
-
-    var rect = new fabric.Rect({
-      top: 0,
-      left: 0,
-      width: 30,
-      height: 30,
-      fill: "green"
-    });
-
-    rect.set({
-      transparentCorners: false,
-      cornerColor: "blue",
-      cornerStrokeColor: "red",
-      borderColor: "red",
-      cornerSize: 12,
-      padding: 10,
-      cornerStyle: "circle",
-      borderDashArray: [3, 3]
-    });
-
-    var street = new fabric.Text("rua 1", {
-      fontSize: 14
-    });
-
-    var group = new fabric.Group([rect, street], {
-      left: 0,
-      top: 0
-    });
-
-    canvas.add(group);
 
     canvas.on("object:moving", function(options) {
       options.target.set({
@@ -63,12 +69,20 @@ class BattleMap extends Component {
       target.set('scaleX', Math.round(target.scaleX));
       target.set('scaleY', Math.round(target.scaleY));
     });
+   
+
+    var t = document.getElementById('battleMap');
+    t.addEventListener('dragenter', this.handleDragEnter.bind(this), false)
+    t.addEventListener('dragover', this.handleDragOver.bind(this), false)
+    t.addEventListener('dragleave', this.handleDragLeave.bind(this), false)
+    t.addEventListener('drop', this.handleDrop.bind(this), false)
+
   }
 
   render() {
     return (
-      <div>
-        <canvas id="canvas" width="300" height="300" />
+      <div id="battleMap">
+        <canvas id="canvas" width="1500" height="1000" />
       </div>
     );
   }
