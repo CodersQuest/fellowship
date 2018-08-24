@@ -1,55 +1,74 @@
-import React, {Component} from 'react';
-import TokenLayer from './TokenLayer.jsx';
-import ErrorBoundary from './ErrorBoundry.jsx';
-
+import React, { Component } from "react";
+import { fabric } from "fabric";
 
 class BattleMap extends Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    // This Works!
+    var canvas = new fabric.Canvas("canvas", { selection: false });
+    var grid = 30;
 
-    this.state = {
-      boardWidth: 1500,
-      boardHeight: 1000,
-      padding: 0,
-      canvasWidth: 0,
-      canvasHeight: 0
+    for (var i = 0; i < 600 / grid; i++) {
+      canvas.add(
+        new fabric.Line([i * grid, 0, i * grid, 600], {
+          stroke: "#ccc",
+          selectable: false
+        })
+      );
+      canvas.add(
+        new fabric.Line([0, i * grid, 600, i * grid], {
+          stroke: "#ccc",
+          selectable: false
+        })
+      );
     }
-  }
 
-  componentWillMount() {
-    this.setState({
-      canvasWidth: this.state.boardWidth + this.state.padding + 1,
-      canvasHeight: this.state.boardHeight + this.state.padding + 1
+    var rect = new fabric.Rect({
+      top: 0,
+      left: 0,
+      width: 30,
+      height: 30,
+      fill: "green"
+    });
+
+    rect.set({
+      transparentCorners: false,
+      cornerColor: "blue",
+      cornerStrokeColor: "red",
+      borderColor: "red",
+      cornerSize: 12,
+      padding: 10,
+      cornerStyle: "circle",
+      borderDashArray: [3, 3]
+    });
+
+    var street = new fabric.Text("rua 1", {
+      fontSize: 14
+    });
+
+    var group = new fabric.Group([rect, street], {
+      left: 0,
+      top: 0
+    });
+
+    canvas.add(group);
+
+    canvas.on("object:moving", function(options) {
+      options.target.set({
+        left: Math.round(options.target.left / grid) * grid,
+        top: Math.round(options.target.top / grid) * grid
+      });
+    });
+    canvas.on(`object:scaling`, options => {
+      const {target} = options;
+      target.set('scaleX', Math.round(target.scaleX));
+      target.set('scaleY', Math.round(target.scaleY));
     });
   }
 
-  componentDidMount() {
-    var canvas = this.refs.canvas;
-    var ctx = canvas.getContext("2d");
-    const bw = this.state.boardWidth;
-    const bh = this.state.boardHeight;
-    const p = this.state.padding;
-
-    for (var x = 0; x <= bw; x += 50) {
-        ctx.moveTo(0.5 + x + p, p);
-        ctx.lineTo(0.5 + x + p, bh + p);
-    }
-
-    for (var x = 0; x <= bh; x += 50) {
-        ctx.moveTo(p, 0.5 + x + p);
-        ctx.lineTo(bw + p, 0.5 + x + p);
-    }
-    ctx.strokeStyle = "#3d3d3d";
-    ctx.stroke();
-  }
-  
   render() {
     return (
-      <div id="battleMap">
-      <ErrorBoundary>
-      <TokenLayer/>
-      </ErrorBoundary>
-        <canvas ref="canvas" width={this.state.canvasWidth} height={this.state.canvasHeight} />
+      <div>
+        <canvas id="canvas" width="300" height="300" />
       </div>
     );
   }
