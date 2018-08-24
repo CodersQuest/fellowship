@@ -18,11 +18,13 @@
 
 canvas {
   background: #11ffee00;
+  position:relative;
+  z-index:1;
 }
 
 #diceTray {
   grid-area: dice;
-  background-color: aquamarine;
+  background-color: rgb(51, 253, 186);
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -33,7 +35,7 @@ canvas {
   grid-area: game;
   overflow: auto;
   position: relative;
-  z-index: auto;
+  z-index: 0;
 }
 
 #tokenlist {
@@ -67,18 +69,6 @@ canvas {
 #settings {
   grid-area: settings;
   background-color: aquamarine;
-}
-
-#token-layer {
-  position: absolute;
-  background-color: #11ffee00;
-}
-
-#canvas-top {
-  position: relative;
-  background-color: #11ffee00;
-  z-index: 5;
-  left:0;
 }
 
 
