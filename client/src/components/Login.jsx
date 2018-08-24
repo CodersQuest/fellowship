@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -56,20 +57,48 @@ class Login extends React.Component {
               <h3 className="is-size-3">Login</h3>
 
               <div className="field">
-                <label className="label"> username </label>
-                  <input className="input is-success" type="text" placeholder="username" onChange={this.handleChange} type="text" id="display-name" name="username"  required/>
+                <label
+                  htmlFor='username'
+                  className="label"
+                > username </label>
+                  <input
+                    className="input is-success"
+                    type="text"
+                    placeholder="username"
+                    onChange={this.handleChange}
+                    type="text"
+                    id="display-name"
+                    name="username" 
+                    required
+                  />
               </div>
 
               <div className="field">
-                <label className="label"> password </label>
-                  <input className="input is-success" type="text" placeholder="password" onChange={this.handleChange} type="text" id="display-name" name="password"  required/>
+                <label
+                  htmlFor='password'
+                  className="label"
+                > password </label>
+                  <input
+                    className="input is-success"
+                    type="text"
+                    placeholder="password"
+                    onChange={this.handleChange}
+                    type="text"
+                    id="display-name"
+                    name="password"
+                    required
+                  />
               </div>
 
-              <button className="button is-fullwidth" type="submit">
+              <button 
+                className="button is-fullwidth"
+                type="submit">
                 Login
               </button>
-              <button className="button is-fullwidth" >
-                <p onClick={()=> viewChange('/signup')}>Sign Up</p>
+              <button 
+                className="button is-fullwidth"
+                onClick={()=> viewChange('/signup')}
+               >Sign Up
               </button>
               
             </form>

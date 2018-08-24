@@ -185,8 +185,7 @@ class App extends Component {
             </div>
           </div>
         </section>
-
-        {/* {renderLanding()} */}
+        
         <Switch>
           {/* <Route path="/dashboard" render={renderDashboard}/> */}
           <Route exact path="/" 
@@ -205,13 +204,21 @@ class App extends Component {
           <Route path="/login" 
             render={(props) => (
               <Login 
-                // onSubmit={this.onSubmit} 
-                // username={username} 
-                // pw={password}
                 setUser={this.setUser}
                 viewChange={this.viewChange} 
                 handleChange={this.handleChange}
                 {...props}
+              />
+            )}
+          />
+          <Route path="/signup"
+            render={(props) => (
+              <SignUp 
+              // viewChange={this.viewChange}
+              onSubmit={this.onSubmit}
+              email={email} username={username}
+              pw={password}
+              handleChange={this.handleChange}
               />
             )}
           />
