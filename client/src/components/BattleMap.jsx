@@ -25,12 +25,14 @@ class BattleMap extends Component {
     var img = document.querySelector('.target-image');
     // console.log('event: ', e);
     var newImage = new fabric.Image(img, {
-        width: 100,
-        height: 100,
-    });
+      width: 100,
+      height: 100,
+      selectable:true
+    }).scale(0.74)
+    var padding = 64;
     var group = new fabric.Group([newImage], {
-      left: Math.round(e.layerX / 50) * 50,
-      top: Math.round(e.layerY/50) * 50
+      left: Math.round(e.layerX / padding) * padding,
+      top: Math.round(e.layerY/padding) * padding
     });
     var c = document.getElementById('canvas').fabric;
     c.add(group)
@@ -40,31 +42,31 @@ class BattleMap extends Component {
   componentDidMount() {
     // This Works!
     var canvas = new fabric.Canvas("canvas", { selection: false });
-    document.getElementById('canvas').fabric = canvas
-    var grid = 50;
 
-    for (var i = 0; i < 1500 / grid; i++) {
+    document.getElementById("canvas").fabric = canvas
+    var grid = 64;
+    for (var i = 0; i < 1536 / grid; i++) {
       canvas.add(
-        new fabric.Line([i * grid, 0, i * grid, 1500], {
+        new fabric.Line([i * grid, 0, i * grid, 1536], {
           stroke: "#ccc",
           selectable: false
         })
       );
       canvas.add(
-        new fabric.Line([0, i * grid, 1500, i * grid], {
+        new fabric.Line([0, i * grid, 1536, i * grid], {
           stroke: "#ccc",
           selectable: false
         })
       );
     }
-
+    
     canvas.on("object:moving", function(options) {
       options.target.set({
         left: Math.round(options.target.left / grid) * grid,
         top: Math.round(options.target.top / grid) * grid
       });
     });
-    canvas.on(`object:scaling`, options => {
+    canvas.on("object:scaling", options => {
       const {target} = options;
       target.set('scaleX', Math.round(target.scaleX));
       target.set('scaleY', Math.round(target.scaleY));
@@ -82,7 +84,8 @@ class BattleMap extends Component {
   render() {
     return (
       <div id="battleMap">
-        <canvas id="canvas" width="1500" height="1000" />
+
+        <canvas id="canvas" width="1536" height="1024" />
       </div>
     );
   }

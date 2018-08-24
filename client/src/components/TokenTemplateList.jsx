@@ -34,6 +34,7 @@ class TokenTemplateList extends Component {
   render() {
     return (
       <div id="tokenlist" className="column">
+      <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
         {this.props.tokenImages.map(url =>
 
           <TokenTemplateListItem
