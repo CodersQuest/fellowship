@@ -17,9 +17,11 @@ class GameRoom extends Component {
       players: [],
       tokens: [],
       log: [],
-      tokenImages: [eevee, ninetails, clefairy, lugia]
+      tokenImages: [eevee, ninetails, clefairy, lugia],
+      clearTokens: false
     }
     this.rollDice = this.rollDice.bind(this);
+    this.onClear = this.onClear.bind(this);
     // this.updateClientLog = this.updateClientLog.bind(this);
   }
   
@@ -57,6 +59,16 @@ class GameRoom extends Component {
       max: value
     });
   }
+
+  onClear () {
+    var c = document.getElementById('canvas').fabric
+    c.getObjects().map(obj => {
+      if (obj.selectable === true) {
+        c.remove(obj)
+      }
+    })
+    c.renderAll.bind(c)
+  }
   
   render() {
     const isLoggedIn = this.props.isLoggedIn;
@@ -80,8 +92,13 @@ class GameRoom extends Component {
       return (
         <Fragment>
           <div id="gameContainer">
-            <TokenTemplateList tokenImages={this.state.tokenImages}/>
-            <BattleMap />   
+          
+            <TokenTemplateList 
+            onClear={this.onClear} 
+            tokenImages={this.state.tokenImages}/>
+            <BattleMap 
+            clearTokens={this.state.clearTokens}
+            />   
   
             <BattleLog 
               // handleDisplayLog={this.handleDisplayLog}

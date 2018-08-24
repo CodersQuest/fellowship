@@ -35,7 +35,7 @@ canvas {
   grid-area: game;
   overflow: auto;
   position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 #tokenlist {
