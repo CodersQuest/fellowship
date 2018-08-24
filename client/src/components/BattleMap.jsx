@@ -3,6 +3,7 @@ import { fabric } from "fabric";
 
 class BattleMap extends Component {
   componentDidMount() {
+    // This Works!
     var canvas = new fabric.Canvas("canvas", { selection: false });
     var grid = 30;
 
