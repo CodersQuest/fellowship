@@ -1,16 +1,13 @@
 import React, {Component} from 'react';
 // import socket from '../socketClient.js';
 import axios from 'axios';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect, withRouter } from 'react-router-dom';
-import createHistory from "history/createBrowserHistory";
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
-import Helpers from '../../helpers';
 import 'bulma/css/bulma.css';
-import { timingSafeEqual } from 'crypto';
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +16,7 @@ class App extends Component {
           view: '/login',
           username: '',
           password: '',
-          email:'',
+          email: '',
           loggedIn: false,
           currentUser: null,
           currentGame: {},
@@ -32,27 +29,26 @@ class App extends Component {
     this.joinGame = this.joinGame.bind(this);
     this.getCurrentUser = this.getCurrentUser.bind(this);
     this.setUser = this.setUser.bind(this);
-
   }
 
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({
-     [e.target.name] : e.target.value
+     [e.target.name]: e.target.value,
     });
   }
 
   viewChange(text) {
     this.setState({
-      view: text
-    })
+      view: text,
+    });
   }
-  
+
   joinGame(game) {
     console.log(game);
     // update state for currentGame
     this.setState({
-      currentGame: game
+      currentGame: game,
     });
     // this.props.history.push(`/games/${game.gameId}`);
     // window.location.href=`/games/:${this.state.currentGame.gameId}`
@@ -61,79 +57,79 @@ class App extends Component {
   // get game data
   getCurrentUser() {
     return (
-      axios.get('/me').then(res=> {
+      axios.get('/me').then((res) => {
         this.setState({
-          currentUser: res.data.user
-        })
+          currentUser: res.data.user,
+        });
 
-        console.log(res.data.user, 'res from App.jsx getCurrentUser()')
-      }).catch(error => {
-        window.location.href='/login'
+        console.log(res.data.user, 'res from App.jsx getCurrentUser()');
+      }).catch((error) => {
+        window.location.href='/login';
       })
-    )
+    );
   }
 
-  componentDidMount () {
-    axios.get('/me').then(res=> {
+  componentDidMount() {
+    axios.get('/me').then((res) => {
       if (res.data.user) {
-        this.setState({ currentUser: res.data.user, loggedIn: true })
+        this.setState({currentUser: res.data.user, loggedIn: true});
       } else {
-        this.setState({loggedIn: false})
+        this.setState({loggedIn: false});
       }
-      console.log(res.data.user, 'res from checkauth')
-    }).catch(error => {
-      console.log(error)
-    })
+      console.log(res.data.user, 'res from checkauth');
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
-  logOut () {
+  logOut() {
     axios.get('/logout')
-    .then(res => {
+    .then((res) => {
       this.setState({
-        loggedIn: false
-      })
-    }).catch(err => {
+        loggedIn: false,
+      });
+    }).catch((err) => {
       console.log(err);
-    })
+    });
   }
 
   setUser(currentUser, cb = () => {}) {
     this.setState({
       currentUser,
-      loggedIn: true
+      loggedIn: true,
     }, cb);
   };
 
   onSubmit(e) {
-    //post request to db on submit button
-    const { view , email, username, password } = this.state;
+    // post request to db on submit button
+    const {view, email, username, password} = this.state;
     e.preventDefault();
-    
-    //'/login' or 'signup'
+
+    // '/login' or 'signup'
     axios.post(view, {
       username: username,
       password: password,
-      email: email
+      email: email,
     })
     .then((response) => {
       console.log(response);
       this.setState({
         currentUser: response.data.user,
-        loggedIn: true
+        loggedIn: true,
       }, () => {
         // this.history.push("/")
         // console.log(this.props);
-      })
+      });
       // update something here based on response url
       // history.pushState({key: response.data}, null, response.data);
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
   }
 
-  render () {
-    const { view, currentUser, currentGame, loggedIn, email, username, password } = this.state;
+  render() {
+    const {currentUser, currentGame, loggedIn, email, username, password} = this.state;
 
     // login /
     // signup
@@ -145,9 +141,9 @@ class App extends Component {
     //   if (view ==='/logout') {
     //     this.logOut();
     //   }
-    
+
     return (
-      
+
     <Router>
      <div>
 
@@ -158,10 +154,10 @@ class App extends Component {
             </div>
           </div>
         </section>
-        
+
         <Switch>
           {/* <Route path="/dashboard" render={renderDashboard}/> */}
-          <Route exact path="/" 
+          <Route exact path="/"
             render={(props) => (
               <Dashboard
                 // currentState={ this.state }
@@ -173,13 +169,13 @@ class App extends Component {
                 currentUser={currentUser}
                 {...props}
               />
-            )} 
+            )}
           />
-          <Route path="/login" 
+          <Route path="/login"
             render={(props) => (
-              <Login 
+              <Login
                 setUser={this.setUser}
-                viewChange={this.viewChange} 
+                viewChange={this.viewChange}
                 handleChange={this.handleChange}
                 goToPath={this.goToPath}
                 {...props}
@@ -188,7 +184,7 @@ class App extends Component {
           />
           <Route path="/signup"
             render={(props) => (
-              <SignUp 
+              <SignUp
               // viewChange={this.viewChange}
               onSubmit={this.onSubmit}
               email={email} username={username}
@@ -197,7 +193,7 @@ class App extends Component {
               />
             )}
           />
-          <Route path="/games/:gameId" 
+          <Route path="/games/:gameId"
             render={(props) => (
               <GameRoom
                 isLoggedIn={loggedIn}
@@ -205,15 +201,14 @@ class App extends Component {
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}
-              /> 
-            )} 
+              />
+            )}
           />
         </Switch>
       </div>
     </Router>
-      
-    )
+
+    );
   }
 }
 export default App;
-//

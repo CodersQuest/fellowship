@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -15,48 +15,46 @@ class Login extends React.Component {
       this.goToPath = this.goToPath.bind(this);
     }
 
-    handleChange (e) {
+    handleChange(e) {
       this.setState({
-       [e.target.name] : e.target.value
+       [e.target.name]: e.target.value,
       });
     }
-    
+
     goToPath(path) {
-      //console.log('Signup clicked');
+      // console.log('Signup clicked');
       this.props.history.push(path);
     }
 
-    
 
     submitHandler(e) {
-      //post request to db on submit button
-      const { username, password } = this.state;
-      const { setUser, history } = this.props;
-      
-      axios.post('/login', { username, password })
+      // post request to db on submit button
+      const {username, password} = this.state;
+      const {setUser, history} = this.props;
+
+      axios.post('/login', {username, password})
         .then((response) => {
           console.log(response);
           setUser(response.data.user, ()=> {
-            const { from = '/' } = this.props.location.state ? this.props.location.state : {};
-            history.push(from)
-          })
+            const {from = '/'} = this.props.location.state ? this.props.location.state : {};
+            history.push(from);
+          });
         })
-        .catch(error => {
+        .catch((error) => {
           throw error;
         });
     }
 
     render() {
-
-      return(
+      return (
         <div className="container">
           <div className="centerall">
-            
-            <form 
-              onSubmit={(e) => { 
+
+            <form
+              onSubmit={(e) => {
                 e.preventDefault();
                 this.submitHandler(e);
-              }} 
+              }}
             >
 
               <h3 className="is-size-3">Login</h3>
@@ -71,9 +69,8 @@ class Login extends React.Component {
                     type="text"
                     placeholder="username"
                     onChange={this.handleChange}
-                    type="text"
                     id="display-name"
-                    name="username" 
+                    name="username"
                     required
                   />
               </div>
@@ -85,7 +82,6 @@ class Login extends React.Component {
                 > password </label>
                   <input
                     className="input is-success"
-                    type="text"
                     placeholder="password"
                     onChange={this.handleChange}
                     type="text"
@@ -95,22 +91,22 @@ class Login extends React.Component {
                   />
               </div>
 
-              <button 
+              <button
                 className="button is-fullwidth"
                 type="submit">
                 Login
               </button>
-              <button 
+              <button
                 className="button is-fullwidth"
                 type="button"
                 onClick={() => this.goToPath('/signup')}
                >Sign Up
               </button>
-              
+
             </form>
           </div>
         </div>
-      )
+      );
     }
 }
 
