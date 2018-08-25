@@ -35,7 +35,7 @@ class TokenTemplateList extends Component {
     return (
       <div id="tokenlist" className="column">
       <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
-        <div className="dropdown is-hoverable is-dark">
+        <div className="dropdown is-hoverable is-dark is-left">
         <div className="dropdown-trigger">
         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
       <span>Tokens</span>
@@ -45,9 +45,9 @@ class TokenTemplateList extends Component {
     </button>
         </div>
         <div className="dropdown-menu">
-        <ul className="dropdown-content"> 
+        {/* <ul className="dropdown-content"> //comment in if you want the token menu to have white background */}
         {this.props.tokenImages.map(url =>
-          <li className="dropdown-item">
+          <li className="dropdown-item column is-narrow">
           <TokenTemplateListItem
             key={url}
             imgUrl={url} />
@@ -55,7 +55,7 @@ class TokenTemplateList extends Component {
      
         </li>
         )}
-        </ul>
+        {/* </ul> */}
         </div>
         </div>
       </div>

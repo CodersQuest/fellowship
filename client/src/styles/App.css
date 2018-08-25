@@ -38,6 +38,7 @@ canvas {
   z-index: 1;
 }
 
+
 #tokenlist {
   grid-area: tokens;
   position:relative;
