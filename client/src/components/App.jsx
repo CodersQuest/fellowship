@@ -117,7 +117,6 @@ class App extends Component {
       email: email
     })
     .then((response) => {
-      //console.log(response.data);
       console.log(response);
       this.setState({
         currentUser: response.data.user,
@@ -147,32 +146,6 @@ class App extends Component {
     //   if (view ==='/logout') {
     //     this.logOut();
     //   }
-
-
-    //   if (view ==='/login' && loggedIn === true) {
-    //     return (
-          
-    //       <Dashboard
-    //         currentState={ this.state }
-    //         viewChange={this.viewChange}
-    //         joinGame={this.joinGame}
-    //         getCurrentUser={this.getCurrentUser}
-    //       />
-    //     )
-    //   } else if (view==='/login' && loggedIn === false){
-    //     return (
-    //       <Login onSubmit={this.onSubmit} username={username} pw={password} viewChange={this.viewChange} handleChange={this.handleChange}/>
-    //     )
-    //   } else if (view==='/signup') {
-    //     return  ( 
-    //       <SignUp viewChange={this.viewChange} onSubmit={this.onSubmit} email={email} username={username} pw={password} handleChange={this.handleChange}/>
-    //     )
-    //   } else if (view === '/games' && loggedIn === true) {
-    //     return (
-    //       <GameRoom />
-    //     )
-    //   }
-    // }
     
     return (
       
