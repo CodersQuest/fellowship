@@ -1,7 +1,18 @@
 {
 	"parser": "babel-eslint",
 	"rules": {
-		"max-len": [1, 120, 2, {"ignoreComments": true}]
+		"max-len": [1, 120, 2, {"ignoreComments": true}],
+		"comma-dangle": ["error", {
+			"arrays": "never",
+			"objects": "always",
+			"imports": "never",
+			"exports": "never",
+			"functions": "ignore"
+	}]
+	},
+	"env": {
+		"browser": true,
+		"node": true
 	},
 	"extends": ["eslint:recommended", "plugin:react/recommended", "google"]
 }
