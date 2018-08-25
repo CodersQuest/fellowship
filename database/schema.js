@@ -2,12 +2,6 @@ const mongoose = require('mongoose');
 
 /****************Connect to Mongo****************/
 
-/*mongoose.connect('mongodb://localhost/dragons');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('the mongod sends dragons');
-});*/
 const DBConfig = require('../config/config').mlabdb.uri;	
  // Conncet to Mongo	
 mongoose.connect(DBConfig)	
@@ -74,6 +68,18 @@ var playersOfGamesSchema = new Schema({
 });
 
 /****************Schemas****************/
+
+/****************PW HASHING****************/
+// userSchema.methods.generateHash = (password) => {
+//   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+// }
+
+// userSchema.methods.validPassword = (password) => {
+//   return bcrypt.compareSync(password, this.password);
+// }
+
+/****************PW HASHING****************/
+
 
 /****************Models****************/
 

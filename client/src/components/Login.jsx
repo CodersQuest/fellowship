@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -7,10 +8,11 @@ class Login extends React.Component {
       super(props);
       this.state = {
         username: '',
-        password: ''
+        password: '',
       };
       this.submitHandler = this.submitHandler.bind(this);
       this.handleChange = this.handleChange.bind(this);
+      this.goToPath = this.goToPath.bind(this);
     }
 
     handleChange (e) {
@@ -18,13 +20,18 @@ class Login extends React.Component {
        [e.target.name] : e.target.value
       });
     }
+    
+    goToPath(path) {
+      //console.log('Signup clicked');
+      this.props.history.push(path);
+    }
+
+    
 
     submitHandler(e) {
       //post request to db on submit button
       const { username, password } = this.state;
       const { setUser, history } = this.props;
-
-      // e.preventDefault();
       
       axios.post('/login', { username, password })
         .then((response) => {
@@ -40,7 +47,6 @@ class Login extends React.Component {
     }
 
     render() {
-      const {viewChange} = this.props;
 
       return(
         <div className="container">
@@ -56,20 +62,49 @@ class Login extends React.Component {
               <h3 className="is-size-3">Login</h3>
 
               <div className="field">
-                <label className="label"> username </label>
-                  <input className="input is-success" type="text" placeholder="username" onChange={this.handleChange} type="text" id="display-name" name="username"  required/>
+                <label
+                  htmlFor='username'
+                  className="label"
+                > username </label>
+                  <input
+                    className="input is-success"
+                    type="text"
+                    placeholder="username"
+                    onChange={this.handleChange}
+                    type="text"
+                    id="display-name"
+                    name="username" 
+                    required
+                  />
               </div>
 
               <div className="field">
-                <label className="label"> password </label>
-                  <input className="input is-success" type="text" placeholder="password" onChange={this.handleChange} type="text" id="display-name" name="password"  required/>
+                <label
+                  htmlFor='password'
+                  className="label"
+                > password </label>
+                  <input
+                    className="input is-success"
+                    type="text"
+                    placeholder="password"
+                    onChange={this.handleChange}
+                    type="text"
+                    id="display-name"
+                    name="password"
+                    required
+                  />
               </div>
 
-              <button className="button is-fullwidth" type="submit">
+              <button 
+                className="button is-fullwidth"
+                type="submit">
                 Login
               </button>
-              <button className="button is-fullwidth" >
-                <p onClick={()=> viewChange('/signup')}>Sign Up</p>
+              <button 
+                className="button is-fullwidth"
+                type="button"
+                onClick={() => this.goToPath('/signup')}
+               >Sign Up
               </button>
               
             </form>
@@ -79,4 +114,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);
