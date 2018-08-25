@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Component for options menu including Leaving the Game.
 const GameOptions = ({leaveGame, game}) => {
   return (
     <div id="settings"> 
