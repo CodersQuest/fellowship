@@ -43,6 +43,11 @@ module.exports = function(server, session) {
       }
     });
 
+    socket.on('logout', () => {
+      //! handle removing player upon logout
+      //! might be redundant considering disconnect will take care of this too.
+    });
+
     socket.on("disconnect", function() {
       console.log("Player disconnected");
       //! should handle removing player entry in players object
