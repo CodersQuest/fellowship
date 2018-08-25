@@ -119,7 +119,7 @@ class GameRoom extends Component {
         />
       )
     }
-  } // end render()
+  }
 }
 
 export default GameRoom;
