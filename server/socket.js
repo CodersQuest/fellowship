@@ -47,11 +47,6 @@ module.exports = function(server, session) {
     socket.on("disconnect", function() {
       console.log("Player disconnected");
     });
-    //! TODO: Handle listener for player submitted messages to log.
-    socket.on("sendMessage", function(data) {
-      //! TODO: update for specific room.
-      io.emit("new message", data);
-    });
 
     socket.on('joinGame', game => {
       //! attach roomID to the socket
@@ -77,13 +72,14 @@ module.exports = function(server, session) {
             players: rooms[socket.room]
           });  
         } else if (games[roomID]) {
+          // handle socket reassignment in order to track their room and in game status
           socket.room = roomID;
-          // associate room to player
+          socket.isInGame = true;
+          // handle player entry in memory to contain the same information as the socket.
           players[socket.uid].room = roomID;
           players[socket.uid].isInGame = true;
-          socket.isInGame = true;
           rooms[roomID].push({player: socket.username, image: userAvatar});
-          // join room
+          // handles socket joining a room and emitting updated info to all clients in room.
           socket.join(roomID);
           // Emit current game information to all clients in room.
           io.in(socket.room).emit('gameStatusUpdated', {
@@ -94,9 +90,8 @@ module.exports = function(server, session) {
         }
       }
     });
-    //! TODO: Handle when users click the leaveGame button.
+
     socket.on('leaveGame', () => {
-      //! Socket should contain the proper data to overwrite on the socket object.
       //! leaveGame must set the socket's room to null, set the socket's isInGame to false
       const oldRoom = socket.room;
       socket.room = null;
@@ -105,7 +100,6 @@ module.exports = function(server, session) {
       players[socket.uid].room = null;
       players[socket.uid].isInGame = false;
       //! leaveGame must handle removing that player from the list of currentPlayers in the rooms store.
-      // use oldRoom to check for user and remove them from the current users.
       if (rooms[oldRoom].length > 0) {
         rooms[oldRoom].forEach((player, index) => {
           if (player.player === socket.username) {
@@ -121,7 +115,8 @@ module.exports = function(server, session) {
         //! TODO: implement saving game to database and removing game from games upon asynch success.
       }
     });
-    
+
+    /** IN GAME EVENT LISTENERS **/
     socket.on('diceRoll', data => {
       //! should have game and room attached
       const _game = games[socket.room];
@@ -145,6 +140,16 @@ module.exports = function(server, session) {
     socket.on('deleteToken', token => {
 
     });
+
+    //! TODO: Handle listener for player submitted messages to log.
+    socket.on("sendMessage", function(data) {
+      //! TODO: update for specific room.
+      //! expect data to be in shape of object with key of message
+      //! must update game log with object containing username, and message
+      //Emit updated game log to all users.
+      io.in(socket.room).emit("updateLog", );
+    });
+
     //*****Modular Event Emitters******/
     const handleTokens = (room, tokenData) => {
       io.in(room).emit('updateToken', tokenData);
