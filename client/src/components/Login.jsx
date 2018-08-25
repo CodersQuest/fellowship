@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -8,10 +8,12 @@ class Login extends React.Component {
       super(props);
       this.state = {
         username: '',
-        password: ''
+        password: '',
+        toSignUp: false,
       };
       this.submitHandler = this.submitHandler.bind(this);
       this.handleChange = this.handleChange.bind(this);
+      this.goToPath = this.goToPath.bind(this);
     }
 
     handleChange (e) {
@@ -19,6 +21,13 @@ class Login extends React.Component {
        [e.target.name] : e.target.value
       });
     }
+    
+    goToPath(path) {
+      console.log('Signup clicked');
+      this.props.history.push(path);
+    }
+
+    
 
     submitHandler(e) {
       //post request to db on submit button
@@ -41,6 +50,9 @@ class Login extends React.Component {
     }
 
     render() {
+      if (this.state.toSignUp === true ) {
+        <Redirect to='/signup' />
+      }
       const {viewChange} = this.props;
 
       return(
@@ -97,7 +109,9 @@ class Login extends React.Component {
               </button>
               <button 
                 className="button is-fullwidth"
-                onClick={()=> viewChange('/signup')}
+                type="button"
+                onClick={() => this.goToPath('/signup')}
+                // onClick={()=> viewChange('/signup')}
                >Sign Up
               </button>
               
@@ -108,4 +122,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

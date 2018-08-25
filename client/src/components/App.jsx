@@ -23,6 +23,7 @@ class App extends Component {
           loggedIn: false,
           currentUser: null,
           currentGame: {},
+
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -52,7 +53,7 @@ class App extends Component {
     // update state for currentGame
     this.setState({
       currentGame: game
-    })
+    });
     // this.props.history.push(`/games/${game.gameId}`);
     // window.location.href=`/games/:${this.state.currentGame.gameId}`
   }
@@ -207,6 +208,7 @@ class App extends Component {
                 setUser={this.setUser}
                 viewChange={this.viewChange} 
                 handleChange={this.handleChange}
+                goToPath={this.goToPath}
                 {...props}
               />
             )}
