@@ -197,7 +197,8 @@ class Dashboard extends Component {
         <ShowNavbar />
 
         <div className="columns">
-          <div className="column">
+
+          <div className="column is-three-quarters is-black">
             <section className="hero">
               <div className="hero-body">
                 <div className="container">
@@ -210,7 +211,8 @@ class Dashboard extends Component {
               </div>
             </section>
           </div>
-          <div className="column">
+
+          <div className="column" id="sidebar">
             <p className="control" onClick={this.toggleModal}>
               <a className="button is-link">
                 Create New Game

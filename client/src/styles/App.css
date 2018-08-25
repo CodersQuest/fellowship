@@ -90,3 +90,16 @@ canvas {
 .navbar {
   background-color: #010101;
 }
+
+#sidebar {
+  background: #010101;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+-ms-flex: 0 100px;
+-webkit-box-flex:  0;
+-moz-box-flex:  0;
+-ms-box-flex:  0;
+box-flex:  0; 
+
+}
