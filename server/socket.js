@@ -112,6 +112,7 @@ module.exports = function(server, session) {
             rooms[oldRoom].splice(index, 1);
           }
         });
+        socket.leave(oldRoom);
         io.in(oldRoom).emit('playerLeft', rooms[oldRoom]);
       }
       // in addition use oldRoom to update users in that room with the updated user list
