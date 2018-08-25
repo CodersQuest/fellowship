@@ -86,3 +86,7 @@ canvas {
   justify-content: center;
   align-items: center;
 };
+
+.navbar {
+  background-color: #010101;
+}

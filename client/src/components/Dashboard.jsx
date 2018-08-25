@@ -125,10 +125,10 @@ class Dashboard extends Component {
 
     const ShowNavbar = () => {
       return (
-          <nav className="navbar is-transparent is-success" role="navigation" aria-label="main navigation">
+          <nav className="navbar is-transparent is-black" role="navigation" aria-label="main navigation">
 
             <div className="navbar-brand">
-              <a className="navbar-brand is-size-1 has-text-white" href="#"> Dashboard </a>
+              <a className="navbar-brand is-size-1 has-text-white" href="#"> Quest in Progress </a>
             </div>
 
             <div className="navbar-end">
@@ -196,17 +196,69 @@ class Dashboard extends Component {
       <div className="dashBoard">
         <ShowNavbar />
 
-        <section className="hero">
-          <div className="hero-body">
-            <div className="container">
-              {this.state.userGamesData.length > 0 ? <GamesList
-                games={this.state.userGamesData}
-                joinGame={this.props.joinGame}
-                history={this.props.history}
-              /> : null}
-            </div>
+        <div className="columns">
+          <div className="column">
+            <section className="hero">
+              <div className="hero-body">
+                <div className="container">
+                  {this.state.userGamesData.length > 0 ? <GamesList
+                    games={this.state.userGamesData}
+                    joinGame={this.props.joinGame}
+                    history={this.props.history}
+                  /> : null}
+                </div>
+              </div>
+            </section>
           </div>
-        </section>
+          <div className="column">
+            <p className="control" onClick={this.toggleModal}>
+              <a className="button is-link">
+                Create New Game
+              </a>
+            </p>
+            
+            <div>
+              <CreateGameModal
+                closeModal={this.toggleModal}
+                modalState={this.state.modalState}
+                title="Create a new game"
+              >
+                <div className="input-wrapper is-size-4">
+                  <label>Enter Game Name:</label>
+                    <input type="text"
+                      className="input"
+                      placeholder="Enter Game Name"
+                      name = "game-name"
+                      value = {createdGame}
+                      onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+                    />
+                    </div>
+                    <div className="input-wrapper is-size-4">
+                      <label>Enter Game description:</label>
+                      <textarea
+                        className="textarea"
+                        placeholder="Enter Game Description"
+                        rows="10"
+                        name = "game-description"
+                        value = {createdGameDesc}
+                        onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+                      />
+                    </div>
+                    <button type="button" onClick={this.createNewGame}>
+                      <a className="button">
+                        Create New Game
+                      </a>
+                    </button>
+                    {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
+
+              </CreateGameModal>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     );
   }
