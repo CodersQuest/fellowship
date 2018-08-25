@@ -97,9 +97,29 @@ module.exports = function(server, session) {
     //! TODO: Handle when users click the leaveGame button.
     socket.on('leaveGame', () => {
       //! Socket should contain the proper data to overwrite on the socket object.
-      //! leaveGame must set the socket's room to null, set the socket's isInGame to false/
+      //! leaveGame must set the socket's room to null, set the socket's isInGame to false
+      const oldRoom = socket.room;
+      socket.room = null;
+      socket.isInGame = false;
       //! leaveGame must also reset these same properties on the player in the players store
+      players[socket.uid].room = null;
+      players[socket.uid].isInGame = false;
       //! leaveGame must handle removing that player from the list of currentPlayers in the rooms store.
+      // use oldRoom to check for user and remove them from the current users.
+      if (rooms[oldRoom].length > 0) {
+        rooms[oldRoom].forEach((player, index) => {
+          if (player.player === socket.username) {
+            rooms[oldRoom].splice(index, 1);
+          }
+        });
+        io.in(oldRoom).emit('playerLeft', rooms[oldRoom]);
+      }
+      // in addition use oldRoom to update users in that room with the updated user list
+      if (rooms[oldRoom].length === 0) {
+        // have to handle case of last user leaving and room no longer being populated.
+        delete rooms[oldRoom];
+        //! TODO: implement saving game to database and removing game from games upon asynch success.
+      }
     });
     
     socket.on('diceRoll', data => {
@@ -112,12 +132,22 @@ module.exports = function(server, session) {
       io.in(socket.room).emit('updateLog', games[socket.room].gameLog);
     });
 
-    socket.on('tokenMove', data => {
-      //! should have game and room attached
-      // grab game ID from data and lookup
-      // update the token in the list on the game
-      // send the updated token list back to all clients in the room
+    socket.on('moveToken', token => {
+
+      
     });
 
+    socket.on('addToken', token => {
+      //! handles adding token to tokens array
+      //! emits should emit same tokenUpdate event for every token listener.
+    });
+
+    socket.on('deleteToken', token => {
+
+    });
+    //*****Modular Event Emitters******/
+    const handleTokens = (room, tokenData) => {
+      io.in(room).emit('updateToken', tokenData);
+    }
   });
 };
