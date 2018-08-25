@@ -90,8 +90,7 @@ class App extends Component {
     axios.get('/logout')
     .then(res => {
       this.setState({
-        loggedIn: false,
-        view: '/login'
+        loggedIn: false
       })
     }).catch(err => {
       console.log(err);
@@ -167,6 +166,7 @@ class App extends Component {
               <Dashboard
                 // currentState={ this.state }
                 isLoggedIn={loggedIn}
+                logOut={this.logOut}
                 viewChange={this.viewChange}
                 joinGame={this.joinGame}
                 // getCurrentUser={this.getCurrentUser}
@@ -201,6 +201,7 @@ class App extends Component {
             render={(props) => (
               <GameRoom
                 isLoggedIn={loggedIn}
+                logOut={this.logOut}
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}

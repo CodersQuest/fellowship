@@ -22,7 +22,11 @@ var userSchema = new Schema({
   password:   String,
   gamesOwned: String,
   gamesPartOf: Array,
-  currentGames: Number
+  currentGames: Number,
+  isDeleted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 var gameSchema = new Schema({

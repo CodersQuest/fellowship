@@ -201,12 +201,11 @@ class Dashboard extends Component {
                       Go To Game Page
                     </a>
                   </p>
-
-                  <p onClick={()=> this.props.viewChange('/logout')}>
-                    <a className="button is-link">
-                      Logout
-                    </a>
-                  </p>
+                  <button
+                      className="button is-link"
+                      onClick={this.props.logOut}
+                    >Logout
+                    </button>
                 </div>
               </div>
             </div>

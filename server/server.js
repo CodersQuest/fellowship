@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
 const db = require('../database/schema.js');
-const cookieParser = require ('cookie-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
@@ -17,6 +17,7 @@ const session = require('express-session')({
 const app = express();
 const server = require('http').Server(app);
 const port = process.env.PORT || 3000;
+const saltRounds = 10;
 
 
 /********Middleware*************/
@@ -27,6 +28,13 @@ app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
+// app.use((req, res, next) => {
+//   res.locals.success_message = req.flash('success_message');
+//   res.locals.error_message = req.flash('error_message');
+//   res.locals.error = req.flash('error');
+//   res.locals.user = req.user || null;
+//   next();
+// });
 /********Middleware*************/
 
 /***********Passport************/

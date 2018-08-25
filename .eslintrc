@@ -1,0 +1,7 @@
+{
+	"parser": "babel-eslint",
+	"rules": {
+		"max-len": [1, 120, 2, {"ignoreComments": true}]
+	},
+	"extends": ["eslint:recommended", "plugin:react/recommended", "google"]
+}
