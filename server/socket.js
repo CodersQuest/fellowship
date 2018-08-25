@@ -6,7 +6,6 @@ const userAvatar = 'https://i.imgur.com/XUsbw4H.png';
 //! In memory storage tracking, all current players, all running games, and all running rooms tied to games.
 var games = {}, players = {}, rooms = {};
 
-// declare module constructor that is passed the http server to bind to
 module.exports = function(server, session) {
   let io = socketIo.listen(server);
   io.use(sharedSession(session));
@@ -43,11 +42,13 @@ module.exports = function(server, session) {
         }
       }
     });
-    //! TODO: Handle removal of player from players object
+
     socket.on("disconnect", function() {
       console.log("Player disconnected");
+      //! should handle removing player entry in players object
     });
-
+    /******* JOINING/LEAVING GAMES *******/
+    /*************************************/
     socket.on('joinGame', game => {
       //! attach roomID to the socket
       if (game && (socket.isInGame === false) ) {
@@ -116,7 +117,8 @@ module.exports = function(server, session) {
       }
     });
 
-    /** IN GAME EVENT LISTENERS **/
+    /****** IN GAME EVENT LISTENERS ******/
+    /*************************************/
     socket.on('diceRoll', data => {
       //! should have game and room attached
       const _game = games[socket.room];
@@ -150,7 +152,8 @@ module.exports = function(server, session) {
       io.in(socket.room).emit("updateLog", );
     });
 
-    //*****Modular Event Emitters******/
+    /******* Modular Event Emitters ******/
+    /*************************************/
     const handleTokens = (room, tokenData) => {
       io.in(room).emit('updateToken', tokenData);
     }
