@@ -35,14 +35,29 @@ class TokenTemplateList extends Component {
     return (
       <div id="tokenlist" className="column">
       <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
+        <div className="dropdown is-hoverable is-dark">
+        <div className="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+      <span>Tokens</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+        </div>
+        <div className="dropdown-menu">
+        <ul className="dropdown-content"> 
         {this.props.tokenImages.map(url =>
-
+          <li className="dropdown-item">
           <TokenTemplateListItem
             key={url}
             imgUrl={url} />
 
-
+     
+        </li>
         )}
+        </ul>
+        </div>
+        </div>
       </div>
     )
   }
