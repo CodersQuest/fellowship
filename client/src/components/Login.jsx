@@ -9,7 +9,6 @@ class Login extends React.Component {
       this.state = {
         username: '',
         password: '',
-        toSignUp: false,
       };
       this.submitHandler = this.submitHandler.bind(this);
       this.handleChange = this.handleChange.bind(this);
@@ -23,7 +22,7 @@ class Login extends React.Component {
     }
     
     goToPath(path) {
-      console.log('Signup clicked');
+      //console.log('Signup clicked');
       this.props.history.push(path);
     }
 
@@ -33,8 +32,6 @@ class Login extends React.Component {
       //post request to db on submit button
       const { username, password } = this.state;
       const { setUser, history } = this.props;
-
-      // e.preventDefault();
       
       axios.post('/login', { username, password })
         .then((response) => {
@@ -50,10 +47,6 @@ class Login extends React.Component {
     }
 
     render() {
-      if (this.state.toSignUp === true ) {
-        <Redirect to='/signup' />
-      }
-      const {viewChange} = this.props;
 
       return(
         <div className="container">
@@ -111,7 +104,6 @@ class Login extends React.Component {
                 className="button is-fullwidth"
                 type="button"
                 onClick={() => this.goToPath('/signup')}
-                // onClick={()=> viewChange('/signup')}
                >Sign Up
               </button>
               
