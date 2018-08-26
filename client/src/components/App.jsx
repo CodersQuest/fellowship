@@ -20,7 +20,6 @@ class App extends Component {
           loggedIn: false,
           currentUser: null,
           currentGame: {},
-
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -72,9 +71,9 @@ class App extends Component {
   componentDidMount() {
     axios.get('/me').then((res) => {
       if (res.data.user) {
-        this.setState({currentUser: res.data.user, loggedIn: true});
+        this.setState({currentUser: res.data.user, loggedIn: true,});
       } else {
-        this.setState({loggedIn: false});
+        this.setState({loggedIn: false,});
       }
       console.log(res.data.user, 'res from checkauth');
     }).catch((error) => {
@@ -98,11 +97,16 @@ class App extends Component {
       currentUser,
       loggedIn: true,
     }, cb);
-  };
+  }
 
   onSubmit(e) {
     // post request to db on submit button
-    const {view, email, username, password} = this.state;
+    const {
+      view,
+      email,
+      username,
+      password,
+    } = this.state;
     e.preventDefault();
 
     // '/login' or 'signup'
@@ -129,7 +133,14 @@ class App extends Component {
   }
 
   render() {
-    const {currentUser, currentGame, loggedIn, email, username, password} = this.state;
+    const {
+      currentUser,
+      currentGame,
+      loggedIn,
+      email,
+      username,
+      password,
+    } = this.state;
 
     // login /
     // signup
@@ -172,7 +183,7 @@ class App extends Component {
             )}
           />
           <Route path="/login"
-            render={(props) => ( 
+            render={(props) => (
               <Login
                 setUser={this.setUser}
                 viewChange={this.viewChange}

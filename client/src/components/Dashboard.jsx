@@ -90,7 +90,7 @@ class Dashboard extends Component {
           gameUrl: '/foo', // /gameUrl,
           gameDescription: gameDescription,
           gameImage: gameImage,
-        },
+        }
       ]);
 
       this.setState({
@@ -105,7 +105,9 @@ class Dashboard extends Component {
   toggleModal() {
     this.setState((prev, props) => {
       const newState = !prev.modalState;
-      return {modalState: newState};
+      return {
+        modalState: newState,
+      };
     });
   }
 
@@ -115,7 +117,11 @@ class Dashboard extends Component {
   }
 
   render() {
-    const {createdGame, createdGameDesc, createdGameImg,} = this.state;
+    const {
+      createdGame,
+      createdGameDesc,
+      createdGameImg,
+    } = this.state;
     // console.log(this.props);
 
     if (!this.props.isLoggedIn) return <Redirect to="/login" />;
