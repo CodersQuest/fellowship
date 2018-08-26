@@ -1,4 +1,3 @@
-
 const dashboardData = [
   {
     gameName: 'I am Pale I need to get Tanner B Hess Webber',
@@ -16,23 +15,6 @@ const dashboardData = [
     }, {
       tokenName: 'StayPuffMarshmellow',
     }],
-    gameLog: [{
-      roll: 4,
-      player: 'dylanlovesaiig',
-      max: 4,
-    }],
-    gameTokens: [{
-      tokenName: 'FunderWhackenGoat',
-    },
-    {tokenName: 'StayPuffMarshmellow',
-  }],
-    gameTokens: [
-      {
-        tokenName: 'FunderWhackenGoat',
-      },
-      {
-        tokenName: 'StayPuffMarshmellow',
-      }],
   },
   {
     gameName: 'What came first Dylan or the Aiig???',
@@ -47,14 +29,9 @@ const dashboardData = [
     }],
     gameTokens: [{
       tokenName: 'QueenKaleiFairy',
-    },
-    {
+    }, {
       tokenName: 'TannerGhostPumpkin',
     }],
-    },
-    {
-      tokenName: 'TannerGhostPumpkin',
-    }]
   }
 ];
 
