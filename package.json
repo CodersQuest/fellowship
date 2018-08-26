@@ -10,7 +10,7 @@
     "start": "nodemon server/server.js",
     "react-dev": "webpack -d --watch",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Kalei Trujillo, Joe Jun, Tristan Carter, Vernon Neilly",
