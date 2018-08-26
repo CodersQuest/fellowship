@@ -26,6 +26,7 @@
     "enzyme": "^3.4.1",
     "eslint": "^5.3.0",
     "eslint-config-google": "^0.9.1",
+    "eslint-loader": "^2.1.0",
     "eslint-plugin-react": "^7.11.1",
     "file-loader": "^1.1.11",
     "image-webpack-loader": "^4.3.1",
