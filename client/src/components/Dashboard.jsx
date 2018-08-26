@@ -32,7 +32,6 @@ class Dashboard extends Component {
       // iterate over currentUserGames array to get individual gameId
 
       // make axios call to /getgamedata endpoint
-      // set state with fake data
       // console.log('UpdatingState in getUserGames');
       this.setState({
         userGamesData: data,
