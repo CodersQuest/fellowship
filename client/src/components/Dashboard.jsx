@@ -214,7 +214,7 @@ class Dashboard extends Component {
 
           <div className="column" id="sidebar">
             <p className="control" onClick={this.toggleModal}>
-              <a className="button is-link">
+              <a className="button is-text is-large">
                 Create New Game
               </a>
             </p>
