@@ -20,7 +20,6 @@ class Dashboard extends Component {
     };
     // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
-    this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
@@ -91,7 +90,6 @@ class Dashboard extends Component {
           gameUrl: '/foo', // /gameUrl,
           gameDescription: gameDescription,
           gameImage: gameImage,
-
         },
       ]);
 
@@ -117,7 +115,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const {createdGame, createdGameDesc, createdGameImg} = this.state;
+    const {createdGame, createdGameDesc, createdGameImg,} = this.state;
     // console.log(this.props);
 
     if (!this.props.isLoggedIn) return <Redirect to="/login" />;

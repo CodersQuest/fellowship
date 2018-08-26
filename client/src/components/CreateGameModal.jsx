@@ -1,12 +1,12 @@
 import React from 'react';
 
-const CreateGameModal = ({ children, closeModal, modalState, title }) => {
-  if(!modalState) {
+const CreateGameModal = ({children, closeModal, modalState, title,}) => {
+  if (!modalState) {
     return null;
   }
 
   return (
-    <div  className="modal is-active">
+    <div className="modal is-active">
       <div className="modal-background" onClick={closeModal}/>
       <div className="modal-card">
         <header className="modal-card-head">
@@ -21,6 +21,6 @@ const CreateGameModal = ({ children, closeModal, modalState, title }) => {
       </div>
     </div>
   );
-}
+};
 
 export default CreateGameModal;

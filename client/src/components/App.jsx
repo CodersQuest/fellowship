@@ -172,7 +172,7 @@ class App extends Component {
             )}
           />
           <Route path="/login"
-            render={(props) => (
+            render={(props) => ( 
               <Login
                 setUser={this.setUser}
                 viewChange={this.viewChange}

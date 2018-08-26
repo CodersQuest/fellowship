@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateGameModal from './CreateGameModal.jsx';
 
-const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNewGame, viewChange}) => {
+const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc, createNewGame, viewChange,}) => {
   return (
       <nav className="navbar is-transparent is-success" role="navigation" aria-label="main navigation">
 
@@ -18,7 +18,7 @@ const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNew
                   Create New Game
                 </a>
               </p>
-              
+
               <div>
                 <CreateGameModal
                   closeModal={toggleModal}
@@ -32,7 +32,9 @@ const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNew
                         placeholder="Enter Game Name"
                         name = "game-name"
                         value = {createdGame}
-                        onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+                        onChange = {(e) => {
+                          this.handleChange(e, 'createdGame');
+                        }}
                       />
                       </div>
                       <div className="input-wrapper is-size-4">
@@ -43,7 +45,9 @@ const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNew
                           rows="10"
                           name = "game-description"
                           value = {createdGameDesc}
-                          onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+                          onChange = {(e) => {
+                            this.handleChange(e, 'createdGameDesc');
+                          }}
                         />
                       </div>
                       <button type="button" onClick={createNewGame}>
@@ -56,7 +60,7 @@ const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNew
                 </CreateGameModal>
 
               </div>
-      
+
               <p className="control" onClick={()=> viewChange('/game')}>
                 <a className="button is-link">
                   Go To Game Page
@@ -72,7 +76,7 @@ const Navbar = ({toggleModal, modalState, createdGame, createdGameDesc,createNew
           </div>
         </div>
       </nav>
-  )
+  );
 };
 
 export default Navbar;

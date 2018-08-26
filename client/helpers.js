@@ -54,4 +54,7 @@ const createMessage = (user, rollType, diceVal, bonus) => {
 
 
 module.exports.diceRoll = diceRoll;
+<<<<<<< HEAD
 module.exports.createMessage = createMessage;
+=======
+>>>>>>> Fix Eslint errors

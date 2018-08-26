@@ -29,14 +29,14 @@ class Login extends React.Component {
 
     submitHandler(e) {
       // post request to db on submit button
-      const {username, password} = this.state;
-      const {setUser, history} = this.props;
+      const {username, password,} = this.state;
+      const {setUser, history,} = this.props;
 
-      axios.post('/login', {username, password})
+      axios.post('/login', {username, password,})
         .then((response) => {
           console.log(response);
           setUser(response.data.user, ()=> {
-            const {from = '/'} = this.props.location.state ? this.props.location.state : {};
+            const {from = '/',} = this.props.location.state ? this.props.location.state : {};
             history.push(from);
           });
         })
