@@ -33,9 +33,11 @@ class GameChat extends React.Component {
   render() {
     return (
       <div id='gameChat'>
-        <div>Chars Left: {this.state.charsLeft}</div>
         <textarea id='textGame' value={this.state.text} onChange={this.handleChange} maxLength='140' />
-        <button>Send</button>
+        <div id="textSubmit">
+          <button>Send</button>
+          <div>Chars Left: {this.state.charsLeft}</div>
+        </div>
       </div>
     );
   }

@@ -7,7 +7,7 @@
   display: grid;
   width: 98vw;
   height: 98vh;
-  grid-gap: .5em;
+  grid-gap: .25em;
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
@@ -58,12 +58,26 @@ canvas {
   grid-area: logchat;
   display: flex;
   justify-content: center;
-  align-items: stretch;
-  flex-direction: column;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  background-color: #010101;
+}
+#textSubmit {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #textGame {
-  flex: 1;
+  width: 100%;
+  resize: none;
+  background-color: rgb(51, 53, 54);
+  padding: 1px;
+  height: 4em;
+  color: #eaeaea;
+  caret-color: #eaeaea;
+  border: 2px solid #ad973e;
 }
 
 .custom-bg {
