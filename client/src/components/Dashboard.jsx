@@ -3,23 +3,10 @@ import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css';
 import {defaultGameImage} from '../images/imageData';
-<<<<<<< HEAD
 import {Redirect} from 'react-router-dom';
 import data from './dashBoardDummyData.js';
-=======
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom';
-import data from './dashBoardDummyData.js';
-import users from './userData';
-import {PromiseProvider} from 'mongoose';
->>>>>>> Updated Dashboard styling
 import CreateGameModal from './CreateGameModal.jsx';
 
-<<<<<<< HEAD
-=======
-// get request on load
-
-//
->>>>>>> Updated Dashboard styling
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -41,15 +28,6 @@ class Dashboard extends Component {
 
   getUserGames() {
     if (this.props.currentUser) {
-<<<<<<< HEAD
-=======
-      const currentUserGames = this.props.currentUser.gamesPartOf;
-      // iterate over currentUserGames array to get individual gameId
-
-      // make axios call to /getgamedata endpoint
-      // set state with fake data
-      // console.log('UpdatingState in getUserGames');
->>>>>>> Updated Dashboard styling
       this.setState({
         userGamesData: data,
       });
@@ -61,11 +39,7 @@ class Dashboard extends Component {
     let value = target.value;
     let name = target.name;
     this.setState({
-<<<<<<< HEAD
       [name]: value,
-=======
-      [attr]: e.target.value,
->>>>>>> Updated Dashboard styling
     });
   }
 
@@ -99,13 +73,6 @@ class Dashboard extends Component {
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
-<<<<<<< HEAD
-=======
-
-    // check gamesPartOf array length < 5
-    if (this.state.userObject.gamesPartof.length <= 5) {
-      // make a call to userUpdate endpoint to push game data to user collection
->>>>>>> Updated Dashboard styling
 
     // check gamesPartOf array length < 5
     if (this.state.userObject.gamesPartof.length <= 4) {
@@ -135,18 +102,13 @@ class Dashboard extends Component {
   toggleModal() {
     this.setState((prev, props) => {
       const newState = !prev.modalState;
-<<<<<<< HEAD
       return {
         modalState: newState,
       };
-=======
-      return {modalState: newState};
->>>>>>> Updated Dashboard styling
     });
   }
 
 
-<<<<<<< HEAD
   componentDidMount() {
     this.getUserGames();
   }
@@ -157,14 +119,6 @@ class Dashboard extends Component {
       gameDescription,
       gameImage,
     } = this.state;
-=======
-  componentDidMount () {
-    this.getUserGames();
-  }
-
-  render () {
-    const {createdGame, createdGameDesc, createdGameImg, viewChange} = this.state;
->>>>>>> Updated Dashboard styling
     // console.log(this.props);
 
     if (!this.props.isLoggedIn) return <Redirect to="/login" />;
@@ -181,12 +135,7 @@ class Dashboard extends Component {
               <div className="navbar-item">
                 <div className="field is-grouped">
 
-<<<<<<< HEAD
                   <p className="control" onClick={this.toggleModal}>
-=======
-
-                  <p className="control" onClick={()=> this.props.viewChange('/game')}>
->>>>>>> Updated Dashboard styling
                     <a className="button is-link">
                       Create New Game
                     </a>
