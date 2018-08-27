@@ -1,79 +1,84 @@
 const mongoose = require('mongoose');
 
-/****************Connect to Mongo****************/
+/** **************Connect to Mongo****************/
 
-const DBConfig = require('../config/config').mlabdb.uri;	
- // Conncet to Mongo	
-mongoose.connect(DBConfig)	
-  .then(() => {	
-    console.log('MongoDB Connected you peasants...');	
-  }).catch((err) => {	
-    console.log(err);	
+const DBConfig = require('../config/config').mlabdb.uri;
+ // Conncet to Mongo
+mongoose.connect(DBConfig)
+  .then(() => {
+    console.log('MongoDB Connected you peasants...');
+  }).catch((err) => {
+    console.log(err);
   });
 
-/****************Connect to Mongo****************/
-/****************Schemas****************/
+/** **************Connect to Mongo****************/
+/** **************Schemas****************/
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var userSchema = new Schema({
-  username:  { type: String, unique: true },
-  email: { type: String, unique: true },
-  password:   String,
+let userSchema = new Schema({
+  username: {
+    type: String, unique: true,
+  },
+  email: {
+    type: String, unique: true,
+  },
+  password: String,
   gamesOwned: String,
   gamesPartOf: Array,
   currentGames: Number,
   isDeleted: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
-var gameSchema = new Schema({
-  gameName:  String,
+let gameSchema = new Schema({
+  gameName: String,
   gameUrl: String,
   ownerId: String,
-  playerCount:   String,
-  currentTokenCount: String,
-  //consider adding obj for current tokens on board
-  battlelog: [{ body: String, date: Date }]
+  playerCount: String,
+  currentTokens: Object,
+  battlelog: [{
+    body: String, date: Date,
+  }],
 });
 
-//templates for types of tokens
-var tokenTemplateSchema = new Schema({
+// templates for types of tokens
+let tokenTemplateSchema = new Schema({
   imageUrl: String,
-  name: String
+  name: String,
 });
 
-var tokenSchema = new Schema({
+let tokenSchema = new Schema({
   tokenID: String,
   gameID: String,
   owner: String,
   positionX: Number,
-  positionY: Number
+  positionY: Number,
 });
 
 
-//possibly combine combatlog and dmnotes?
-var combatLogSchema = new Schema({
+// possibly combine combatlog and dmnotes?
+let combatLogSchema = new Schema({
   gameID: String,
-  logEntry: String
+  logEntry: String,
 });
 
-var DMnoteSchema = new Schema({
+let DMnoteSchema = new Schema({
   gameID: String,
-  noteText: String
+  noteText: String,
 });
 
-//may be unnecessary with nonrelational db
-var playersOfGamesSchema = new Schema({
+// may be unnecessary with nonrelational db
+let playersOfGamesSchema = new Schema({
   userID: String,
-  gameID: String
+  gameID: String,
 });
 
-/****************Schemas****************/
+/** **************Schemas****************/
 
-/****************PW HASHING****************/
+/** **************PW HASHING****************/
 // userSchema.methods.generateHash = (password) => {
 //   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 // }
@@ -82,22 +87,22 @@ var playersOfGamesSchema = new Schema({
 //   return bcrypt.compareSync(password, this.password);
 // }
 
-/****************PW HASHING****************/
+/** **************PW HASHING****************/
 
 
-/****************Models****************/
+/** **************Models****************/
 
-var User = mongoose.model('Users', userSchema);
-var Game = mongoose.model('Games', gameSchema);
-var TokenTemplates = mongoose.model('TokenTemplates', tokenTemplateSchema);
-var Token = mongoose.model('Tokens', tokenSchema);
-var CombatLog = mongoose.model('CombatLog', combatLogSchema);
-var DMnote = mongoose.model('DMnotes', DMnoteSchema);
-var Player = mongoose.model('Players', playersOfGamesSchema);
+let User = mongoose.model('Users', userSchema);
+let Game = mongoose.model('Games', gameSchema);
+let TokenTemplates = mongoose.model('TokenTemplates', tokenTemplateSchema);
+let Token = mongoose.model('Tokens', tokenSchema);
+let CombatLog = mongoose.model('CombatLog', combatLogSchema);
+let DMnote = mongoose.model('DMnotes', DMnoteSchema);
+let Player = mongoose.model('Players', playersOfGamesSchema);
 
-/****************Models****************/
+/** **************Models****************/
 
-/****************Exports****************/
+/** **************Exports****************/
 
 module.exports.User = User;
 module.exports.Game = Game;

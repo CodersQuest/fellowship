@@ -1,8 +1,8 @@
 import React from 'react';
 import GamesListItem from './GamesListItem.jsx';
-import styles from '../styles/App.css'
+import styles from '../styles/App.css';
 
-const GamesList = ({games, joinGame, history}) => {
+const GamesList = ({games, joinGame, history, }) => {
   return (
     <div className="gamesList">
      {games.map((game) => {
@@ -13,8 +13,8 @@ const GamesList = ({games, joinGame, history}) => {
           joinGame={joinGame}
           history={history}
         />
-       )
-     }) 
+       );
+     })
      }
     </div>
   );

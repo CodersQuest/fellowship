@@ -3,9 +3,9 @@ const socket = openSocket('http://localhost:3000/');
 
 function connect(cb) {
   socket.on('chat', (message) => {
-    console.log(message)
+    console.log(message);
     cb(message);
-  })
+  });
 }
 
-export { connect }
+export {connect};

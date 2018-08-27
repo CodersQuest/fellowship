@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import TokenTemplateListItem from './TokenTemplateListItem.jsx';
 
 
@@ -6,29 +6,28 @@ class TokenTemplateList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      state: null
-    }
+      state: null,
+    };
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
   }
 
   handleDragStart(e) {
-    e.target.style.opacity = '0.4'; 
+    e.target.style.opacity = '0.4';
     e.target.classList.add('target-image');
   }
 
   handleDragEnd(e) {
     e.target.style.opacity = '1';
     e.target.classList.remove('target-image');
-
   }
 
   componentDidMount() {
-    var t = document.querySelectorAll(".token-item")
-    t.forEach(token => {
+    let t = document.querySelectorAll('.token-item');
+    t.forEach((token) => {
       token.addEventListener('dragstart', this.handleDragStart, false);
-      token.addEventListener('dragend', this.handleDragEnd, false)
-    })
+      token.addEventListener('dragend', this.handleDragEnd, false);
+    });
   }
 
   render() {
@@ -37,31 +36,30 @@ class TokenTemplateList extends Component {
       <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
         <div className="dropdown is-hoverable is-dark is-left">
         <div className="dropdown-trigger">
-        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+        <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
       <span>Tokens</span>
-      <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      <span className="icon is-small">
+        <i className="fas fa-angle-down" aria-hidden="true"></i>
       </span>
     </button>
         </div>
         <div className="dropdown-menu">
         {/* <ul className="dropdown-content"> //comment in if you want the token menu to have white background */}
-        {this.props.tokenImages.map(url =>
+        {this.props.tokenImages.map((url) =>
           <li className="dropdown-item column is-narrow">
           <TokenTemplateListItem
             key={url}
             imgUrl={url} />
 
-     
+
         </li>
         )}
         {/* </ul> */}
         </div>
         </div>
       </div>
-    )
+    );
   }
-
 }
 
 export default TokenTemplateList;

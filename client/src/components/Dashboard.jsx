@@ -2,100 +2,80 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css';
-import { defaultGameImage } from '../images/imageData';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
+import {defaultGameImage} from '../images/imageData';
+import {Redirect} from 'react-router-dom';
 import data from './dashBoardDummyData.js';
-import users from './userData';
-import { PromiseProvider } from 'mongoose';
 import CreateGameModal from './CreateGameModal.jsx';
-// import Navbar from './Navbar.jsx';
 
-// get request on load
-
-// 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createdGame: '',
-      createdGameDesc: '',
-      createdGameImg: defaultGameImage,
-      createdGameId: 0,
+      gameName: '',
+      gameDescription: '',
+      gameImage: defaultGameImage,
+      gameId: 0,
       userGamesData: [],
-      modalState: false
+      modalState: false,
     };
     // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
-    this.initUserSocket = this.initUserSocket.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
-
   }
 
   getUserGames() {
     if (this.props.currentUser) {
-      const currentUserGames = this.props.currentUser.gamesPartOf;
-      // iterate over currentUserGames array to get individual gameId
-
-      // make axios call to /getgamedata endpoint
-      // set state with fake data
-      //console.log('UpdatingState in getUserGames');
       this.setState({
         userGamesData: data,
-      })
-    } 
-
+      });
+    }
   }
 
-  handleChange(e, attr) {
+  handleChange(event) {
+    let target = event.target;
+    let value = target.value;
+    let name = target.name;
     this.setState({
-      [attr]: e.target.value
+      [name]: value,
     });
   }
 
   validateGameName(gameName) {
-    //check DB to find out if gameName exist
+    // check DB to find out if gameName exist
 
     // return boolean
   }
 
-  initUserSocket() {
-    const socket = openSocket('http://localhost:3000');
-  }
-  
   deleteUserGame(gameName) {
-    //remove game from Dashboard View
-  
-    //post updates to server for user to update 'gamesOwned'
+    // remove game from Dashboard View
+
+    // post updates to server for user to update 'gamesOwned'
      // 'currentGames', 'gamesPartOf' on user object
-    // post updates to server for Game Object if this user is 
+    // post updates to server for Game Object if this user is
       // game Owner
   }
 
-  
-  
-  // createNewGame allows a user to create a brand new game room 
+
+  // createNewGame allows a user to create a brand new game room
   // Gets called and receives 'game name' value from input
   // Must check against maxAllowedGames = 5
-  // If 'game name' is unique then creates a new game room using 
+  // If 'game name' is unique then creates a new game room using
   // unique 'game name' as its identifier
   /**
-  * 
+  *
   * @param {Object} player represents logged in player passed to
   * 'Dashboard' as Prop
   */
   createNewGame() {
-    
     // user can only be a part of a max of 5 games
     // chck the users games array
     // route to the boardview
-  
-    // check gamesPartOf array length < 5
-    if(this.state.userObject.gamesPartof.length <= 5) {
-      // make a call to userUpdate endpoint to push game data to user collection
 
+    // check gamesPartOf array length < 5
+    if (this.state.userObject.gamesPartof.length <= 4) {
       // make modifications to UI from state
       const newUser = Object.assign(
         {},
@@ -104,19 +84,16 @@ class Dashboard extends Component {
       newUser.gamesPartof = this.state.userObject.gamesPartof.concat([
         {
           gameName: gameName,
-          gameUrl: '/foo', ///gameUrl,
+          gameUrl: '/foo', // /gameUrl,
           gameDescription: gameDescription,
           gameImage: gameImage,
-
         }
-      ])
+      ]);
 
       this.setState({
         userObject: newUser,
 
-      })
-
-      
+      });
     } else {
       // notifiy user that they have reached max allowed games
     }
@@ -125,21 +102,27 @@ class Dashboard extends Component {
   toggleModal() {
     this.setState((prev, props) => {
       const newState = !prev.modalState;
-      return { modalState: newState };
+      return {
+        modalState: newState,
+      };
     });
   }
-  
-  
-  componentDidMount () {
-    this.getUserGames()
+
+
+  componentDidMount() {
+    this.getUserGames();
   }
-  
-  render () {
-    const { createdGame, createdGameDesc, createdGameImg, viewChange } = this.state;
+
+  render() {
+    const {
+      gameName,
+      gameDescription,
+      gameImage,
+    } = this.state;
     // console.log(this.props);
 
-    if(!this.props.isLoggedIn) return <Redirect to="/login" />;
-    
+    if (!this.props.isLoggedIn) return <Redirect to="/login" />;
+
     const ShowNavbar = () => {
       return (
           <nav className="navbar is-transparent is-success" role="navigation" aria-label="main navigation">
@@ -157,32 +140,33 @@ class Dashboard extends Component {
                       Create New Game
                     </a>
                   </p>
-                  
+
                   <div>
                     <CreateGameModal
                       closeModal={this.toggleModal}
                       modalState={this.state.modalState}
                       title="Create a new game"
+                      handleChange={this.handleChange}
+                      createNewGame={this.createNewGame}
                     >
                       <div className="input-wrapper is-size-4">
                         <label>Enter Game Name:</label>
                           <input type="text"
                             className="input"
                             placeholder="Enter Game Name"
-                            name = "game-name"
-                            value = {createdGame}
-                            onChange = {(e) => { this.handleChange(e, 'createdGame') }}
+                            name = "gameName"
+                            value = {gameName}
+                            onChange = {this.handleChange}
                           />
                           </div>
                           <div className="input-wrapper is-size-4">
                             <label>Enter Game description:</label>
-                            <textarea
-                              className="textarea"
-                              placeholder="Enter Game Description"
-                              rows="10"
-                              name = "game-description"
-                              value = {createdGameDesc}
-                              onChange = {(e) => { this.handleChange(e, 'createdGameDesc') }}
+                            <input
+                              className="input"
+                              placeholder="Game Description"
+                              name = "gameDescription"
+                              value = {gameDescription}
+                              onChange = {this.handleChange}
                             />
                           </div>
                           <button type="button" onClick={this.createNewGame}>
@@ -195,12 +179,7 @@ class Dashboard extends Component {
                     </CreateGameModal>
 
                   </div>
-          
-                  <p className="control" onClick={()=> this.props.viewChange('/game')}>
-                    <a className="button is-link">
-                      Go To Game Page
-                    </a>
-                  </p>
+
                   <button
                       className="button is-link"
                       onClick={this.props.logOut}
@@ -210,9 +189,9 @@ class Dashboard extends Component {
               </div>
             </div>
           </nav>
-      )
+      );
     };
-    
+
     return (
       <div className="dashBoard">
         <ShowNavbar />
@@ -229,8 +208,8 @@ class Dashboard extends Component {
           </div>
         </section>
       </div>
-    )
+    );
   }
-};
+}
 
 export default Dashboard;

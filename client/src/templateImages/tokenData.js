@@ -3,5 +3,5 @@ module.exports ={
     lugia: require('./lugia.png'),
     clefairy: require('./clefairy.png'),
     ninetails: require('./9tails.png'),
-    defaultGameImage: require('../../src/templateImages/defaultGameImage.png')
-}
+    defaultGameImage: require('../../src/templateImages/defaultGameImage.png'),
+};

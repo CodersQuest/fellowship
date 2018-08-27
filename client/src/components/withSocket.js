@@ -9,8 +9,8 @@ export const withSocket = (Component) => {
       this.state = {
         logs: [],
         tokens: [],
-        player: []
-      }
+        player: [],
+      };
     }
 
     componentDidMount() {
@@ -20,7 +20,7 @@ export const withSocket = (Component) => {
     init() {
       socket.on('something', (data) => {
         // pass data through updateState
-        this.updateState(/**takes in a type based on state to update, as well as the data coming back*/)
+        this.updateState(/** takes in a type based on state to update, as well as the data coming back*/);
       });
       socket.on('updateBattleLog', (data) => {
         // pass data through updateState
@@ -31,11 +31,11 @@ export const withSocket = (Component) => {
     }
 
     updateState(type, data) {
-      this.setState({[type]: data});
+      this.setState({[type]: data,});
     }
 
     render() {
-      return (<Component logs={this.state.logs} tokens={this.state.tokens} players={this.state.players}/>)
+      return (<Component logs={this.state.logs} tokens={this.state.tokens} players={this.state.players}/>);
     }
-  }
-}
+  };
+};

@@ -1,12 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import styles from '../styles/App.css';
 const listItemStyle = {
   width: 75,
-  height: 75
-}
-const GamesListItem = ({game, joinGame, history}) => {
+  height: 75,
+};
 
+const GamesListItem = ({game, joinGame, history, }) => {
   return (
     <div>
       <ul>
@@ -28,7 +27,7 @@ const GamesListItem = ({game, joinGame, history}) => {
 
                   </p>
                   <div className="gameId is-size-5">
-                    {game.gameId}  
+                    {game.gameId}
                   </div>
                   <span className="gameDescription is-size-5">
                     {game.gameDesc}
@@ -36,7 +35,7 @@ const GamesListItem = ({game, joinGame, history}) => {
                 </div>
 
               </div>
-              
+
 
                 <span>
                   {/* <Link to={`/games/${game.gameId}`}>Join Game</Link> */}
@@ -58,7 +57,7 @@ const GamesListItem = ({game, joinGame, history}) => {
         </li>
       </ul>
     </div>
-  )
+  );
 };
 
 export default GamesListItem;

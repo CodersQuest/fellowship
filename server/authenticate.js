@@ -1,13 +1,12 @@
 
-module.exports = function (req, res, next) {
+module.exports = function(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.user) {
-        console.log('auth was called')
+        console.log('auth was called');
         next();
-    }
-    // if they aren't redirect them to the login page
-    else {
-        console.log('Redirect from AUTH')
+    } else {
+        // if they aren't redirect them to the login page
+        console.log('Redirect from AUTH');
         res.redirect('/login');
     }
 };

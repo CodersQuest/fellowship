@@ -1,19 +1,18 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.goToPath = this.goToPath.bind(this);
-
   }
   goToPath(path) {
-    //console.log('Login clicked');
+    // console.log('Login clicked');
     this.props.history.push(path);
-  };
+  }
 
   render() {
-    const {handleChange, onSubmit, viewChange} = this.props;
+    const {handleChange, onSubmit} = this.props;
 
     return (
         <div className="container">
@@ -25,18 +24,38 @@ class SignUp extends React.Component {
 
         <div className="field">
           <label className="label" > Name: </label>
-            <input className="input is-success" onChange={handleChange} type="text" placeholder="create username" id="display-name" name="username"  required />
+            <input className="input is-success"
+              onChange={handleChange}
+              type="text"
+              placeholder="create username"
+              id="display-name"
+              name="username"
+              required
+            />
           </div>
 
         <div className="field">
           <label className="label"> Email:</label>
-            <input className="input is-success" onChange={handleChange} type="text" placeholder="email" id="display-email"  name="email"  required />
+            <input className="input is-success"
+              onChange={handleChange}
+              type="text" placeholder="email"
+              id="display-email"
+              name="email"
+              required
+            />
           </div>
 
         <div className="field">
           <label className="label"> Password:</label>
           <span>
-          <input className="input is-success" onChange={handleChange} type="password" name="password" placeholder="password" autoComplete="off" required/>
+          <input className="input is-success"
+            onChange={handleChange}
+            type="password"
+            name="password"
+            placeholder="password"
+            autoComplete="off"
+            required
+          />
           </span>
         </div>
 
@@ -51,9 +70,9 @@ class SignUp extends React.Component {
 
         </form>
       </div>
-      
+
     </div>
-    )
+    );
   }
 }
 
