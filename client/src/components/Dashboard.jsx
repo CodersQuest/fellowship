@@ -11,10 +11,10 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      createdGame: '',
-      createdGameDesc: '',
-      createdGameImg: defaultGameImage,
-      createdGameId: 0,
+      gameName: '',
+      gameDescription: '',
+      gameImage: defaultGameImage,
+      gameId: 0,
       userGamesData: [],
       modalState: false,
     };
@@ -28,19 +28,18 @@ class Dashboard extends Component {
 
   getUserGames() {
     if (this.props.currentUser) {
-      // iterate over currentUserGames array to get individual gameId
-
-      // make axios call to /getgamedata endpoint
-      // console.log('UpdatingState in getUserGames');
       this.setState({
         userGamesData: data,
       });
     }
   }
 
-  handleChange(e, attr) {
+  handleChange(event) {
+    let target = event.target;
+    let value = target.value;
+    let name = target.name;
     this.setState({
-      [attr]: e.target.value,
+      [name]: value,
     });
   }
 
@@ -76,9 +75,7 @@ class Dashboard extends Component {
     // route to the boardview
 
     // check gamesPartOf array length < 5
-    if (this.state.userObject.gamesPartof.length <= 5) {
-      // make a call to userUpdate endpoint to push game data to user collection
-
+    if (this.state.userObject.gamesPartof.length <= 4) {
       // make modifications to UI from state
       const newUser = Object.assign(
         {},
@@ -118,9 +115,9 @@ class Dashboard extends Component {
 
   render() {
     const {
-      createdGame,
-      createdGameDesc,
-      createdGameImg,
+      gameName,
+      gameDescription,
+      gameImage,
     } = this.state;
     // console.log(this.props);
 
@@ -149,31 +146,27 @@ class Dashboard extends Component {
                       closeModal={this.toggleModal}
                       modalState={this.state.modalState}
                       title="Create a new game"
+                      handleChange={this.handleChange}
+                      createNewGame={this.createNewGame}
                     >
                       <div className="input-wrapper is-size-4">
                         <label>Enter Game Name:</label>
                           <input type="text"
                             className="input"
                             placeholder="Enter Game Name"
-                            name = "game-name"
-                            value = {createdGame}
-                            onChange = {(e) => {
-                              this.handleChange(e, 'createdGame');
-                            }
-                            }
+                            name = "gameName"
+                            value = {gameName}
+                            onChange = {this.handleChange}
                           />
                           </div>
                           <div className="input-wrapper is-size-4">
                             <label>Enter Game description:</label>
-                            <textarea
-                              className="textarea"
-                              placeholder="Enter Game Description"
-                              rows="10"
-                              name = "game-description"
-                              value = {createdGameDesc}
-                              onChange = {(e) => {
-                                this.handleChange(e, 'createdGameDesc');
-                              }}
+                            <input
+                              className="input"
+                              placeholder="Game Description"
+                              name = "gameDescription"
+                              value = {gameDescription}
+                              onChange = {this.handleChange}
                             />
                           </div>
                           <button type="button" onClick={this.createNewGame}>

@@ -38,8 +38,7 @@ let gameSchema = new Schema({
   gameUrl: String,
   ownerId: String,
   playerCount: String,
-  currentTokenCount: String,
-  // consider adding obj for current tokens on board
+  currentTokens: Object,
   battlelog: [{
     body: String, date: Date,
   }],

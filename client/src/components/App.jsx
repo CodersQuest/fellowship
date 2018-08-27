@@ -9,6 +9,7 @@ import Dashboard from './Dashboard.jsx';
 import GameRoom from './GameRoom.jsx';
 import 'bulma/css/bulma.css';
 
+
 class App extends Component {
   constructor(props) {
       super(props);
@@ -71,9 +72,14 @@ class App extends Component {
   componentDidMount() {
     axios.get('/me').then((res) => {
       if (res.data.user) {
-        this.setState({currentUser: res.data.user, loggedIn: true,});
+        this.setState({
+          currentUser: res.data.user,
+          loggedIn: true,
+        });
       } else {
-        this.setState({loggedIn: false,});
+        this.setState({
+          loggedIn: false,
+        });
       }
       console.log(res.data.user, 'res from checkauth');
     }).catch((error) => {
@@ -146,12 +152,6 @@ class App extends Component {
     // signup
     // games/:gameId
     // dashboard /
-
-    // it's wrong to have functions in the render method
-    // const renderLanding = () => {
-    //   if (view ==='/logout') {
-    //     this.logOut();
-    //   }
 
     return (
 
