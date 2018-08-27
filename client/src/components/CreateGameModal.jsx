@@ -1,6 +1,11 @@
 import React from 'react';
 
-const CreateGameModal = ({children, closeModal, modalState, title,}) => {
+const CreateGameModal = ({
+  children,
+  closeModal,
+  modalState,
+  title,
+}) => {
   if (!modalState) {
     return null;
   }
