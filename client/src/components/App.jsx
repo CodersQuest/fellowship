@@ -157,22 +157,7 @@ class App extends Component {
 
     <Router>
      <div>
-
-        {/* <section className="hero">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title is-1 is-uppcase has-text-centered">Quest in Progress</h1>
-            </div>
-          </div>
-<<<<<<< HEAD
-        </section>
-
-=======
-        </section> */}
-        
->>>>>>> Updated dashboard to have gamelist and right column render create game button
         <Switch>
-          {/* <Route path="/dashboard" render={renderDashboard}/> */}
           <Route exact path="/"
             render={(props) => (
               <Dashboard

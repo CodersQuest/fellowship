@@ -231,8 +231,7 @@ class Dashboard extends Component {
                       className="input"
                       placeholder="Enter Game Name"
                       name = "game-name"
-                      value = {createdGame}
-                      onChange = {(e) => { this.handleChange(e, 'createdGame'); }}
+                      onChange = {this.handleChange}
                     />
                     </div>
                     <div className="input-wrapper is-size-4">
@@ -242,8 +241,7 @@ class Dashboard extends Component {
                         placeholder="Enter Game Description"
                         rows="10"
                         name = "game-description"
-                        value = {createdGameDesc}
-                        onChange = {(e) => { this.handleChange(e, 'createdGameDesc'); }}
+                        onChange = {this.handleChange}
                       />
                     </div>
                     <button type="button" onClick={this.createNewGame}>
