@@ -10,13 +10,19 @@ class GameChat extends React.Component {
     super(props);
     this.state = {
       text: '',
+      charsLeft: 140,
     };
+    this.handleChange = this.handleChange.bind(this);
   }
   /**
    * @param {event} e event passed through change in textArea.
    */
-  handleChange(e) {
-    console.log(e.target);
+  handleChange(event) {
+    console.log(event.target);
+    event.preventDefault();
+    this.setState({
+      text: event.target.value,
+    })
   }
   /**
    * @return {object} React Object to render to DOM
@@ -25,7 +31,7 @@ class GameChat extends React.Component {
     return (
       <div id='gameChat'>
         <form>
-          <textarea value={this.state.text} onChance={this.handleChange} maxLength='140' />
+          <textarea value={this.state.text} onChange={this.handleChange} maxLength='140' />
           <button>Send</button>
         </form>
       </div>
