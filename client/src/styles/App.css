@@ -7,7 +7,7 @@
   display: grid;
   width: 98vw;
   height: 98vh;
-  grid-gap: 1em;
+  grid-gap: .5em;
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
@@ -56,6 +56,14 @@ canvas {
 
 #gameChat {
   grid-area: logchat;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+#textGame {
+  flex: 1;
 }
 
 .custom-bg {
