@@ -54,6 +54,10 @@ canvas {
   overflow-y: scroll;
 }
 
+#gameChat {
+  grid-area: logchat;
+}
+
 .custom-bg {
   background: radial-gradient(circle closest-side, #666, #999 575%);
 }

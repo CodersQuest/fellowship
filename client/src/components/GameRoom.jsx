@@ -5,6 +5,7 @@ import BattleLog from './BattleLog.jsx';
 import GameProfiles from './GameProfiles.jsx';
 import GameOptions from './GameOptions.jsx';
 import DiceTray from './DiceTray.jsx';
+import GameChat from './GameChat.jsx';
 import {
   joinGame,
   leaveGame,
@@ -135,6 +136,7 @@ class GameRoom extends Component {
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />
             <DiceTray rollDice={this.rollDice} />
+            <GameChat />
           </div>
         </Fragment>
       );
