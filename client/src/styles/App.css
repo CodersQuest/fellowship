@@ -4,6 +4,7 @@
 }
 
 #gameContainer {
+  background: #010101;
   display: grid;
   width: 98vw;
   height: 98vh;
@@ -24,7 +25,7 @@ canvas {
 
 #diceTray {
   grid-area: dice;
-  background-color: rgb(51, 253, 186);
+  background-color: #010101;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -86,7 +87,7 @@ canvas {
 
 #userProfiles {
   grid-area: users;
-  background-color: aquamarine;
+  background-color: #010101;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
