@@ -159,9 +159,10 @@ module.exports = function(server, session) {
     socket.on('sendMessage', function(data) {
       // ! TODO: update for specific room.
       // ! expect data to be in shape of object with key of message
+      games[socket.room].gameLog.push(data);
       // ! must update game log with object containing username, and message
       // Emit updated game log to all users.
-      io.in(socket.room).emit('updateLog', );
+      io.in(socket.room).emit('updateLog', games[socket.room].gameLog);
     });
 
     /** ***** Modular Event Emitters ******/

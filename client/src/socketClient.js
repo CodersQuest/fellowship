@@ -25,6 +25,10 @@ export const diceRoll = (rollMsg) => {
   socket.emit('diceRoll', rollMsg);
 };
 
+export const sendMessage = (message) => {
+  socket.emit('sendMessage', message);
+};
+
 export const addToken = (token) => {
   socket.emit('addToken', token);
 };

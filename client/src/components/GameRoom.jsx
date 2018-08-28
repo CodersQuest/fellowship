@@ -5,10 +5,12 @@ import BattleLog from './BattleLog.jsx';
 import GameProfiles from './GameProfiles.jsx';
 import GameOptions from './GameOptions.jsx';
 import DiceTray from './DiceTray.jsx';
+import GameChat from './GameChat.jsx';
 import {
   joinGame,
   leaveGame,
   diceRoll,
+  sendMessage,
   addToken,
   removeToken,
   moveToken,
@@ -40,6 +42,7 @@ class GameRoom extends Component {
     this.rollDice = this.rollDice.bind(this);
     this.onClear = this.onClear.bind(this);
     this.handleLeaveGame = this.handleLeaveGame.bind(this);
+    this.sendChat = this.sendChat.bind(this);
   }
 /**
  * React standard mount.
@@ -83,6 +86,19 @@ class GameRoom extends Component {
       roll: roll,
       max: value,
     });
+  }
+  /**
+   * @param {string} message string from GameChat.
+   */
+  sendChat(message) {
+    let date = Date.now();
+    let msg = {
+      username: this.props.currentUser.username,
+      type: 'message',
+      message: message,
+      timestamp: date,
+    }
+    sendMessage(msg);
   }
 /**
  * Function to Run through click handler for leaving games.
@@ -135,6 +151,7 @@ class GameRoom extends Component {
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />
             <DiceTray rollDice={this.rollDice} />
+            <GameChat sendChat={this.sendChat} />
           </div>
         </Fragment>
       );
