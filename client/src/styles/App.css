@@ -146,7 +146,7 @@ canvas {
 }
 
 #gameListItem {
-  background: #fff;
+  background: #151515;
   grid-area: main;
 
   justify-content: center;
@@ -164,7 +164,7 @@ canvas {
 }
 
 .gameListItem {
-  background: #fff;
+  background: #151515;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   grid-template-rows: 1fr 2fr 1fr;
@@ -178,6 +178,8 @@ canvas {
 #icon {
   display: flex;
   justify-content: center;
+  width: auto;
+  height: auto;
 
 }
 
@@ -185,22 +187,33 @@ canvas {
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
+  color: #ad973e;
+  font-size: 2.2rem;
+
 }
 
 #gameId {
   display: flex;
   justify-content: flex-start;
   flex-flow: row wrap;
+  color: #a5a5a5;
+  font-size: 1.8rem;
 }
 
 #gameDesc {
   display: flex;
   justify-content: flex-start;
+  color: #a5a5a5;
+  font-size: 1.8rem;
 }
 
 #joinButton {
+  background: #151515;
   display: flex;
   justify-content: center;
 }
 
+#joinButtonSpace {
+  background: #151515;
+}
 

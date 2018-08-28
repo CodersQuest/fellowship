@@ -33,7 +33,7 @@ const GamesListItem = ({game, joinGame, history, }) => {
 
         <div id="joinButton">
           {/* <Link to={`/games/${game.gameId}`}>Join Game</Link> */}
-          <button type='button'
+          <button id="joinButtonSpace" type='button'
             onClick={() => {
               joinGame(game);
               history.push(`/games/${game.gameId}`);
