@@ -145,8 +145,8 @@ canvas {
   background-color: #010101;
 }
 
-#gamelist {
-  background: 151515;
+#gameListItem {
+  background: #151515;
   grid-area: main;
   display: flex;
   justify-content: center;
@@ -161,6 +161,29 @@ canvas {
   display: flex;
   flex-direction: column;
   grid-area: sidebar;
+}
+
+.gameListItem {
+  background: #151515;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas: 
+  "icon info joinButton";
+
+  
+}
+
+#icon {
+
+}
+
+#info {
+
+}
+
+#joinButton {
+
 }
 
 

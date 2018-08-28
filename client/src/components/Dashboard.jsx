@@ -113,6 +113,9 @@ class Dashboard extends Component {
         </div>
 
         <div id="settings">
+          <a className="button is-text is-large">
+            Profile
+          </a>
           <button
               className="button"
               onClick={this.props.logOut}
@@ -138,6 +141,14 @@ class Dashboard extends Component {
             <p className="control" onClick={this.toggleModal}>
               <a className="button is-text is-large">
                 Create New Game
+              </a>
+
+              <a className="button is-text is-large">
+                Add Existing Game
+              </a>
+
+              <a className="button is-text is-large">
+                Add Character Sheet
               </a>
             </p>
 
