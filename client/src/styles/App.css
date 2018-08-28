@@ -146,9 +146,9 @@ canvas {
 }
 
 #gameListItem {
-  background: #151515;
+  background: #fff;
   grid-area: main;
-  display: flex;
+
   justify-content: center;
   align-items: flex-start;
 }
@@ -164,26 +164,43 @@ canvas {
 }
 
 .gameListItem {
-  background: #151515;
+  background: #fff;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 1fr 2fr 1fr;
   grid-template-areas: 
-  "icon info joinButton";
-
+  "icon gameName joinButton"
+  "icon gameId joinButton"
+  "icon gameDesc joinButton";
   
 }
 
 #icon {
+  display: flex;
+  justify-content: center;
 
 }
 
-#info {
+#gameName {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+}
 
+#gameId {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+}
+
+#gameDesc {
+  display: flex;
+  justify-content: flex-start;
 }
 
 #joinButton {
-
+  display: flex;
+  justify-content: center;
 }
 
 
