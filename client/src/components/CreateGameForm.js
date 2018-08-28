@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {defaultGameImage} from '../images/imageData';
 
 /**
@@ -30,7 +31,7 @@ class CreateGameForm extends React.Component {
   }
 
   render() {
-    const createGame = this.props.createGame;
+    const createGame = this.props.createNewGame;
     return (
       <div className='create-game-form'>
         <form onSubmit={createGame}>
@@ -50,10 +51,17 @@ class CreateGameForm extends React.Component {
               onChange={this.handleInputChange}
             />
           </div>
+          <button type='button'
+            onSubmit={this.createGame}
+          >
+          </button>
         </form>
       </div>
     );
   }
 }
+CreateGameForm.propTypes = {
+  createNewGame: PropTypes.func,
+};
 
 export default CreateGameForm;
