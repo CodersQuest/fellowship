@@ -143,6 +143,10 @@ app.get('/me', auth, function(req, res) {
   }
 });
 
+app.get('/creategame', (req, res) => {
+  res.sendStatus(200);
+});
+
 /** *********Passport************/
 
 /** *********Redirects************/

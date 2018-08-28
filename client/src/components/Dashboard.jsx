@@ -53,7 +53,13 @@ class Dashboard extends Component {
   */
   createNewGame(gameObj) {
     console.log('got here!!!!!!', this.props);
+    this.toggleModal();
     if (this.props.currentUser.gamesPartOf.length <= 4) {
+      // add ownerId and ownerName to gameObj
+      gameObj.ownerId = this.props.currentUser._id;
+      gameObj.ownerName = this.props.currentUser.username;
+      // construct gameUrl and add to gameObj
+      
       console.log(gameObj);
     } else {
       // notifiy user that they have reached max allowed games
@@ -69,8 +75,6 @@ class Dashboard extends Component {
       };
     });
   }
-
-
   componentDidMount() {
     this.getUserGames();
   }
@@ -132,6 +136,7 @@ class Dashboard extends Component {
               >
               <CreateGameForm
                 createNewGame={this.createNewGame}
+
               />
               </CreateGameModal>
 

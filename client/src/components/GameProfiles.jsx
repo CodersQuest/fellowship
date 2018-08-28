@@ -1,5 +1,5 @@
 import React from 'react';
-import GameProfile from './GameProfile.jsx'
+import GameProfile from './GameProfile.jsx';
 
 // Component that will contain Each User Profile in the game based on current players
 // This will expect an array of players(as objects) in order to render. 
@@ -7,11 +7,9 @@ import GameProfile from './GameProfile.jsx'
 class GameProfiles extends React.Component {
   constructor(props) {
     super(props);
-    
   }
-  
+
   componentDidMount() {
-    
     console.log('props in GameProfile is ', this.props)
   }
 
@@ -19,11 +17,10 @@ class GameProfiles extends React.Component {
     return (
       <div id="userProfiles">
         {this.props.players.map((user) => (
-          <GameProfile
-            player={user}
-          /> ))}
+          <GameProfile player={user}/> )
+        )}
       </div>
-    )
+    );
   }
 }
 

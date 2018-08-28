@@ -76,7 +76,6 @@ class App extends Component {
           currentUser: res.data.user,
           loggedIn: true,
         });
-        localStorage.setItem('loggedIn', true);
       } else {
         this.setState({
           loggedIn: false,
@@ -158,7 +157,7 @@ class App extends Component {
             render={(props) => (
               <Dashboard
                 // currentState={ this.state }
-                isLoggedIn={localStorage.getItem('loggedIn')}
+                isLoggedIn={loggedIn}
                 logOut={this.logOut}
                 viewChange={this.viewChange}
                 joinGame={this.joinGame}
