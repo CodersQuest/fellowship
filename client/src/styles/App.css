@@ -72,11 +72,9 @@ canvas {
   background-color: aquamarine;
 }
 
-
 .over {
   border: 3px solid;
 }
-
 
 .centerall {
   height: 100vh;
@@ -85,21 +83,58 @@ canvas {
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-};
+}
 
-.navbar {
+.wrapper {
+  background-color: #151515;
+  display: grid;
+  grid-template-columns: 6fr 1fr 50px;
+  grid-template-rows: 100px 1fr;
+  grid-template-areas: 
+  "nav settings c"
+  "main sidebar e";
+  width: 100vw;
+  height: 100vh;
+}
+
+.navdash {
   background-color: #010101;
+  grid-area: nav;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#settings {
+  background-color: #010101;
+  grid-area: settings;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+ }
+ 
+#c {
+  background-color: #010101;
+}
+
+#gamelist {
+  background: 151515;
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 #sidebar {
   background: #010101;
-  width: 100px;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
--ms-flex: 0 100px;
--webkit-box-flex:  0;
--moz-box-flex:  0;
--ms-box-flex:  0;
-box-flex:  0; 
-
+  grid-area: sidebar;
 }
+
+
