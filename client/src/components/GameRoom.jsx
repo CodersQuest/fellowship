@@ -106,6 +106,8 @@ class GameRoom extends Component {
  */
   handleLeaveGame() {
     leaveGame();
+    // need to pass down a method to reset
+    // currentGame obj to empty.
   }
 /**
  * Clears Fabric Canvas.

@@ -157,10 +157,6 @@ class App extends Component {
 
     <Router>
      <div>
-<<<<<<< HEAD
-=======
-
->>>>>>> add creategame form functionality
         <Switch>
           <Route exact path="/"
             render={(props) => (
