@@ -101,17 +101,14 @@ app.post('/login',
 
 // logout
 app.get('/logout', function(req, res) {
-    req.logout();
-    console.log('hi');
-    req.session.destroy(function(err) {
-      if (err) {
-throw err;
-}
-      // no session here
-      console.log('hey');
-      res.redirect('/');
-    });
+  req.session.destroy((err) => {
+    if (err) {
+      throw err;
+    }
+    res.clearCookie('connect.sid');
+    res.redirect('/');
   });
+});
 
 // for signup
 app.post('/signup', (req, res) => {
@@ -189,19 +186,6 @@ app.get('/dashboard/:id', auth, (req, res) => {
 });
 
 /** *********Requests************/
-
-/** *********Redirects************/
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
-
-
-/** *********Redirects************/
 
 /** *********Listening to Server************/
 server.listen(port, () => {

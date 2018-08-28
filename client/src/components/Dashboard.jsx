@@ -1,19 +1,16 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import GamesList from './GamesList.jsx';
 import styles from '../styles/App.css';
-import {defaultGameImage} from '../images/imageData';
 import {Redirect} from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import CreateGameModal from './CreateGameModal.jsx';
+import CreateGameForm from './CreateGameForm';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameName: '',
-      gameDescription: '',
-      gameImage: defaultGameImage,
       gameId: 0,
       userGamesData: [],
       modalState: false,
@@ -21,7 +18,6 @@ class Dashboard extends Component {
     // console.log(this.props);
     this.createNewGame = this.createNewGame.bind(this);
     this.deleteUserGame = this.deleteUserGame.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.validateGameName = this.validateGameName.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
   }
@@ -32,15 +28,6 @@ class Dashboard extends Component {
         userGamesData: data,
       });
     }
-  }
-
-  handleChange(event) {
-    let target = event.target;
-    let value = target.value;
-    let name = target.name;
-    this.setState({
-      [name]: value,
-    });
   }
 
   validateGameName(gameName) {
@@ -114,13 +101,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    const {
-      gameName,
-      gameDescription,
-      gameImage,
-    } = this.state;
-    // console.log(this.props);
-
     if (!this.props.isLoggedIn) return <Redirect to="/login" />;
 
     return (
@@ -167,32 +147,9 @@ class Dashboard extends Component {
                 modalState={this.state.modalState}
                 title="Create a new game"
               >
-                <div className="input-wrapper is-size-4">
-                  <label>Enter Game Name:</label>
-                    <input type="text"
-                      className="input"
-                      placeholder="Enter Game Name"
-                      name = "game-name"
-                      onChange = {this.handleChange}
-                    />
-                    </div>
-                    <div className="input-wrapper is-size-4">
-                      <label>Enter Game description:</label>
-                      <textarea
-                        className="textarea"
-                        placeholder="Enter Game Description"
-                        rows="10"
-                        name = "game-description"
-                        onChange = {this.handleChange}
-                      />
-                    </div>
-                    <button type="button" onClick={this.createNewGame}>
-                      <a className="button">
-                        Create New Game
-                      </a>
-                    </button>
-                    {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
-
+              <CreateGameForm
+                createNewGame={this.createNewGame}
+              />
               </CreateGameModal>
 
             </div>
