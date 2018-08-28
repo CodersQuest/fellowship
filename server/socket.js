@@ -141,18 +141,25 @@ module.exports = function(server, session) {
       io.in(socket.room).emit('updateLog', games[socket.room].gameLog);
     });
 
-    socket.on('moveToken', (token) => {
-
-
-    });
-
-    socket.on('addToken', (token) => {
+    socket.on('updateTokens', (tokens) => {
       // ! handles adding token to tokens array
-      // ! emits should emit same tokenUpdate event for every token listener.
+      if (games[socket.room]) {
+        games[socket.room].gameTokens = tokens;
+        // ! emits should emit same tokenUpdate event for every token listener.
+        handleTokens(socket.room, games[socket.room].gameTokens);
+      } else {
+        return;
+      }
     });
 
     socket.on('deleteToken', (token) => {
-
+      if (games[socket.room]) {
+        games[socket.room].gameTokens = tokens;
+        // ! emits should emit same tokenUpdate event for every token listener.
+        handleTokens(socket.room, games[socket.room].gameTokens);
+      } else {
+        return;
+      }
     });
 
     // ! TODO: Handle listener for player submitted messages to log.

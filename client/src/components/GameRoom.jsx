@@ -11,11 +11,10 @@ import {
   leaveGame,
   diceRoll,
   sendMessage,
-  addToken,
-  removeToken,
-  moveToken,
   playerConnect,
-  socket
+  socket,
+  handleTokens,
+  deleteTokens
 } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
@@ -55,7 +54,6 @@ class GameRoom extends Component {
       joinGame(this.props.currentGame);
     });
     socket.on('gameStatusUpdated', (gameData) => {
-      // data.logs, data.players, data.tokens
       this.setState({
         players: gameData.players,
         tokens: gameData.tokens,
@@ -70,6 +68,11 @@ class GameRoom extends Component {
     socket.on('playerLeft', (playerData) => {
       this.setState({
         players: playerData,
+      });
+    });
+    socket.on('updateToken', (tokensData) => {
+      this.setState({
+        tokens: tokensData,
       });
     });
   }
@@ -107,8 +110,8 @@ class GameRoom extends Component {
  */
   handleLeaveGame() {
     leaveGame();
-    // need to pass down a method to reset
-    // currentGame obj to empty.
+    // !need to pass down a method to reset
+    // !currentGame obj to empty.
   }
 /**
  * Clears Fabric Canvas.
@@ -121,25 +124,23 @@ class GameRoom extends Component {
       }
     });
     c.renderAll.bind(c);
-    this.setState({
-      tokens: []
-    })
+    // !function to emit socket event. Expects an array argument.
+    deleteTokens([]);
   }
 /**
  * Update / Add to tokens array.
+ * @param {object} token from BattleMap
  */
-  updateTokens (token) {
-    var tokens = [];
-    const c = document.getElementById('canvas').fabric
+  updateTokens(token) {
+    const tokens = [];
+    const c = document.getElementById('canvas').fabric;
     c.getObjects().map((obj) => {
       if (obj.selectable !== false) {
-        tokens.push(obj)
+        tokens.push(obj);
       }
-    })
-    this.setState({
-      tokens: tokens
-    })
-    console.log('tokens', this.state.tokens)
+    });
+    // !function to emit socket event. Expects an array argument.
+    handleTokens(tokens);
   }
 /**
  * React Render

@@ -29,14 +29,10 @@ export const sendMessage = (message) => {
   socket.emit('sendMessage', message);
 };
 
-export const addToken = (token) => {
-  socket.emit('addToken', token);
+export const handleTokens = (tokens) => {
+  socket.emit('updateTokens', tokens);
 };
-// moveToken event
-export const moveToken = (token) => {
-  socket.emit('moveToken', token);
-};
-// remove token event
-export const deleteToken = (token) => {
-  socket.emit('deleteToken', token);
+
+export const deleteTokens = (tokens) => {
+  socket.emit('deleteTokens', tokens);
 };
