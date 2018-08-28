@@ -212,11 +212,14 @@ canvas {
 #joinButton {
   background: #151515;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-content: flex-end;
 }
 
 #joinButtonSpace {
   background: #151515;
+  justify-content: flex-end;
+  align-content: flex-end;
 }
 
 .gameElements {
