@@ -33,29 +33,29 @@ class TokenTemplateList extends Component {
   render() {
     return (
       <div id="tokenlist" className="column">
-      <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
+        <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
         <div className="dropdown is-hoverable is-dark is-left">
-        <div className="dropdown-trigger">
-        <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-      <span>Tokens</span>
-      <span className="icon is-small">
-        <i className="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-        </div>
-        <div className="dropdown-menu">
-        {/* <ul className="dropdown-content"> //comment in if you want the token menu to have white background */}
-        {this.props.tokenImages.map((url) =>
-          <li className="dropdown-item column is-narrow">
-          <TokenTemplateListItem
-            key={url}
-            imgUrl={url} />
+          <div className="dropdown-trigger">
+            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
+              <span>Tokens</span>
+              <span className="icon is-small">
+                <i className="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div className="dropdown-menu">
+          {/* <ul className="dropdown-content"> //comment in if you want the token menu to have white background */}
+          {this.props.tokenImages.map((url) =>
+            <li className="dropdown-item column is-narrow">
+            <TokenTemplateListItem
+              key={url}
+              imgUrl={url} />
 
 
-        </li>
-        )}
-        {/* </ul> */}
-        </div>
+          </li>
+          )}
+          {/* </ul> */}
+          </div>
         </div>
       </div>
     );

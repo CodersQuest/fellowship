@@ -36,6 +36,7 @@ class BattleMap extends Component {
     });
     let c = document.getElementById('canvas').fabric;
     c.add(group);
+    this.props.update(newImage);
     return false;
   }
 

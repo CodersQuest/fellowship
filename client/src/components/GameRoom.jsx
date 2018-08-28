@@ -43,6 +43,7 @@ class GameRoom extends Component {
     this.onClear = this.onClear.bind(this);
     this.handleLeaveGame = this.handleLeaveGame.bind(this);
     this.sendChat = this.sendChat.bind(this);
+    this.updateTokens = this.updateTokens.bind(this);
   }
 /**
  * React standard mount.
@@ -120,6 +121,19 @@ class GameRoom extends Component {
       }
     });
     c.renderAll.bind(c);
+    this.setState({
+      tokens: []
+    })
+  }
+/**
+ * Update / Add to tokens array.
+ */
+  updateTokens (token) {
+    var tokens = this.state.tokens.slice();
+    tokens.push(token);
+    this.setState({
+      tokens: tokens
+    })
   }
 /**
  * React Render
@@ -148,7 +162,7 @@ class GameRoom extends Component {
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />
-            <BattleMap clearTokens={this.state.clearTokens} />
+            <BattleMap update={this.updateTokens}/>
             <BattleLog currentLog={this.state.log} {...this.props} />
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />
