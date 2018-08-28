@@ -13,6 +13,7 @@ class GameChat extends React.Component {
       charsLeft: 140,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   /**
    * @param {event} event event passed through change in textArea.
@@ -28,6 +29,18 @@ class GameChat extends React.Component {
     }
   }
   /**
+   * Calls this.props.sendChat, but must also reset the state accordingly to reset chat.
+   */
+  handleSubmit() {
+    if (this.state.text.length > 0) {
+      this.props.sendChat(this.state.text);
+      this.setState({
+        text: '',
+        charsLeft: 140,
+      });
+    }
+  }
+  /**
    * @return {object} React Object to render to DOM
    */
   render() {
@@ -35,7 +48,7 @@ class GameChat extends React.Component {
       <div id='gameChat'>
         <textarea id='textGame' value={this.state.text} onChange={this.handleChange} maxLength='140' />
         <div id="textSubmit">
-          <button>Send</button>
+          <button onClick={this.handleSubmit}>Send</button>
           <div>Chars Left: {this.state.charsLeft}</div>
         </div>
       </div>
