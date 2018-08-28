@@ -153,12 +153,13 @@ canvas {
   background-color: #010101;
 }
 
-#gameListItem {
+#gamelist {
   background: #151515;
   grid-area: main;
-
-  justify-content: center;
-  align-items: flex-start;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 #sidebar {
@@ -174,64 +175,91 @@ canvas {
 .gameListItem {
   background: #151515;
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  
+  width: 75%;
+  margin: 10px;
+  grid-template-columns: 1fr 4fr 1.5fr;
+  grid-template-rows: repeat(3,.5fr);
+  border-bottom: 4px solid #ad973e;
   grid-template-areas: 
-  "icon gameName joinButton"
-  "icon gameId joinButton"
-  "icon gameDesc joinButton";
+  "img gameName owner"
+  "img gameDesc empty"
+  "img players joinButton";
   
 }
 
-#icon {
-  display: flex;
-  justify-content: center;
-  width: auto;
-  height: auto;
-
+.gameImage {
+  width: 150px;
+  height: 150px;
+  grid-area: img;
 }
 
-#gameName {
+.gameName {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   flex-flow: row wrap;
   color: #ad973e;
   font-size: 2.2rem;
-  padding-top: 20px;
   padding-bottom: 10px;
+  grid-area: gameName;
 }
 
-#gameId {
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: row wrap;
-  color: #a5a5a5;
-  font-size: 1.8rem;
-  padding-bottom: 10px;
-}
-
-#gameDesc {
-  display: flex;
-  justify-content: flex-start;
-  color: #a5a5a5;
-  font-size: 1.8rem;
-  padding-bottom: 20px;
-}
-
-#joinButton {
-  background: #151515;
+.gameOwner {
   display: flex;
   justify-content: flex-end;
-  align-content: flex-end;
+  align-items: center;
+  flex-flow: row wrap;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+}
+
+.gameDesc {
+  display: flex;
+  justify-content: flex-start;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  grid-area: gameDesc;
+}
+
+.gamePlayers {
+  display: flex;
+  justify-content: flex-start;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  grid-area: players;  
+
+}
+
+.joinButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-area: joinButton;
 }
 
 #joinButtonSpace {
-  background: #151515;
-  justify-content: flex-end;
-  align-content: flex-end;
+  background: none;
+  width: 65%;
+  height: 90%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.8rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
 }
 
-.gameElements {
-  border-bottom: 4px solid #ad973e;
+#battleLog::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.5);
 }
+
+#battleLog::-webkit-scrollbar-thumb {
+  background: #ad973e;
+}
+
+#battleLog::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
+}
+
 

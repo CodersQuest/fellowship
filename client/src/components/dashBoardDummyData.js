@@ -15,6 +15,7 @@ const dashboardData = [
     }, {
       tokenName: 'StayPuffMarshmellow',
     }],
+    players: ['feng', 'melear'],
   },
   {
     gameName: 'What came first Dylan or the Aiig???',
@@ -32,6 +33,7 @@ const dashboardData = [
     }, {
       tokenName: 'TannerGhostPumpkin',
     }],
+    players: ['feng', 'melear'],
   }
 ];
 

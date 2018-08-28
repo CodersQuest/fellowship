@@ -8,42 +8,31 @@ const listItemStyle = {
 const GamesListItem = ({game, joinGame, history, }) => {
   return (
       <div className="gameListItem">
+          <img className="gameImage" src={game.gameImg}/>
 
-        <div id="icon">
-          <figure id="gameImage">
-            <img style={listItemStyle}
-            src={game.gameImg}/>
-          </figure>
-        </div>
-
-        <div className="gameElements">
-          <div id="gameName">
+          <div className="gameName">
             {game.gameName}
           </div>
 
-          <div id="gameId">
-            {game.gameId}
+          <div className="gameOwner">
+            Game Master: {game.gameOwner}
           </div>
 
-          <div id="gameDesc">
+          <div className="gameDesc">
             {game.gameDesc}
           </div>
-        </div>
-
-
-        <div id="joinButton">
-          {/* <Link to={`/games/${game.gameId}`}>Join Game</Link> */}
-          <button id="joinButtonSpace" type='button'
-            onClick={() => {
-              joinGame(game);
-              history.push(`/games/${game.gameId}`);
-            }}>
-              <a className="button">
-                Join Game
-              </a>
-          </button>
-        </div>
-
+          <div className="gamePlayers">
+            Players: {game.players.join(', ')}
+          </div>
+          <div className="joinButton">
+            <button id="joinButtonSpace" type='button'
+              onClick={() => {
+                joinGame(game);
+                history.push(`/games/${game.gameId}`);
+              }}>
+              Join Game
+            </button>
+          </div>
       </div>
   );
 };
