@@ -130,8 +130,12 @@ class GameRoom extends Component {
     deleteTokens([]);
   }
 /**
+<<<<<<< HEAD
  * Update / Add to tokens array.
  * @param {object} token from BattleMap
+=======
+ * Moved / Add to tokens array.
+>>>>>>> write in component did update for socket
  */
   updateTokens(token) {
     const tokens = [];
@@ -171,7 +175,7 @@ class GameRoom extends Component {
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />
-            <BattleMap update={this.updateTokens}/>
+            <BattleMap update={this.updateTokens} onClear={this.onClear}/>
             <BattleLog currentLog={this.state.log} {...this.props} />
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />

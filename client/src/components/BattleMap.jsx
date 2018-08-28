@@ -40,6 +40,35 @@ class BattleMap extends Component {
     return false;
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevProps.tokens !== this.props.tokens) {
+      this.handleSocketUpdate = this.handleSocketUpdate.bind(this);
+      this.handleSocketUpdate(this.props.tokens)
+    }
+  }
+  //write component did update, input is this.props.tokens array of tokens
+  handleSocketUpdate (tokenArray) {
+    let c = document.getElementById('canvas').fabric;
+    //clear canvas
+    this.props.onClear()
+
+    //insert new tokens to canvas
+    tokenArray.map(token => {
+      let t = fabric.Image({
+        width: token.width,
+        height: token.height,
+        selectable: true,
+      }).scale(0.74);
+      let padding = 64;
+      let group = new fabric.Group([t], {
+        left: Math.round(token.left / padding) * padding,
+        top: Math.round(token.top/padding) * padding,
+      });
+      c.add(group);
+    })
+    c.renderAll.bind(c);
+  }
+
   componentDidMount() {
     // This Works!
     let canvas = new fabric.Canvas('canvas', {selection: false,});
