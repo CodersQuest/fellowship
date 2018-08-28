@@ -13,7 +13,7 @@ const session = require('express-session')({
     maxAge: 8*60*60*1000,
   },
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
 });
 
 
@@ -33,13 +33,6 @@ app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use((req, res, next) => {
-//   res.locals.success_message = req.flash('success_message');
-//   res.locals.error_message = req.flash('error_message');
-//   res.locals.error = req.flash('error');
-//   res.locals.user = req.user || null;
-//   next();
-// });
 /** ******Middleware*************/
 
 /** *********Passport************/
@@ -84,7 +77,6 @@ app.post('/login',
   passport.authenticate('local', {
     failureRedirect: '/login',
   }), (req, res) => {
-    const loggedInUserObj = req.user;
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
     // console.log(res.user);
@@ -106,7 +98,7 @@ app.get('/logout', function(req, res) {
       throw err;
     }
     res.clearCookie('connect.sid');
-    res.redirect('/');
+    res.redirect('/login');
   });
 });
 
@@ -130,9 +122,9 @@ throw err;
     req.login(user, function(err) {
       console.log(req.user, 'user');
       if (err) {
-throw err;
-}
-      return res.redirect('/dashboard/' + user.username);
+        throw err;
+      }
+      return res.redirect('/');
     });
   });
 });
@@ -176,14 +168,6 @@ app.get('*', (req, res) => {
 //     });
 //   }
 // });
-
-app.get('/dashboard/:id', auth, (req, res) => {
-  if (req.user) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(500);
-  }
-});
 
 /** *********Requests************/
 

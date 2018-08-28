@@ -1,8 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
-
-
 class Login extends React.Component {
     constructor(props) {
       super(props);
@@ -29,18 +27,26 @@ class Login extends React.Component {
 
     submitHandler(e) {
       // post request to db on submit button
-      const {username, password,} = this.state;
-      const {setUser, history,} = this.props;
+      const {
+        username,
+        password,
+      } = this.state;
+      const {
+        setUser,
+        history,
+      } = this.props;
 
-      axios.post('/login', {username, password,})
-        .then((response) => {
-          console.log(response);
+      axios.post('/login', {
+        username,
+        password,
+      }).then((response) => {
           setUser(response.data.user, ()=> {
             const {from = '/',} = this.props.location.state ? this.props.location.state : {};
             history.push(from);
           });
         })
         .catch((error) => {
+          console.log('caTCH CHECK', error);
           throw error;
         });
     }

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import 'bulma/css/bulma.css';
 import {defaultGameImage} from '../images/imageData';
 
 /**
@@ -34,7 +35,7 @@ class CreateGameForm extends React.Component {
     const createGame = this.props.createNewGame;
     return (
       <div className='create-game-form'>
-        <form onSubmit={createGame}>
+        <form>
           <div className='gamename-input'>
             <label>Game Name:</label>
             <input className=''
@@ -44,7 +45,7 @@ class CreateGameForm extends React.Component {
             />
           </div>
           <div className='gamedescription-input'>
-            <label>Game Name:</label>
+            <label>Short Description:</label>
             <input className=''
               type='text'
               name='gameDescription'
@@ -52,8 +53,8 @@ class CreateGameForm extends React.Component {
             />
           </div>
           <button type='button'
-            onSubmit={this.createGame}
-          >
+            onClick={() => createGame(this.state)}
+          >Add Game
           </button>
         </form>
       </div>
