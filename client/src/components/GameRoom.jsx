@@ -71,6 +71,11 @@ class GameRoom extends Component {
         players: playerData,
       });
     });
+    socket.on('updateToken', (tokensData) => {
+      this.setState({
+        tokens: tokensData,
+      });
+    });
   }
 /**
  * makes a random dice roll inclusive to the max.
