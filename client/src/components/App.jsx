@@ -45,7 +45,7 @@ class App extends Component {
   }
 
   joinGame(game) {
-    console.log(game);
+    // console.log(game);
     // update state for currentGame
     this.setState({
       currentGame: game,
@@ -62,7 +62,7 @@ class App extends Component {
           currentUser: res.data.user,
         });
 
-        console.log(res.data.user, 'res from App.jsx getCurrentUser()');
+        // console.log(res.data.user, 'res from App.jsx getCurrentUser()');
       }).catch((error) => {
         window.location.href='/login';
       })
@@ -126,12 +126,7 @@ class App extends Component {
       this.setState({
         currentUser: response.data.user,
         loggedIn: true,
-      }, () => {
-        // this.history.push("/")
-        // console.log(this.props);
       });
-      // update something here based on response url
-      // history.pushState({key: response.data}, null, response.data);
     })
     .catch((error) => {
       throw error;

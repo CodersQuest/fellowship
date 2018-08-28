@@ -14,3 +14,4 @@ npm-debug.log
 .babelrc
 package-lock.json
 .vscode
+client/utils/oldContent.js
