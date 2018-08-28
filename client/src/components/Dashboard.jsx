@@ -123,96 +123,38 @@ class Dashboard extends Component {
 
     if (!this.props.isLoggedIn) return <Redirect to="/login" />;
 
-    const ShowNavbar = () => {
-      return (
-          <nav className="navbar is-transparent is-black" role="navigation" aria-label="main navigation">
-
-            <div className="navbar-brand">
-              <a className="navbar-brand is-size-1 has-text-white" href="#"> Quest in Progress </a>
-            </div>
-
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <div className="field is-grouped">
-
-                  <p className="control" onClick={this.toggleModal}>
-                    <a className="button is-link">
-                      Create New Game
-                    </a>
-                  </p>
-
-                  <div>
-                    <CreateGameModal
-                      closeModal={this.toggleModal}
-                      modalState={this.state.modalState}
-                      title="Create a new game"
-                      handleChange={this.handleChange}
-                      createNewGame={this.createNewGame}
-                    >
-                      <div className="input-wrapper is-size-4">
-                        <label>Enter Game Name:</label>
-                          <input type="text"
-                            className="input"
-                            placeholder="Enter Game Name"
-                            name = "gameName"
-                            value = {gameName}
-                            onChange = {this.handleChange}
-                          />
-                          </div>
-                          <div className="input-wrapper is-size-4">
-                            <label>Enter Game description:</label>
-                            <input
-                              className="input"
-                              placeholder="Game Description"
-                              name = "gameDescription"
-                              value = {gameDescription}
-                              onChange = {this.handleChange}
-                            />
-                          </div>
-                          <button type="button" onClick={this.createNewGame}>
-                            <a className="button">
-                              Create New Game
-                            </a>
-                          </button>
-                          {/* <button type="submit" onClick={() => viewChange('/game')}>Click To Game</button> */}
-
-                    </CreateGameModal>
-
-                  </div>
-
-                  <button
-                      className="button is-link"
-                      onClick={this.props.logOut}
-                    >Logout
-                    </button>
-                </div>
-              </div>
-            </div>
-          </nav>
-      );
-    };
-
     return (
       <div className="dashBoard">
-        <ShowNavbar />
 
-        <div className="columns">
+        <div className="wrapper">
 
-          <div className="column is-three-quarters is-black">
-            <section className="hero">
-              <div className="hero-body">
-                <div className="container">
+        <div className="navdash">
+          <h1>Quest in Progress</h1>
+        </div>
+
+        <div id="settings">
+          <button
+              className="button"
+              onClick={this.props.logOut}
+            >Logout
+          </button>
+        </div>
+
+        <div id="c">
+          
+        </div>
+
+          <div id="gamelist">
+
                   {this.state.userGamesData.length > 0 ? <GamesList
                     games={this.state.userGamesData}
                     joinGame={this.props.joinGame}
                     history={this.props.history}
                   /> : null}
-                </div>
-              </div>
-            </section>
+
           </div>
 
-          <div className="column" id="sidebar">
+          <div id="sidebar">
             <p className="control" onClick={this.toggleModal}>
               <a className="button is-text is-large">
                 Create New Game
