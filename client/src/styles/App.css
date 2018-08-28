@@ -134,6 +134,10 @@ canvas {
   font-size: 2.6rem;
 }
 
+#logoutButton {
+  color: #ad973e;
+}
+
 #settings {
   background-color: #010101;
   grid-area: settings;
@@ -141,7 +145,9 @@ canvas {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
- }
+}
+
+ 
  
 #c {
   background-color: #010101;
@@ -191,7 +197,8 @@ canvas {
   flex-flow: row wrap;
   color: #ad973e;
   font-size: 2.2rem;
-
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 #gameId {
@@ -200,6 +207,7 @@ canvas {
   flex-flow: row wrap;
   color: #a5a5a5;
   font-size: 1.8rem;
+  padding-bottom: 10px;
 }
 
 #gameDesc {
@@ -207,6 +215,7 @@ canvas {
   justify-content: flex-start;
   color: #a5a5a5;
   font-size: 1.8rem;
+  padding-bottom: 20px;
 }
 
 #joinButton {

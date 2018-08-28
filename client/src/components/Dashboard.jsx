@@ -117,8 +117,9 @@ class Dashboard extends Component {
             Profile
           </a>
           <button
-              className="button"
-              onClick={this.props.logOut}
+            className="button is-text is-large"
+            id="logoutButton"
+            onClick={this.props.logOut}
             >Logout
           </button>
         </div>
