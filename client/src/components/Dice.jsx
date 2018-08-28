@@ -8,7 +8,9 @@ let style = {
 };
 const Dice = (props) => (
   <div id="dieRoller">
-    <img src={props.image} style={style} onClick={() => props.rollDice(props.value)}/>
+    <img src={props.image} 
+    style={style} 
+    onClick={() => props.rollDice(props.value, props.bonus, props.context)}/>
   </div>
 );
 
