@@ -61,12 +61,17 @@ class BattleMap extends Component {
       );
     }
 
-    canvas.on('object:moving', function(options) {
+    canvas.on('object:moving', (options) => {
       options.target.set({
         left: Math.round(options.target.left / grid) * grid,
         top: Math.round(options.target.top / grid) * grid,
       });
     });
+
+    canvas.on('object:moved', (options) => {
+      this.props.update(options.target);
+    });
+
     canvas.on('object:scaling', (options) => {
       const {target,} = options;
       target.set('scaleX', Math.round(target.scaleX));

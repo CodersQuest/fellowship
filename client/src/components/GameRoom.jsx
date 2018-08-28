@@ -129,11 +129,17 @@ class GameRoom extends Component {
  * Update / Add to tokens array.
  */
   updateTokens (token) {
-    var tokens = this.state.tokens.slice();
-    tokens.push(token);
+    var tokens = [];
+    const c = document.getElementById('canvas').fabric
+    c.getObjects().map((obj) => {
+      if (obj.selectable !== false) {
+        tokens.push(obj)
+      }
+    })
     this.setState({
       tokens: tokens
     })
+    console.log('tokens', this.state.tokens)
   }
 /**
  * React Render
