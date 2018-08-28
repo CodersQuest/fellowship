@@ -7,56 +7,33 @@ const listItemStyle = {
 
 const GamesListItem = ({game, joinGame, history, }) => {
   return (
-    <div>
-      <ul>
-        <li>
-          <div className="box">
-            <article className="media">
-              <div className="media-left">
-                <figure className="gameImage">
-                  <img style={listItemStyle}
-                  src={game.gameImg}/>
-                </figure>
-              </div>
-              <div className="media-content">
-                <div className="content">
-                  <p>
-                    <span className="gameName is-size-5 has-text-weight-bold">
-                      {game.gameName}
-                    </span>
+      <div className="gameListItem">
+          <img className="gameImage" src={game.gameImg}/>
 
-                  </p>
-                  <div className="gameId is-size-5">
-                    {game.gameId}
-                  </div>
-                  <span className="gameDescription is-size-5">
-                    {game.gameDesc}
-                  </span>
-                </div>
-
-              </div>
-
-
-                <span>
-                  {/* <Link to={`/games/${game.gameId}`}>Join Game</Link> */}
-                  <button type='button'
-                    onClick={() => {
-                      joinGame(game);
-                      history.push(`/games/${game.gameId}`);
-                    }}>
-                      <a className="button is-small is-info">
-                        Join Game
-                      </a>
-                  </button>
-                </span>
-
-            </article>
-
+          <div className="gameName">
+            {game.gameName}
           </div>
 
-        </li>
-      </ul>
-    </div>
+          <div className="gameOwner">
+            Game Master: {game.gameOwner}
+          </div>
+
+          <div className="gameDesc">
+            {game.gameDesc}
+          </div>
+          <div className="gamePlayers">
+            Players: {game.players.join(', ')}
+          </div>
+          <div className="joinButton">
+            <button id="joinButtonSpace" type='button'
+              onClick={() => {
+                joinGame(game);
+                history.push(`/games/${game.gameId}`);
+              }}>
+              Join Game
+            </button>
+          </div>
+      </div>
   );
 };
 

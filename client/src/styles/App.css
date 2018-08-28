@@ -128,8 +128,14 @@ canvas {
   grid-area: nav;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  color: #ad973e;
+  font-size: 2.6rem;
+}
+
+#logoutButton {
+  color: #ad973e;
 }
 
 #settings {
@@ -139,18 +145,21 @@ canvas {
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
- }
+}
+
+ 
  
 #c {
   background-color: #010101;
 }
 
 #gamelist {
-  background: 151515;
+  background: #151515;
   grid-area: main;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 #sidebar {
@@ -161,6 +170,96 @@ canvas {
   display: flex;
   flex-direction: column;
   grid-area: sidebar;
+}
+
+.gameListItem {
+  background: #151515;
+  display: grid;
+  width: 75%;
+  margin: 10px;
+  grid-template-columns: 1fr 4fr 1.5fr;
+  grid-template-rows: repeat(3,.5fr);
+  border-bottom: 4px solid #ad973e;
+  grid-template-areas: 
+  "img gameName owner"
+  "img gameDesc empty"
+  "img players joinButton";
+  
+}
+
+.gameImage {
+  width: 150px;
+  height: 150px;
+  grid-area: img;
+}
+
+.gameName {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: row wrap;
+  color: #ad973e;
+  font-size: 2.2rem;
+  padding-bottom: 10px;
+  grid-area: gameName;
+}
+
+.gameOwner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: row wrap;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+}
+
+.gameDesc {
+  display: flex;
+  justify-content: flex-start;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  grid-area: gameDesc;
+}
+
+.gamePlayers {
+  display: flex;
+  justify-content: flex-start;
+  color: #a5a5a5;
+  font-size: 1.2rem;
+  padding-bottom: 10px;
+  grid-area: players;  
+
+}
+
+.joinButton {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-area: joinButton;
+}
+
+#joinButtonSpace {
+  background: none;
+  width: 65%;
+  height: 90%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.8rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
+}
+
+#battleLog::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.5);
+}
+
+#battleLog::-webkit-scrollbar-thumb {
+  background: #ad973e;
+}
+
+#battleLog::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
 }
 
 
