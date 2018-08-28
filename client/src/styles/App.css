@@ -128,8 +128,10 @@ canvas {
   grid-area: nav;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  color: #ad973e;
+  font-size: 2.6rem;
 }
 
 #settings {
@@ -167,7 +169,7 @@ canvas {
   background: #151515;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
-  grid-template-rows: 1fr 2fr 1fr;
+  
   grid-template-areas: 
   "icon gameName joinButton"
   "icon gameId joinButton"
@@ -218,6 +220,6 @@ canvas {
 }
 
 .gameElements {
-  border-bottom: 1px solid #ad973e;
+  border-bottom: 4px solid #ad973e;
 }
 
