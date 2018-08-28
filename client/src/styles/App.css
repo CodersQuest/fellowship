@@ -217,3 +217,7 @@ canvas {
   background: #151515;
 }
 
+.gameElements {
+  border-bottom: 1px solid #ad973e;
+}
+
