@@ -11,9 +11,9 @@
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
-  "users users settings"
+  "gamedata users settings"
   "tokens game log"
-  "dice dice logchat"
+  "tkn dice logchat";
 }
 
 canvas {
