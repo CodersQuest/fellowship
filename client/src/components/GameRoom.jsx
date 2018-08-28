@@ -54,7 +54,6 @@ class GameRoom extends Component {
       joinGame(this.props.currentGame);
     });
     socket.on('gameStatusUpdated', (gameData) => {
-      // data.logs, data.players, data.tokens
       this.setState({
         players: gameData.players,
         tokens: gameData.tokens,
@@ -111,8 +110,8 @@ class GameRoom extends Component {
  */
   handleLeaveGame() {
     leaveGame();
-    // need to pass down a method to reset
-    // currentGame obj to empty.
+    // !need to pass down a method to reset
+    // !currentGame obj to empty.
   }
 /**
  * Clears Fabric Canvas.
@@ -125,6 +124,7 @@ class GameRoom extends Component {
       }
     });
     c.renderAll.bind(c);
+    // !function to emit socket event. Expects an array argument.
     deleteTokens([]);
   }
 /**
@@ -139,6 +139,7 @@ class GameRoom extends Component {
         tokens.push(obj);
       }
     });
+    // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
   }
 /**
