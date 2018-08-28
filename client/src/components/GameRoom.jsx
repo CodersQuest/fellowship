@@ -91,14 +91,12 @@ class GameRoom extends Component {
    * @param {string} message string from GameChat.
    */
   sendChat(message) {
-    // ensure we can capture the message.
-    console.log(message);
-    // setup message object.
+    let date = Date.now();
     let msg = {
       username: this.props.currentUser.username,
       type: 'message',
       message: message,
-      timestamp: Date.now(),
+      timestamp: date,
     }
     sendMessage(msg);
   }
