@@ -42,9 +42,11 @@ class DiceTray extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event, state) {
-    event.preventDefault();
+  handleChange(event) {
     console.log(event.target.name, event.target.value);
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
   render() {
@@ -52,41 +54,26 @@ class DiceTray extends React.Component {
       <div id="diceTray">
         <div className='bonusModify'>
           <div>Bonus Modifier</div>
-          <DiceBonus />
+          <DiceBonus handleChange={this.handleChange} bonus={this.state.bonus} />
         </div>
         <div className='rollContext'>
           <div>Roll Context</div>
-          <DiceContext />
+          <DiceContext handleChange={this.handleChange} context={this.state.context} />
         </div>
-        {dice.map(die => (
+        {dice.map((die) => (
           <Dice
             name={die.name}
             image={die.image}
             key={die.name}
             value={die.value}
-            rollDice={props.rollDice}
+            rollDice={this.props.rollDice}
+            bonus={this.state.bonus}
+            context={this.state.context}
           />
         ))}
-      </div>;
+      </div>
     );
   }
 }
-const DiceTray = (props) => (
-  <div id="diceTray">
-    <div>
-      <label htmlFor="numRolls"># of Rolls </label>
-      <input id="numRolls" type="number" defaultValue="1" min="1" max="20"/>
-    </div>
-    {dice.map((die) => (
-      <Dice name={die.name} 
-        image={die.image} 
-        key={die.name} 
-        value={die.value} 
-        rollDice={props.rollDice}
-        context={this.state.context}
-        bonus={this.state.bonus} />
-    ))}
-  </div>
-);
 
 export default DiceTray;

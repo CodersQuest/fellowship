@@ -81,13 +81,15 @@ class GameRoom extends Component {
  * sends data from roll and player in socket emit.
  * @param {int} value Number representing specific die clicked.
  */
-  rollDice(value) {
+  rollDice(value, rollBonus, rollContext) {
     const roll = Math.floor(Math.random() * (value - 1 + 1) + 1);
     const user = this.props.currentUser.username;
     // ! TODO: Add roll context to this later. As well as Bonus modifier.
     diceRoll({
       player: user,
       roll: roll,
+      bonus: rollBonus,
+      context: rollContext,
       max: value,
     });
   }

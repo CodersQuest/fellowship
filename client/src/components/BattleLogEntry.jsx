@@ -14,9 +14,12 @@ const parseTime = (date) => {
 }
 
 const BattleLogEntry = ({logentry,}) => {
-  return logentry.type ? 
+  return logentry.type ?
   (<li className='logentry'>{logentry.username}  {parseTime(logentry.timestamp)}: {logentry.message}</li>) :
-  (<li className='logentry'>{logentry.player} : rolled a {logentry.roll} out of {logentry.max}</li>)
+  (<li className='logentry'>
+  <div>{logentry.player} : </div>
+  rolled a {logentry.roll} out of {logentry.max} with a + {logentry.bonus} {logentry.context === 'none' ? null: 'for ' + logentry.context}
+  </li>);
 };
 
 
