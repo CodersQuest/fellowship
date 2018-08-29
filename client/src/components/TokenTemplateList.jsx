@@ -44,8 +44,8 @@ class TokenTemplateList extends Component {
               </span>
             </button>
           </div>
-          <div className="dropdown-menu">
-          <ul className="dropdown-content has-background-grey"> 
+          <div className="dropdown-menu ">
+          <ul className="dropdown-content has-background-grey token-grid"> 
           {this.props.tokenImages[0].map((url) =>
             <li className="dropdown-item has-background-grey">
             <TokenTemplateListItem
@@ -65,8 +65,8 @@ class TokenTemplateList extends Component {
               </span>
             </button>
           </div>
-          <div className="dropdown-menu">
-          <ul className="dropdown-content has-background-grey"> 
+          <div className="dropdown-menu ">
+          <ul className="dropdown-content has-background-grey token-grid"> 
           {this.props.tokenImages[1].map((url) =>
             <li className="dropdown-item has-background-grey">
             <TokenTemplateListItem

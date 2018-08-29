@@ -341,3 +341,8 @@ canvas {
   z-index: -1000;
   position: absolute;
 }
+
+.token-grid {
+  max-height: 250px;
+  overflow: auto;
+}
