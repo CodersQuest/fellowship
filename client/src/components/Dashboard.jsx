@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 import data from './dashBoardDummyData.js';
 import CreateGameModal from './CreateGameModal.jsx';
 import CreateGameForm from './CreateGameForm';
+import QuestLogo from './QuestLogo.jsx';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -115,9 +116,11 @@ class Dashboard extends Component {
       <div className="dashBoard">
 
         <div className="wrapper">
-
+        
         <div className="navdash">
-          <h1>Quest in Progress</h1>
+          <div className="paddedLogo">
+            <QuestLogo />
+          </div>
         </div>
 
         <div id="settings">

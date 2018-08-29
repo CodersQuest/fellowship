@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
+import QuestLogo from './QuestLogo.jsx';
 class Login extends React.Component {
     constructor(props) {
       super(props);
@@ -53,65 +54,61 @@ class Login extends React.Component {
 
     render() {
       return (
-        <div className="container">
-          <div className="centerall">
+        <React.Fragment>
+          <div className="loginBg"></div>
+          <div className="container">
+            <div className="loginLogo">
+              <QuestLogo />
+            </div>
+            <div className="centerall">
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                this.submitHandler(e);
-              }}
-            >
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  this.submitHandler(e);
+                }}
+              >
 
-              <h3 className="is-size-3">Login</h3>
+                <div className="field">
+                    <input
+                      className="input is-warning"
+                      type="text"
+                      placeholder="username"
+                      onChange={this.handleChange}
+                      id="display-name"
+                      name="username"
+                      required
+                    />
+                </div>
 
-              <div className="field">
-                <label
-                  htmlFor='username'
-                  className="label"
-                > username </label>
-                  <input
-                    className="input is-success"
-                    type="text"
-                    placeholder="username"
-                    onChange={this.handleChange}
-                    id="display-name"
-                    name="username"
-                    required
-                  />
-              </div>
+                <div className="field">
+                    <input
+                      className="input is-warning"
+                      placeholder="password"
+                      onChange={this.handleChange}
+                      type="password"
+                      id="display-name"
+                      name="password"
+                      required
+                    />
+                </div>
 
-              <div className="field">
-                <label
-                  htmlFor='password'
-                  className="label"
-                > password </label>
-                  <input
-                    className="input is-success"
-                    placeholder="password"
-                    onChange={this.handleChange}
-                    type="text"
-                    id="display-name"
-                    name="password"
-                    required
-                  />
-              </div>
+                <button
+                  className="button is-fullwidth"
+                  type="submit">
+                  Login
+                </button>
+                <button
+                  className="button is-fullwidth"
+                  type="button"
+                  onClick={() => this.goToPath('/signup')}
+                >Sign Up
+                </button>
 
-              <button
-                className="button is-fullwidth"
-                type="submit">
-                Login
-              </button>
-              <button
-                className="button is-fullwidth"
-                type="button"
-                onClick={() => this.goToPath('/signup')}
-               >Sign Up
-              </button>
-
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
+        </React.Fragment>
       );
     }
 }

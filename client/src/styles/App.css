@@ -163,6 +163,11 @@ canvas {
   font-size: 2.6rem;
 }
 
+.paddedLogo {
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
 #logoutButton {
   color: #ad973e;
 }
@@ -301,4 +306,38 @@ canvas {
 .rollContext {
   color: #a5a5a5;
   font-size: 1.2rem;
+}
+
+.loginLogo {
+  z-index: -1;
+  opacity: 0.5;
+  position: absolute;
+  top: 29%;
+  left: 50%;
+  transform: translateX(-50%) scale(3);
+}
+
+.loginBg {
+  width: 100vw;
+  height: 100vh;
+  background: #151515;
+  z-index: -1000;
+  position: absolute;
+}
+
+.signUpLogo {
+  z-index: -1;
+  opacity: 0.5;
+  position: absolute;
+  top: 29%;
+  left: 50%;
+  transform: translateX(-50%) scale(3);
+}
+
+.signUpBg {
+  width: 100vw;
+  height: 100vh;
+  background: #151515;
+  z-index: -1000;
+  position: absolute;
 }
