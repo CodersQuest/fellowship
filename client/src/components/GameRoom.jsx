@@ -125,10 +125,13 @@ class GameRoom extends Component {
         c.remove(obj);
       }
     });
-    this.setState({ tokens: []})
+    var json = c.toJSON()
+    var array = [].push(json)
+    console.log(json, 'from onclear')
+    this.setState({ tokens: array})
     c.renderAll.bind(c);
     // !function to emit socket event. Expects an array argument.
-    deleteTokens([]);
+    deleteTokens(array);
   }
 /**
  * Update / Add to tokens array.
@@ -137,15 +140,9 @@ class GameRoom extends Component {
   updateTokens(token) {
     const tokens = [];
     const c = document.getElementById('canvas').fabric;
-    // c.getObjects().map((obj) => {
-    //   if (obj.selectable !== false) {
-    //     tokens.push(obj);
-    //   }
-    // });
     var obj  = c.toJSON()
-    console.log(obj, 'tojson')
     tokens.push(obj)
-    this.setState({ tokens: tokens})
+    this.setState({ tokens: tokens})//this is needed to have prev props in child battlemap component
     // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
   }

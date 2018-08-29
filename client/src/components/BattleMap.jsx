@@ -46,7 +46,7 @@ class BattleMap extends Component {
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.tokens[0] !== this.props.tokens[0]) {
+    if (JSON.stringify(prevProps.tokens[0]) !== JSON.stringify(this.props.tokens[0])) {
       this.handleSocketUpdate(this.props.tokens[0])
     }
     // console.log('prev', prevProps.tokens[0], 'tokens',this.props.tokens[0])
@@ -56,7 +56,7 @@ class BattleMap extends Component {
     let c = document.getElementById('canvas').fabric;
     console.log('handlesocketevents called', canvasObj)
     c.loadFromJSON(canvasObj)
-    c.renderAll.bind(c);
+    // c.renderAll.bind(c);
   }
 
   componentDidMount() {
