@@ -16,7 +16,7 @@ class BattleLog extends Component {
         <div className='columns'>
           <div className='column'>
             <div className='level-item has-text-centered custom-bg'>
-              <h1 className='heading'>BATTLE LOG</h1>
+              <h1 className='heading' id="battleLogHeader">BATTLE LOG</h1>
             </div>
 
             <div className='log-display-wrapper'>

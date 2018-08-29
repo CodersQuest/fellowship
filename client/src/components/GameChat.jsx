@@ -48,8 +48,8 @@ class GameChat extends React.Component {
       <div id='gameChat'>
         <textarea id='textGame' value={this.state.text} onChange={this.handleChange} maxLength='140' />
         <div id="textSubmit">
-          <button onClick={this.handleSubmit}>Send</button>
-          <div>Chars Left: {this.state.charsLeft}</div>
+          <button className="button is-primary is-inverted is-outlined" onClick={this.handleSubmit}>Send</button>
+          <div className="charsLeft">Chars Left: {this.state.charsLeft}</div>
         </div>
       </div>
     );

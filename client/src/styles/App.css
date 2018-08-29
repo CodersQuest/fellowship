@@ -4,11 +4,10 @@
 }
 
 #gameContainer {
-  background: #010101;
+  background: #3f3e3e;
   display: grid;
   width: 98vw;
   height: 98vh;
-  grid-gap: .25em;
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
@@ -25,7 +24,7 @@ canvas {
 
 #diceTray {
   grid-area: dice;
-  background-color: #010101;
+  background-color: #010101a8;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -39,7 +38,6 @@ canvas {
   z-index: 1;
 }
 
-
 #tokenlist {
   grid-area: tokens;
   position:relative;
@@ -51,8 +49,19 @@ canvas {
 #battleLog {
   grid-area: log;
   background-color:rgb(51, 53, 54);
-  color: #47ddffdb;
+  color: #a5a5a5;
   overflow-y: scroll;
+  border-top: 2px solid #ad973e;
+}
+
+#battleLogHeader {
+  font-size: 2rem;
+}
+
+.player {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 2px;
 }
 
 #gameChat {
@@ -61,13 +70,23 @@ canvas {
   justify-content: center;
   align-items: flex-start;
   flex-flow: row wrap;
-  background-color: #010101;
+  background-color: #010101a8;
 }
+
+.optionsGameName {
+  color: #a5a5a5;
+  font-size: 1rem;
+}
+
 #textSubmit {
   display: flex;
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.charsLeft {
+  color: #ad973e;
 }
 
 #textGame {
@@ -79,24 +98,20 @@ canvas {
   color: #eaeaea;
   caret-color: #eaeaea;
   border: 2px solid #ad973e;
+  font-size: 1rem;
 }
 
 .custom-bg {
-  background: radial-gradient(circle closest-side, #666, #999 575%);
+  background: #292828a8;
 }
 
 #userProfiles {
   grid-area: users;
-  background-color: #010101;
+  background-color: #010101a8;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
-}
-
-#settings {
-  grid-area: settings;
-  background-color: aquamarine;
 }
 
 .over {
@@ -140,15 +155,15 @@ canvas {
 }
 
 #settings {
-  background-color: #010101;
+  background-color: #010101a8;
   grid-area: settings;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
-
- 
  
 #c {
   background-color: #010101;
@@ -263,4 +278,13 @@ canvas {
   background: #b1b1b1;
 }
 
+.bonusModify {
+  color: #a5a5a5;
+  font-size: 1.2rem;
 
+}
+
+.rollContext {
+  color: #a5a5a5;
+  font-size: 1.2rem;
+}
