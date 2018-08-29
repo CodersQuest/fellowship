@@ -1,10 +1,13 @@
 // handle our socket events and more here.
 let socketIo = require('socket.io');
 const sharedSession = require('express-socket.io-session');
+const db = require('../database/schema');
 // ! should be removed when we allow proper setup of userAvatar's.
 const userAvatar = 'https://i.imgur.com/XUsbw4H.png';
 // ! In memory storage tracking, all current players, all running games, and all running rooms tied to games.
-let games = {}; let players = {}; let rooms = {};
+const games = {};
+const players = {};
+const rooms = {};
 
 module.exports = function(server, session) {
   let io = socketIo.listen(server);
@@ -125,7 +128,9 @@ module.exports = function(server, session) {
       if (rooms[oldRoom].length === 0) {
         // have to handle case of last user leaving and room no longer being populated.
         delete rooms[oldRoom];
-        // ! TODO: implement saving game to database and removing game from games upon asynch success.
+        db.Game.findByIdAndUpdate(oldRoom, {gameLog: games[oldRoom].gameLog, gameTokens: games[oldRoom].gameTokens})
+        .then(() => delete games[oldRoom])
+        .catch((err) => console.log('DANGER WILL ROBINSON: ', err));
       }
     });
 
@@ -137,6 +142,9 @@ module.exports = function(server, session) {
       // find game, add dice roll message to game's log
       _game.gameLog.push(data);
       // only going to keep the most recent 50-70 messages
+      if (_game.gameLog.length >= 71) {
+        _game.gameLog.unshift();
+      }
       // send updated log back to clients in room.
       io.in(socket.room).emit('updateLog', games[socket.room].gameLog);
     });
@@ -152,7 +160,7 @@ module.exports = function(server, session) {
       }
     });
 
-    socket.on('deleteToken', (token) => {
+    socket.on('deleteToken', (tokens) => {
       if (games[socket.room]) {
         games[socket.room].gameTokens = tokens;
         // ! emits should emit same tokenUpdate event for every token listener.
@@ -165,10 +173,14 @@ module.exports = function(server, session) {
     // ! TODO: Handle listener for player submitted messages to log.
     socket.on('sendMessage', function(data) {
       // ! TODO: update for specific room.
+      const _game = games[socket.room];
       // ! expect data to be in shape of object with key of message
-      games[socket.room].gameLog.push(data);
+      _game.gameLog.push(data);
       // ! must update game log with object containing username, and message
       // Emit updated game log to all users.
+      if (_game.gameLog.length >= 71) {
+        _game.gameLog.unshift();
+      }
       io.in(socket.room).emit('updateLog', games[socket.room].gameLog);
     });
 
