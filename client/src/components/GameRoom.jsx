@@ -121,15 +121,15 @@ class GameRoom extends Component {
   onClear() {
     const c = document.getElementById('canvas').fabric;
     c.getObjects().map((obj) => {
-      if (obj.selectable === true) {
+      if (obj.type !== 'line') {
         c.remove(obj);
       }
     });
+    c.renderAll.bind(c);
     var json = c.toJSON()
     var array = [].push(json)
     console.log(json, 'from onclear')
     this.setState({ tokens: array})
-    c.renderAll.bind(c);
     // !function to emit socket event. Expects an array argument.
     deleteTokens(array);
   }
@@ -140,8 +140,8 @@ class GameRoom extends Component {
   updateTokens(token) {
     const tokens = [];
     const c = document.getElementById('canvas').fabric;
-    var obj  = c.toJSON()
-    tokens.push(obj)
+    var json  = c.toJSON()
+    tokens.push(json)
     this.setState({ tokens: tokens})//this is needed to have prev props in child battlemap component
     // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
