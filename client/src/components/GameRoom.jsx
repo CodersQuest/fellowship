@@ -17,7 +17,9 @@ import {
   deleteTokens
 } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
+import {players, enemies} from '../images/QiPTokens/tokenimages.js';
 import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
+
 /**
  * Adds two numbers together.
  * @param {int} num1 The first number.
@@ -35,7 +37,7 @@ class GameRoom extends Component {
       players: [],
       tokens: [],
       log: [],
-      tokenImages: [eevee, ninetails, clefairy, lugia],
+      tokenImages: [players,enemies],
       clearTokens: false,
     };
     this.rollDice = this.rollDice.bind(this);

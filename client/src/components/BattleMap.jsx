@@ -28,12 +28,11 @@ class BattleMap extends Component {
       e.stopPropagation(); // stops the browser from redirecting.
     }
     let img = document.querySelector('.target-image');
-    // console.log('event: ', e);
     let newImage = new fabric.Image(img, {
-      width: 100,
-      height: 100,
+      width: 1000,
+      height: 1000,
       selectable: true,
-    }).scale(0.74);
+    }).scale(0.2);
     let padding = 64;
     let group = new fabric.Group([newImage], {
       left: Math.round(e.layerX / padding) * padding,
@@ -54,9 +53,8 @@ class BattleMap extends Component {
 
   handleSocketUpdate (canvasObj) {
     let c = document.getElementById('canvas').fabric;
-    console.log('handlesocketevents called', canvasObj)
+    // console.log('handlesocketevents called', canvasObj)
     c.loadFromJSON(canvasObj)
-    // c.renderAll.bind(c);
   }
 
   componentDidMount() {
@@ -108,7 +106,6 @@ class BattleMap extends Component {
   render() {
     return (
       <div id="battleMap">
-
         <canvas id="canvas" width="1536" height="1024" />
       </div>
     );

@@ -10,6 +10,7 @@ class TokenTemplateList extends Component {
     };
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragEnd = this.handleDragEnd.bind(this);
+  console.log(this.props)
   }
 
   handleDragStart(e) {
@@ -36,25 +37,44 @@ class TokenTemplateList extends Component {
         <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
         <div className="dropdown is-hoverable is-dark is-left">
           <div className="dropdown-trigger">
-            <button className="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-              <span>Tokens</span>
+            <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+              <span>Players</span>
               <span className="icon is-small">
                 <i className="fas fa-angle-down" aria-hidden="true"></i>
               </span>
             </button>
           </div>
           <div className="dropdown-menu">
-          {/* <ul className="dropdown-content"> //comment in if you want the token menu to have white background */}
-          {this.props.tokenImages.map((url) =>
-            <li className="dropdown-item column is-narrow">
+          <ul className="dropdown-content has-background-grey"> 
+          {this.props.tokenImages[0].map((url) =>
+            <li className="dropdown-item has-background-grey">
             <TokenTemplateListItem
               key={url}
               imgUrl={url} />
-
-
           </li>
           )}
-          {/* </ul> */}
+          </ul>
+          </div>
+        </div>
+        <div className="dropdown is-hoverable is-dark is-left">
+          <div className="dropdown-trigger">
+            <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+              <span>Enemies</span>
+              <span className="icon is-small">
+                <i className="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div className="dropdown-menu">
+          <ul className="dropdown-content has-background-grey"> 
+          {this.props.tokenImages[1].map((url) =>
+            <li className="dropdown-item has-background-grey">
+            <TokenTemplateListItem
+              key={url}
+              imgUrl={url} />
+          </li>
+          )}
+          </ul>
           </div>
         </div>
       </div>
