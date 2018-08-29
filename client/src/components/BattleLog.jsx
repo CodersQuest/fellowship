@@ -13,26 +13,17 @@ class BattleLog extends Component {
   render() {
     return (
       <div id="battleLog">
-        <div className='columns'>
-          <div className='column'>
-            <div className='level-item has-text-centered custom-bg'>
-              <h1 className='heading' id="battleLogHeader">BATTLE LOG</h1>
-            </div>
-
-            <div className='log-display-wrapper'>
-              <div className='log-entry-view'>
-                <ul>
-                  {this.props.currentLog.map((logentry) => (
-                    <BattleLogEntry
-                      key={logentry.timestamp}
-                      logentry={logentry}
-                      {...this.props}
-                    />
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+        <h1 className='heading' id="battleLogHeader">BATTLE LOG</h1>
+        <div className='log-entry-view'>
+          <ul>
+            {this.props.currentLog.map((logentry) => (
+              <BattleLogEntry
+                key={logentry.timestamp}
+                logentry={logentry}
+                {...this.props}
+              />
+            ))}
+          </ul>
         </div>
       </div> // end #battleLog
     );
