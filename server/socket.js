@@ -57,12 +57,12 @@ module.exports = function(server, session) {
     socket.on('joinGame', (game) => {
       // ! attach roomID to the socket
       if (game && (socket.isInGame === false) ) {
-        const roomID = game.gameId;
+        const roomID = game._id;
         if ( !(games[roomID]) ) {
           // add currentPlayer holder to passed game
           rooms[roomID] = []; // add player information to this rooms holder
           // add currentGame from connected player to games
-          games[game.gameId] = game;
+          games[game._id] = game;
           socket.room = roomID;
           // associate room to player
           players[socket.uid].room = roomID;

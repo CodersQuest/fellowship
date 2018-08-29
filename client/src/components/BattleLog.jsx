@@ -24,7 +24,7 @@ class BattleLog extends Component {
                 <ul>
                   {this.props.currentLog.map((logentry) => (
                     <BattleLogEntry
-                      // handleDisplayLog={this.props.handleDisplayLog}
+                      key={logentry.timestamp}
                       logentry={logentry}
                       {...this.props}
                     />

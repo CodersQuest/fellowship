@@ -156,12 +156,23 @@ app.post('/api/creategame', (req, res) => {
     gameTokens: req.body.gameTokens,
     gameLog: req.body.gameLog,
   });
-  // **Still need to update user with 'gamesPartOf' */
+
   newGame.save((err, newGame) => {
     if (err) {
       throw err;
+    } else {
+      // **Still need to update user with 'gamesPartOf' */
+      db.User.findOneAndUpdate(
+        {username: req.body.gameOwner, },
+        {$push: {gamesPartOf: `${newGame._id}`}, }
+      ).exec((err, updatedUser) => {
+        if (err) {
+          console.log('error from update gamesPartOf in creategame route::: ', err);
+          return res.status(500).send('Error updating gamesPartOf');
+        }
+      });
+      res.send(newGame);
     }
-    res.send(newGame);
   });
 });
 

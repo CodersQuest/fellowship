@@ -27,7 +27,7 @@ class App extends Component {
     this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
     this.joinGame = this.joinGame.bind(this);
-    this.getCurrentUser = this.getCurrentUser.bind(this);
+    this.updateGamesPartOf = this.updateGamesPartOf.bind(this);
     this.setUser = this.setUser.bind(this);
   }
 
@@ -45,28 +45,20 @@ class App extends Component {
   }
 
   joinGame(game) {
-    // console.log(game);
+    console.log(game);
     // update state for currentGame
     this.setState({
       currentGame: game,
     });
-    // this.props.history.push(`/games/${game.gameId}`);
-    // window.location.href=`/games/:${this.state.currentGame.gameId}`
   }
 
   // get game data
-  getCurrentUser() {
-    return (
-      axios.get('/me').then((res) => {
-        this.setState({
-          currentUser: res.data.user,
-        });
-
-        // console.log(res.data.user, 'res from App.jsx getCurrentUser()');
-      }).catch((error) => {
-        window.location.href='/login';
-      })
-    );
+  updateGamesPartOf(gameid) {
+    const userCopy = Object.assign({}, this.state.currentUser);
+    userCopy.gamesPartOf.push(gameid);
+    this.setState({
+      currentUser: userCopy,
+    });
   }
 
   componentDidMount() {
@@ -161,7 +153,7 @@ class App extends Component {
                 logOut={this.logOut}
                 viewChange={this.viewChange}
                 joinGame={this.joinGame}
-                // getCurrentUser={this.getCurrentUser}
+                updateGamesPartOf={this.updateGamesPartOf}
                 currentUser={currentUser}
                 {...props}
               />
