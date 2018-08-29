@@ -170,6 +170,7 @@ class GameRoom extends Component {
       return (
         <Fragment>
           <div id="gameContainer">
+            <div className="upperLeft"></div>
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />
@@ -177,6 +178,7 @@ class GameRoom extends Component {
             <BattleLog currentLog={this.state.log} {...this.props} />
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />
+            <div className="lowerLeft"></div>
             <DiceTray rollDice={this.rollDice} />
             <GameChat sendChat={this.sendChat} />
           </div>
