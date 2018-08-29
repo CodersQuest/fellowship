@@ -5,7 +5,7 @@ const listItemStyle = {
   height: 75,
 };
 
-const GamesListItem = ({game, joinGame, history, }) => {
+const GamesListItem = ({game, joinGame, history,}) => {
   return (
       <div className="gameListItem">
           <img className="gameImage" src={game.gameImg}/>
@@ -27,8 +27,11 @@ const GamesListItem = ({game, joinGame, history, }) => {
           <div className="joinButton">
             <button id="joinButtonSpace" type='button'
               onClick={() => {
+                let sanitizedString = game.gameDesc;
+                sanitizedString = sanitizedString.replace(/[^A-Z0-9]+/ig, '');
+                sanitizedString = sanitizedString.toLowerCase();
                 joinGame(game);
-                history.push(`/games/${game.gameId}`);
+                history.push(`/games/${sanitizedString}`);
               }}>
               Join Game
             </button>
