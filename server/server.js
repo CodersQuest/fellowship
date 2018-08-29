@@ -74,8 +74,7 @@ passport.deserializeUser(function(id, done) {
 
 // for login
 app.post('/login',
-  passport.authenticate('local', {
-    failureRedirect: '/login',
+  passport.authenticate('local', {failureRedirect: '/login',
   }), (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
@@ -116,8 +115,8 @@ app.post('/signup', (req, res) => {
   });
   player.save((err, user) => {
     if (err) {
-throw err;
-}
+      throw err;
+    }
     // on succcessful signup, automatically login to new session:
     req.login(user, function(err) {
       console.log(req.user, 'user');
@@ -144,11 +143,24 @@ app.get('/me', auth, function(req, res) {
 });
 
 app.post('/api/creategame', (req, res) => {
-  console.log('RequestBody from creategame route::::', req.body);
-  // let newGame = db.Game({
-
-  // });
-  res.send('newGame');
+  // console.log('RequestBody from creategame route::::', req.body);
+  let newGame = db.Game({
+    gameName: req.body.gameName,
+    gameDesc: req.body.gameDescription,
+    gameImg: req.body.gameImage,
+    gameUrl: req.body.gameUrl,
+    ownerId: req.body.ownerId,
+    gameOwner: req.body.gameOwner,
+    players: req.body.players,
+    gameTokens: req.body.gameTokens,
+    gameLog: req.body.gameLog,
+  });
+  newGame.save((err, newGame) => {
+    if (err) {
+      throw err;
+    }
+    res.send(newGame);
+  });
 });
 
 app.get('/api/getusergames', (req, res) => {
