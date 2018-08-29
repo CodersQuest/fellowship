@@ -41,7 +41,7 @@ class Login extends React.Component {
         password,
       }).then((response) => {
           setUser(response.data.user, ()=> {
-            const {from = '/',} = this.props.location.state ? this.props.location.state : {};
+            const {from = '/', } = this.props.location.state ? this.props.location.state : {};
             history.push(from);
           });
         })

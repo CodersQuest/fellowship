@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const bcrypt = require('bcrypt');
 const db = require('../database/schema.js');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
@@ -74,8 +75,7 @@ passport.deserializeUser(function(id, done) {
 
 // for login
 app.post('/login',
-  passport.authenticate('local', {
-    failureRedirect: '/login',
+  passport.authenticate('local', {failureRedirect: '/login',
   }), (req, res) => {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
@@ -116,8 +116,8 @@ app.post('/signup', (req, res) => {
   });
   player.save((err, user) => {
     if (err) {
-throw err;
-}
+      throw err;
+    }
     // on succcessful signup, automatically login to new session:
     req.login(user, function(err) {
       console.log(req.user, 'user');
@@ -143,10 +143,50 @@ app.get('/me', auth, function(req, res) {
   }
 });
 
-app.get('/creategame', (req, res) => {
-  res.sendStatus(200);
+app.post('/api/creategame', (req, res) => {
+  // console.log('RequestBody from creategame route::::', req.body);
+  let newGame = db.Game({
+    gameName: req.body.gameName,
+    gameDesc: req.body.gameDescription,
+    gameImg: req.body.gameImage,
+    gameUrl: req.body.gameUrl,
+    ownerId: req.body.ownerId,
+    gameOwner: req.body.gameOwner,
+    players: req.body.players,
+    gameTokens: req.body.gameTokens,
+    gameLog: req.body.gameLog,
+  });
+  // **Still need to update user with 'gamesPartOf' */
+  newGame.save((err, newGame) => {
+    if (err) {
+      throw err;
+    }
+    res.send(newGame);
+  });
 });
 
+app.get('/api/getusergames', (req, res) => {
+  const gameIdArray = req.query.gameids;
+  console.log('in getUserGames route::: ', gameIdArray);
+  // console.log(':::', gameIds.map((gameId) => mongoose.Types.ObjectId(gameId)));
+
+  db.Game.find({
+    '_id': {$in: gameIdArray.map((id) => mongoose.Types.ObjectId(id)),}
+  })
+  .exec((err, games) => {
+    if (err) {
+      console.log('error from findGamesById::: ', err);
+      return res.status(500).send('Error finding user games');
+    }
+    res.send(games);
+  });
+});
+
+app.put('/api/saveplayerdata', (req, res) => {
+  const newContent = req.query;
+  console.log('in saveplayerdata route::: ', newContent);
+  res.send(newContent);
+});
 /** *********Passport************/
 
 /** *********Redirects************/

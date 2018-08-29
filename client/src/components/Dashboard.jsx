@@ -24,9 +24,22 @@ class Dashboard extends Component {
 
   getUserGames() {
     if (this.props.currentUser) {
-      this.setState({
-        userGamesData: data,
-      });
+      let gamesData = null;
+      let gameCollection = this.props.currentUser.gamesPartOf;
+      // console.log('how game collection looks before AXIOS::: ', gameCollection);
+      axios.get('/api/getusergames', {
+        params: {
+          gameids: gameCollection,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+        let gameObjectArray = response.data;
+        this.setState({
+          userGamesData: gameObjectArray,
+        });
+      })
+      .catch((error) => console.log('Error from getUserGames:::: ', error));
     }
   }
 
@@ -57,13 +70,29 @@ class Dashboard extends Component {
     if (this.props.currentUser.gamesPartOf.length <= 4) {
       // add ownerId and ownerName to gameObj
       gameObj.ownerId = this.props.currentUser._id;
-      gameObj.ownerName = this.props.currentUser.username;
+      gameObj.gameOwner = this.props.currentUser.username;
       // construct gameUrl and add to gameObj
-      
-      console.log(gameObj);
+      gameObj.gameUrl = '';
+      gameObj.players = [this.props.currentUser.username];
+      gameObj.gameTokens = [];
+      gameObj.gameLog = [];
+
+      // console.log(gameObj);
+
+      // Axios Post Request
+      axios.post('/api/creategame', gameObj)
+      .then((newGame) => {
+        // console.log(newGame);
+        let updatedUserGamesData = this.state.userGamesData;
+        updatedUserGamesData.push(newGame);
+        this.setState({
+          userGamesData: updatedUserGamesData,
+        });
+      })
+      .catch((error) => console.log('Error from createNewGame:::: ', error));
     } else {
       // notifiy user that they have reached max allowed games
-      alert('You have reached your limit of game');
+      alert('You have reached your limit of games');
     }
   }
 
