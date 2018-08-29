@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {fabric} from 'fabric';
 
 class BattleMap extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSocketUpdate = this.handleSocketUpdate.bind(this);
+
+  }
   handleDragEnter(e) {
     e.target.classList.add('over');
   }
@@ -40,32 +45,17 @@ class BattleMap extends Component {
     return false;
   }
 
-  componentDidUpdate (prevProps, prevState) {
-    if (prevProps.tokens !== this.props.tokens) {
-      this.handleSocketUpdate = this.handleSocketUpdate.bind(this);
-      this.handleSocketUpdate(this.props.tokens)
+  componentDidUpdate (prevProps) {
+    if (prevProps.tokens[0] !== this.props.tokens[0]) {
+      this.handleSocketUpdate(this.props.tokens[0])
     }
+    // console.log('prev', prevProps.tokens[0], 'tokens',this.props.tokens[0])
   }
-  //write component did update, input is this.props.tokens array of tokens
-  handleSocketUpdate (tokenArray) {
-    let c = document.getElementById('canvas').fabric;
-    //clear canvas
-    this.props.onClear()
 
-    //insert new tokens to canvas
-    tokenArray.map(token => {
-      let t = fabric.Image({
-        width: token.width,
-        height: token.height,
-        selectable: true,
-      }).scale(0.74);
-      let padding = 64;
-      let group = new fabric.Group([t], {
-        left: Math.round(token.left / padding) * padding,
-        top: Math.round(token.top/padding) * padding,
-      });
-      c.add(group);
-    })
+  handleSocketUpdate (canvasObj) {
+    let c = document.getElementById('canvas').fabric;
+    console.log('handlesocketevents called', canvasObj)
+    c.loadFromJSON(canvasObj)
     c.renderAll.bind(c);
   }
 

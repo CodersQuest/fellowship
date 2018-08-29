@@ -125,26 +125,27 @@ class GameRoom extends Component {
         c.remove(obj);
       }
     });
+    this.setState({ tokens: []})
     c.renderAll.bind(c);
     // !function to emit socket event. Expects an array argument.
     deleteTokens([]);
   }
 /**
-<<<<<<< HEAD
  * Update / Add to tokens array.
  * @param {object} token from BattleMap
-=======
- * Moved / Add to tokens array.
->>>>>>> write in component did update for socket
  */
   updateTokens(token) {
     const tokens = [];
     const c = document.getElementById('canvas').fabric;
-    c.getObjects().map((obj) => {
-      if (obj.selectable !== false) {
-        tokens.push(obj);
-      }
-    });
+    // c.getObjects().map((obj) => {
+    //   if (obj.selectable !== false) {
+    //     tokens.push(obj);
+    //   }
+    // });
+    var obj  = c.toJSON()
+    console.log(obj, 'tojson')
+    tokens.push(obj)
+    this.setState({ tokens: tokens})
     // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
   }
@@ -175,7 +176,7 @@ class GameRoom extends Component {
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />
-            <BattleMap update={this.updateTokens} onClear={this.onClear}/>
+            <BattleMap update={this.updateTokens} onClear={this.onClear} tokens={this.state.tokens}/>
             <BattleLog currentLog={this.state.log} {...this.props} />
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />
