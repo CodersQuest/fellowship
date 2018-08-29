@@ -24,6 +24,18 @@ class Dashboard extends Component {
 
   getUserGames() {
     if (this.props.currentUser) {
+      let gamesData = null;
+      let gameCollection = this.props.currentUser.gamesPartOf;
+      // console.log('how game collection looks before AXIOS::: ', gameCollection);
+      axios.get('/api/getusergames', {
+        params: {
+          gameids: gameCollection,
+        },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log('Error from getUserGames:::: ', error));
       this.setState({
         userGamesData: data,
       });

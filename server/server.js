@@ -143,8 +143,14 @@ app.get('/me', auth, function(req, res) {
   }
 });
 
-app.get('/creategame', (req, res) => {
+app.post('/api/creategame', (req, res) => {
   res.sendStatus(200);
+});
+
+app.get('/api/getusergames', (req, res) => {
+  const gameIds = req.query;
+  console.log('in getUserGames route::: ', gameIds);
+  res.send(gameIds);
 });
 
 /** *********Passport************/
