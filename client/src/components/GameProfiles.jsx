@@ -17,7 +17,7 @@ class GameProfiles extends React.Component {
     return (
       <div id="userProfiles">
         {this.props.players.map((user) => (
-          <GameProfile player={user}/> )
+          <GameProfile key={user.player} player={user}/> )
         )}
       </div>
     );

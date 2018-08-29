@@ -73,7 +73,10 @@ class Dashboard extends Component {
       gameObj.ownerId = this.props.currentUser._id;
       gameObj.gameOwner = this.props.currentUser.username;
       // construct gameUrl and add to gameObj
-      gameObj.gameUrl = '';
+      let sanitizedString = gameObj.gameName
+        .replace(/[^A-Z0-9]+/ig, '')
+        .toLowerCase();
+      gameObj.gameUrl = sanitizedString;
       gameObj.players = [this.props.currentUser.username];
       gameObj.gameTokens = [];
       gameObj.gameLog = [];
@@ -86,9 +89,7 @@ class Dashboard extends Component {
         console.log(newGame);
         let updatedUserGamesData = this.state.userGamesData;
         updatedUserGamesData.push(newGame.data);
-        this.setState({
-          userGamesData: updatedUserGamesData,
-        });
+        this.props.updateGamesPartOf(newGame.data._id);
       })
       .catch((error) => console.log('Error from createNewGame:::: ', error));
     } else {

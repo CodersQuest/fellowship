@@ -49,32 +49,38 @@ class GameRoom extends Component {
  * Initializes all socket event listeners for game setup.
  */
   componentDidMount() {
-    playerConnect(this.props.currentUser);
-    socket.on('newPlayer', (data) => {
-      joinGame(this.props.currentGame);
-    });
-    socket.on('gameStatusUpdated', (gameData) => {
-      this.setState({
-        players: gameData.players,
-        tokens: gameData.tokens,
-        log: gameData.logs,
+    if (this.props.currentGame) {
+      playerConnect(this.props.currentUser);
+      socket.on('newPlayer', (data) => {
+        joinGame(this.props.currentGame);
       });
-    });
-    socket.on('updateLog', (logData) => {
-      this.setState({
-        log: logData,
+      socket.on('gameStatusUpdated', (gameData) => {
+        this.setState({
+          players: gameData.players,
+          tokens: gameData.tokens,
+          log: gameData.logs,
+        });
       });
-    });
-    socket.on('playerLeft', (playerData) => {
-      this.setState({
-        players: playerData,
+      socket.on('updateLog', (logData) => {
+        this.setState({
+          log: logData,
+        });
       });
-    });
-    socket.on('updateToken', (tokensData) => {
-      this.setState({
-        tokens: tokensData,
+      socket.on('playerLeft', (playerData) => {
+        this.setState({
+          players: playerData,
+        });
       });
-    });
+      socket.on('updateToken', (tokensData) => {
+        this.setState({
+          tokens: tokensData,
+        });
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    socket.disconnect();
   }
 /**
  * makes a random dice roll inclusive to the max.
@@ -153,7 +159,7 @@ class GameRoom extends Component {
   render() {
     const isLoggedIn = this.props.isLoggedIn;
 
-    if (this.props.currentUser === null) {
+    if (!isLoggedIn) {
       return (
         <Redirect
           to={{
@@ -166,7 +172,7 @@ class GameRoom extends Component {
       );
     }
 
-    if ( isLoggedIn && (this.props.currentGame).hasOwnProperty('gameId') ) {
+    if (isLoggedIn) {
       return (
         <Fragment>
           <div id="gameContainer">
@@ -185,6 +191,7 @@ class GameRoom extends Component {
         </Fragment>
       );
     } else {
+      console.log('GameRoom else statment', isLoggedIn);
       return (
         <Redirect
           to={{

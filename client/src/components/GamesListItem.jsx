@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles/App.css';
+import {withRouter} from 'react-router-dom';
 const listItemStyle = {
   width: 75,
   height: 75,
@@ -27,11 +28,9 @@ const GamesListItem = ({game, joinGame, history,}) => {
           <div className="joinButton">
             <button id="joinButtonSpace" type='button'
               onClick={() => {
-                let sanitizedString = game.gameDesc;
-                sanitizedString = sanitizedString.replace(/[^A-Z0-9]+/ig, '');
-                sanitizedString = sanitizedString.toLowerCase();
                 joinGame(game);
-                history.push(`/games/${sanitizedString}`);
+                // <Redirect to={`/games/${game.gameUrl}`} />;
+                history.push(`/games/${game.gameUrl}`);
               }}>
               Join Game
             </button>
@@ -40,4 +39,4 @@ const GamesListItem = ({game, joinGame, history,}) => {
   );
 };
 
-export default GamesListItem;
+export default withRouter(GamesListItem);
