@@ -121,13 +121,17 @@ class GameRoom extends Component {
   onClear() {
     const c = document.getElementById('canvas').fabric;
     c.getObjects().map((obj) => {
-      if (obj.selectable === true) {
+      if (obj.type !== 'line') {
         c.remove(obj);
       }
     });
     c.renderAll.bind(c);
+    var json = c.toJSON()
+    var array = [].push(json)
+    console.log(json, 'from onclear')
+    this.setState({ tokens: array})
     // !function to emit socket event. Expects an array argument.
-    deleteTokens([]);
+    deleteTokens(array);
   }
 /**
  * Update / Add to tokens array.
@@ -136,11 +140,9 @@ class GameRoom extends Component {
   updateTokens(token) {
     const tokens = [];
     const c = document.getElementById('canvas').fabric;
-    c.getObjects().map((obj) => {
-      if (obj.selectable !== false) {
-        tokens.push(obj);
-      }
-    });
+    var json  = c.toJSON()
+    tokens.push(json)
+    this.setState({ tokens: tokens})//this is needed to have prev props in child battlemap component
     // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
   }
@@ -171,7 +173,7 @@ class GameRoom extends Component {
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />
-            <BattleMap update={this.updateTokens}/>
+            <BattleMap update={this.updateTokens} onClear={this.onClear} tokens={this.state.tokens}/>
             <BattleLog currentLog={this.state.log} {...this.props} />
             <GameProfiles players={this.state.players} />
             <GameOptions leaveGame={this.handleLeaveGame} game={this.props.currentGame} />

@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import {fabric} from 'fabric';
 
 class BattleMap extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSocketUpdate = this.handleSocketUpdate.bind(this);
+
+  }
   handleDragEnter(e) {
     e.target.classList.add('over');
   }
@@ -38,6 +43,20 @@ class BattleMap extends Component {
     c.add(group);
     this.props.update(newImage);
     return false;
+  }
+
+  componentDidUpdate (prevProps) {
+    if (JSON.stringify(prevProps.tokens[0]) !== JSON.stringify(this.props.tokens[0])) {
+      this.handleSocketUpdate(this.props.tokens[0])
+    }
+    // console.log('prev', prevProps.tokens[0], 'tokens',this.props.tokens[0])
+  }
+
+  handleSocketUpdate (canvasObj) {
+    let c = document.getElementById('canvas').fabric;
+    console.log('handlesocketevents called', canvasObj)
+    c.loadFromJSON(canvasObj)
+    // c.renderAll.bind(c);
   }
 
   componentDidMount() {

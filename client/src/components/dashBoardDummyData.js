@@ -10,11 +10,7 @@ const dashboardData = [
       player: 'dylanlovesaiig',
       max: 4,
     }],
-    gameTokens: [{
-      tokenName: 'FunderWhackenGoat',
-    }, {
-      tokenName: 'StayPuffMarshmellow',
-    }],
+    gameTokens: [],
     players: ['feng', 'melear'],
   },
   {
@@ -28,11 +24,7 @@ const dashboardData = [
       player: 'I_am_Tanner',
       max: 4,
     }],
-    gameTokens: [{
-      tokenName: 'QueenKaleiFairy',
-    }, {
-      tokenName: 'TannerGhostPumpkin',
-    }],
+    gameTokens: [],
     players: ['feng', 'melear'],
   }
 ];
