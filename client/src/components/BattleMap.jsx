@@ -95,6 +95,16 @@ class BattleMap extends Component {
       target.set('scaleY', Math.round(target.scaleY));
     });
 
+    canvas.on('mouse:over', (options) => {
+      if (options.target && options.target.selectable){
+        let t = document.getElementById('battleMap');
+        t.addEventListener('dblclick', () => {
+          canvas.remove(options.target)
+          this.props.update()
+        }, false )
+      }
+    })
+
 
     let t = document.getElementById('battleMap');
     t.addEventListener('dragenter', this.handleDragEnter.bind(this), false);
