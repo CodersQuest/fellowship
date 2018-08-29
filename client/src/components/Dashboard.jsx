@@ -83,9 +83,10 @@ class Dashboard extends Component {
       axios.post('/api/creategame', gameObj)
       .then((newGame) => {
         // console.log(newGame);
+        let updatedUserGamesData = this.state.userGamesData;
+        updatedUserGamesData.push(newGame);
         this.setState({
-          // needs to pull users updated game objects from DB
-          userGamesData: (this.state.userGamesData).push(newGame),
+          userGamesData: updatedUserGamesData,
         });
       })
       .catch((error) => console.log('Error from createNewGame:::: ', error));

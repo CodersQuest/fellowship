@@ -156,6 +156,7 @@ app.post('/api/creategame', (req, res) => {
     gameTokens: req.body.gameTokens,
     gameLog: req.body.gameLog,
   });
+  // **Still need to update user with 'gamesPartOf' */
   newGame.save((err, newGame) => {
     if (err) {
       throw err;
