@@ -35,14 +35,14 @@ let userSchema = new Schema({
 
 let gameSchema = new Schema({
   gameName: String,
-  gameDescription: String,
+  gameDesc: String,
   gameUrl: String,
   gameImg: String,
   ownerId: String,
-  ownerName: String,
+  gameOwner: String,
   players: Array,
-  currentTokens: Array,
-  battlelog: Array,
+  gameTokens: Array,
+  gameLog: Array,
 });
 
 // templates for types of tokens

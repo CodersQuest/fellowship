@@ -69,13 +69,24 @@ class Dashboard extends Component {
     if (this.props.currentUser.gamesPartOf.length <= 4) {
       // add ownerId and ownerName to gameObj
       gameObj.ownerId = this.props.currentUser._id;
-      gameObj.ownerName = this.props.currentUser.username;
+      gameObj.gameOwner = this.props.currentUser.username;
       // construct gameUrl and add to gameObj
-      gameObj.gameUrl = '',
+      gameObj.gameUrl = '';
+      gameObj.players = [this.props.currentUser.username];
+      gameObj.gameTokens = [];
+      gameObj.gameLog = [];
+
       console.log(gameObj);
+
+      // Axios Post Request
+      axios.post('/api/creategame', gameObj)
+      .then((newGame) => {
+        console.log(newGame);
+      })
+      .catch((error) => console.log('Error from createNewGame:::: ', error));
     } else {
       // notifiy user that they have reached max allowed games
-      alert('You have reached your limit of game');
+      alert('You have reached your limit of games');
     }
   }
 

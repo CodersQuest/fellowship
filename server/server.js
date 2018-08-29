@@ -144,7 +144,11 @@ app.get('/me', auth, function(req, res) {
 });
 
 app.post('/api/creategame', (req, res) => {
-  res.sendStatus(200);
+  console.log('RequestBody from creategame route::::', req.body);
+  // let newGame = db.Game({
+
+  // });
+  res.send('newGame');
 });
 
 app.get('/api/getusergames', (req, res) => {
