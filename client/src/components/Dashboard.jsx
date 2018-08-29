@@ -34,11 +34,12 @@ class Dashboard extends Component {
       })
       .then((response) => {
         console.log(response);
+        let gameObjectArray = response.data;
+        this.setState({
+          userGamesData: gameObjectArray,
+        });
       })
       .catch((error) => console.log('Error from getUserGames:::: ', error));
-      this.setState({
-        userGamesData: data,
-      });
     }
   }
 
@@ -76,12 +77,16 @@ class Dashboard extends Component {
       gameObj.gameTokens = [];
       gameObj.gameLog = [];
 
-      console.log(gameObj);
+      // console.log(gameObj);
 
       // Axios Post Request
       axios.post('/api/creategame', gameObj)
       .then((newGame) => {
-        console.log(newGame);
+        // console.log(newGame);
+        this.setState({
+          // needs to pull users updated game objects from DB
+          userGamesData: (this.state.userGamesData).push(newGame),
+        });
       })
       .catch((error) => console.log('Error from createNewGame:::: ', error));
     } else {

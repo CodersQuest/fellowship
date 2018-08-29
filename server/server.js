@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const bcrypt = require('bcrypt');
 const db = require('../database/schema.js');
+const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
@@ -164,11 +165,27 @@ app.post('/api/creategame', (req, res) => {
 });
 
 app.get('/api/getusergames', (req, res) => {
-  const gameIds = req.query;
-  console.log('in getUserGames route::: ', gameIds);
-  res.send(gameIds);
+  const gameIdArray = req.query.gameids;
+  console.log('in getUserGames route::: ', gameIdArray);
+  // console.log(':::', gameIds.map((gameId) => mongoose.Types.ObjectId(gameId)));
+
+  db.Game.find({
+    '_id': {$in: gameIdArray.map((id) => mongoose.Types.ObjectId(id)),}
+  })
+  .exec((err, games) => {
+    if (err) {
+      console.log('error from findGamesById::: ', err);
+      return res.status(500).send('Error finding user games');
+    }
+    res.send(games);
+  });
 });
 
+app.put('/api/saveplayerdata', (req, res) => {
+  const newContent = req.query;
+  console.log('in saveplayerdata route::: ', newContent);
+  res.send(newContent);
+});
 /** *********Passport************/
 
 /** *********Redirects************/

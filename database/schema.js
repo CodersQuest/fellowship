@@ -112,16 +112,4 @@ module.exports.Token = Token;
 module.exports.CombatLog = CombatLog;
 module.exports.DMnote = DMnote;
 module.exports.Player = Player;
-module.exports.findGamesById = (gamesArr, callback) => {
-  Game.find()
-  .where('_id')
-  .in(gamesArr)
-  .exec((err, results) => {
-    if (err) {
-      console.log('error from findGamesById::: ', err);
-    } else {
-      console.log('RESULTS from findGamesById::: ', results);
-      callback;
-    }
-  });
-};
+
