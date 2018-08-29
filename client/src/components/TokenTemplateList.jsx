@@ -66,15 +66,15 @@ class TokenTemplateList extends Component {
             </button>
           </div>
           <div className="dropdown-menu ">
-          <ul className="dropdown-content has-background-grey token-grid"> 
+          <div className="dropdown-content has-background-grey token-grid"> 
           {this.props.tokenImages[1].map((url) =>
-            <li className="dropdown-item has-background-grey">
+            <div className="dropdown-item has-background-grey is-large">
             <TokenTemplateListItem
               key={url}
               imgUrl={url} />
-          </li>
+          </div>
           )}
-          </ul>
+          </div>
           </div>
         </div>
       </div>
