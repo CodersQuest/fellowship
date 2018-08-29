@@ -65,8 +65,9 @@ canvas {
   color: #a5a5a5;
   border-top: 4px solid #ad973e;
 }
-.logMessages {
-  overflow-y: auto;
+
+.log-entry-view {
+  overflow-y: scroll;
   padding: 5px;
   height: 100%;
 }
