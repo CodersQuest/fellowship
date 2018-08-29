@@ -18,7 +18,7 @@ import {
 } from '../socketClient.js';
 import TokenTemplateList from './TokenTemplateList.jsx';
 import {players, enemies} from '../images/QiPTokens/tokenimages.js';
-// import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
+import {eevee, ninetails, clefairy, lugia} from '../images/imageData.js';
 
 /**
  * Adds two numbers together.
@@ -38,7 +38,7 @@ class GameRoom extends Component {
       tokens: [],
       log: [],
       // tokenImages: [eevee, ninetails, clefairy, lugia],
-      tokenImages: [players,enemies],
+      tokenImages: [players,enemies, [eevee, ninetails, clefairy, lugia]],
       clearTokens: false,
     };
     this.rollDice = this.rollDice.bind(this);

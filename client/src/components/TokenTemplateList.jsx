@@ -38,6 +38,27 @@ class TokenTemplateList extends Component {
         <div className="dropdown is-hoverable is-dark is-left">
           <div className="dropdown-trigger">
             <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+              <span>Pokemon</span>
+              <span className="icon is-small">
+                <i className="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+            </button>
+          </div>
+          <div className="dropdown-menu">
+          <ul className="dropdown-content"> 
+          {this.props.tokenImages[2].map((url) =>
+            <li className="dropdown-item column is-narrow">
+            <TokenTemplateListItem
+              key={url}
+              imgUrl={url} />
+          </li>
+          )}
+          </ul>
+          </div>
+        </div>
+        <div className="dropdown is-hoverable is-dark is-left">
+          <div className="dropdown-trigger">
+            <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
               <span>Players</span>
               <span className="icon is-small">
                 <i className="fas fa-angle-down" aria-hidden="true"></i>

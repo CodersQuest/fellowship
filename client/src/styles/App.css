@@ -30,7 +30,7 @@
 canvas {
   background: #11ffee00;
   position:relative;
-  z-index:1;
+  z-index:2;
   border-top: 4px solid #ad973e;
 
 }
