@@ -87,7 +87,7 @@ class Login extends React.Component {
                       placeholder="password"
                       onChange={this.handleChange}
                       type="password"
-                      id="display-name"
+                      id="display-password"
                       name="password"
                       required
                     />

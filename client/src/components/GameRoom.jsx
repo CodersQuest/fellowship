@@ -37,8 +37,7 @@ class GameRoom extends Component {
       players: [],
       tokens: [],
       log: [],
-      // tokenImages: [eevee, ninetails, clefairy, lugia],
-      tokenImages: [players,enemies, [eevee, ninetails, clefairy, lugia]],
+      tokenImages: [players,enemies],
       clearTokens: false,
     };
     this.rollDice = this.rollDice.bind(this);

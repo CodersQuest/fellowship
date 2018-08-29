@@ -29,10 +29,10 @@ class BattleMap extends Component {
     }
     let img = document.querySelector('.target-image');
     let newImage = new fabric.Image(img, {
-      width: 400,
-      height: 400,
+      width: 1000,
+      height: 1000,
       selectable: true,
-    }).scale(0.3);
+    }).scale(0.2);
     let padding = 64;
     let group = new fabric.Group([newImage], {
       left: Math.round(e.layerX / padding) * padding,
