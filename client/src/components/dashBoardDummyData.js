@@ -11,7 +11,7 @@ const dashboardData = [
       max: 4,
     }],
     gameTokens: [],
-    players: ['feng', 'melear'],
+    players: ['feng', 'melear', 'mrneilly2'],
   },
   {
     gameName: 'What came first Dylan or the Aiig???',
@@ -25,7 +25,7 @@ const dashboardData = [
       max: 4,
     }],
     gameTokens: [],
-    players: ['feng', 'melear'],
+    players: ['feng', 'melear', 'mrneilly2'],
   }
 ];
 

@@ -71,7 +71,7 @@ class Dashboard extends Component {
       gameObj.ownerId = this.props.currentUser._id;
       gameObj.ownerName = this.props.currentUser.username;
       // construct gameUrl and add to gameObj
-      
+      gameObj.gameUrl = '',
       console.log(gameObj);
     } else {
       // notifiy user that they have reached max allowed games
