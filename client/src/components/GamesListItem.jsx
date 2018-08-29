@@ -22,7 +22,7 @@ const GamesListItem = ({game, joinGame, history,}) => {
             {game.gameDesc}
           </div>
           <div className="gamePlayers">
-            Players: {game.players ? game.players.join(', ') : null}
+          Players: {game.players ? game.players.join(', ') : null}
           </div>
           <div className="joinButton">
             <button id="joinButtonSpace" type='button'
