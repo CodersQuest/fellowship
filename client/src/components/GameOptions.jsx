@@ -4,7 +4,7 @@ const GameOptions = ({leaveGame, game,}) => {
   return (
     <div id="settings">
       <div className="optionsGameName">{game.gameOwner}</div>
-      <button id="leaveButton" onClick={leaveGame} className="button is-primary is-inverted is-outlined">LEAVE GAME</button>
+      <button onClick={leaveGame} className="button is-primary is-inverted is-outlined">LEAVE GAME</button>
     </div>
   );
 };

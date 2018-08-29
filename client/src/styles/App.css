@@ -16,10 +16,23 @@
   "tkn dice logchat";
 }
 
+.upperLeft {
+  grid-area: gamedata;
+  background-color: #010101a8;
+}
+
+.lowerLeft {
+  grid-area: tkn;
+  background-color: #010101a8;
+  border-bottom: 2px solid #ad973e;
+}
+
 canvas {
   background: #11ffee00;
   position:relative;
   z-index:1;
+  border-top: 4px solid #ad973e;
+
 }
 
 #diceTray {
@@ -43,7 +56,7 @@ canvas {
   position:relative;
   z-index: 8;
   padding-left: 0.5em;
-
+  border-top: 4px solid #ad973e;
 }
 
 #battleLog {
@@ -51,7 +64,7 @@ canvas {
   background-color:rgb(51, 53, 54);
   color: #a5a5a5;
   overflow-y: scroll;
-  border-top: 2px solid #ad973e;
+  border-top: 4px solid #ad973e;
 }
 
 #battleLogHeader {
@@ -163,6 +176,7 @@ canvas {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
+
 }
  
 #c {
