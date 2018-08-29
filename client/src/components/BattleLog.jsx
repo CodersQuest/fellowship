@@ -19,8 +19,7 @@ class BattleLog extends Component {
               <h1 className='heading' id="battleLogHeader">BATTLE LOG</h1>
             </div>
 
-            <div className='log-display-wrapper'>
-              <div className='log-entry-view'>
+              <div className='logMessages'>
                 <ul>
                   {this.props.currentLog.map((logentry) => (
                     <BattleLogEntry
@@ -31,7 +30,6 @@ class BattleLog extends Component {
                   ))}
                 </ul>
               </div>
-            </div>
           </div>
         </div>
       </div> // end #battleLog

@@ -63,8 +63,12 @@ canvas {
   grid-area: log;
   background-color:rgb(51, 53, 54);
   color: #a5a5a5;
-  overflow-y: scroll;
   border-top: 4px solid #ad973e;
+}
+.logMessages {
+  overflow-y: auto;
+  padding: 5px;
+  height: 100%;
 }
 
 #battleLogHeader {
