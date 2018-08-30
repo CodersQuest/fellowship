@@ -2,7 +2,7 @@ import React from 'react';
 
 const TokenTemplateListItem = ({imgUrl}) => (
   <div id="tokenimage">
-    <img className="token-item" draggable="true" src={imgUrl} width="30%" height="30%"></img>
+    <img className="token-item" draggable="true" src={imgUrl} width="100%" height="100%"></img>
   </div>
 );
 
