@@ -363,11 +363,31 @@ canvas {
   background: none;
   width: 100%;
   height: 100%;
-  border: 2px solid #a5a5a5;
+  border: 2px solid #ad973e;
   font-size: 1.8rem;
-  color: #a5a5a5;
+  color: #ad973e;
   margin-bottom: 5px;
   padding: 5px;
+}
+
+.loginInputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid #ad973e;
+  background: black;
+  font-size: 1.8rem;
+  color: #ad973e;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+*:focus {
+  outline: none;
 }
 
 .signUpLogo {
@@ -393,9 +413,9 @@ canvas {
   background: none;
   width: 100%;
   height: 100%;
-  border: 2px solid #a5a5a5;
+  border: 2px solid #ad973e;
   font-size: 1.8rem;
-  color: #a5a5a5;
+  color: #ad973e;
   margin-bottom: 5px;
   padding: 5px;
 }

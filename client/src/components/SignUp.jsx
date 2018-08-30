@@ -25,7 +25,7 @@ class SignUp extends React.Component {
           <div className="centerall">
             <form>
             <div className="field">
-              <input className="input is-warning"
+              <input className="loginInputs"
                 onChange={handleChange}
                 type="text"
                 placeholder="create username"
@@ -35,7 +35,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="field">
-              <input className="input is-warning"
+              <input className="loginInputs"
                 onChange={handleChange}
                 type="text" placeholder="email"
                 id="display-email"
@@ -45,7 +45,7 @@ class SignUp extends React.Component {
             </div>
             <div className="field">
               <span>
-              <input className="input is-warning"
+              <input className="loginInputs"
                 onChange={handleChange}
                 type="password"
                 name="password"

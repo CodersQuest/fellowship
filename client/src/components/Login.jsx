@@ -71,7 +71,7 @@ class Login extends React.Component {
 
                 <div className="field">
                     <input
-                      className="input is-warning"
+                      className="loginInputs"
                       type="text"
                       placeholder="username"
                       onChange={this.handleChange}
@@ -83,7 +83,7 @@ class Login extends React.Component {
 
                 <div className="field">
                     <input
-                      className="input is-warning"
+                      className="loginInputs"
                       placeholder="password"
                       onChange={this.handleChange}
                       type="password"
