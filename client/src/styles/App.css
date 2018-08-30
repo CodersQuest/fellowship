@@ -25,7 +25,6 @@
 .lowerLeft {
   grid-area: tkn;
   background-color: #010101a8;
-  border-bottom: 2px solid #ad973e;
 }
 
 canvas {
@@ -230,7 +229,7 @@ canvas {
 #sideBarButton {
   background: none;
   width: 75%;
-  height: 12%;
+  height: 4%;
   border: 2px solid #a5a5a5;
   font-size: 1rem;
   color: #a5a5a5;
@@ -355,6 +354,20 @@ canvas {
   position: absolute;
 }
 
+.loginButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.8rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
 .signUpLogo {
   z-index: -1;
   opacity: 0.5;
@@ -370,6 +383,19 @@ canvas {
   background: #151515;
   z-index: -1000;
   position: absolute;
+}
+
+.signUpButton {
+  display: flex;
+  justify-content: center;
+  background: none;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.8rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
+  padding: 5px;
 }
 
 .token-grid {

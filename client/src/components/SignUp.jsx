@@ -55,10 +55,10 @@ class SignUp extends React.Component {
               />
               </span>
             </div>
-            <button className="button is-fullwidth" onClick={onSubmit} name="submit" type="submit" value="submit-true">
+            <button className="signUpButton" onClick={onSubmit} name="submit" type="submit" value="submit-true">
             Sign Up
             </button>
-            <button className="button is-fullwidth"
+            <button className="loginButton"
               onClick={()=> this.goToPath('/login')}
             >Already a Member? (Login)
             </button>
