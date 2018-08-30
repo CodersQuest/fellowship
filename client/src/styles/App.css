@@ -64,6 +64,7 @@ canvas {
   border-top: 4px solid #ad973e;
   overflow-x: hidden;
   overflow-y: scroll; 
+  padding: 7px;
 }
 
 #battleLogHeader {
@@ -114,6 +115,7 @@ canvas {
   caret-color: #eaeaea;
   border: 2px solid #ad973e;
   font-size: 1rem;
+  padding: 7px;
 }
 
 .custom-bg {
