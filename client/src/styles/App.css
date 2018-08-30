@@ -207,6 +207,16 @@ canvas {
   justify-content: space-around;
   border-bottom: 4px solid #ad973e;
 }
+.user-menu {
+  background-color: #010101a8;
+  grid-area: settings;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
  
 #c {
   background-color: #010101;

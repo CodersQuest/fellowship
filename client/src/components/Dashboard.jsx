@@ -124,7 +124,7 @@ class Dashboard extends Component {
           </div>
         </div>
 
-        <div id="settings">
+        <div className='user-menu'>
           <button type='button' className='button qip-db-btn'>
             Profile
           </button>
