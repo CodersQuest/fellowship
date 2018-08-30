@@ -345,7 +345,7 @@ canvas {
 
 .token-grid {
   max-height: 500px;
-  width: 500px;
+  /* width: 500px; */
   display:grid;
   grid-template-columns: repeat(auto-fill);
   grid-template-rows: repeat(auto-fill);
