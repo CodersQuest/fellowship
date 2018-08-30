@@ -146,7 +146,9 @@ class Dashboard extends Component {
           </div>
 
           <div id="sidebar">
-            <button type='button' className='button qip-db-btn'>
+            <button type='button' 
+            className='button qip-db-btn'
+            onClick={this.toggleModal}>
               Create New Game
             </button>
 
