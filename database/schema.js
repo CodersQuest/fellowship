@@ -24,6 +24,7 @@ let userSchema = new Schema({
     type: String, unique: true,
   },
   password: String,
+  userImage: String,
   gamesOwned: String,
   gamesPartOf: Array,
   currentGames: Number,
