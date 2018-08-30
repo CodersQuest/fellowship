@@ -117,7 +117,6 @@ class Dashboard extends Component {
       <div className="dashBoard">
 
         <div className="wrapper">
-        
         <div className="navdash">
           <div className="paddedLogo">
             <QuestLogo />
