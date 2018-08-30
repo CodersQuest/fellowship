@@ -21,6 +21,7 @@ module.exports = function(server, session) {
       if (userData) {
         socket.username = userData.username;
         socket.uid = userData._id;
+        socket.userImage = userData.userImage || userAvatar;
         if (!players[socket.uid]) {
           socket.room = null;
           socket.isInGame = false;
@@ -28,6 +29,7 @@ module.exports = function(server, session) {
           players[socket.uid] = {
             socket: socket.id,
             username: socket.username,
+            userImage: socket.userImage,
             room: socket.room,
             uid: socket.uid,
             isInGame: socket.isInGame,
@@ -73,7 +75,7 @@ module.exports = function(server, session) {
           socket.isInGame = true;
           rooms[roomID].push({
             player: socket.username,
-            image: userAvatar,
+            image: socket.userImage,
           });
           // join room
           socket.join(roomID);
