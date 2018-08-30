@@ -138,6 +138,10 @@ canvas {
 .over {
   border: 3px solid;
 }
+#gameProfile {
+  color: #f1f1f1;
+  font-size: 1rem;
+}
 
 .centerall {
   height: 100vh;
