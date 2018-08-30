@@ -125,9 +125,9 @@ class Dashboard extends Component {
         </div>
 
         <div id="settings">
-          <a className="button is-text is-large">
+          <button className="joinButton">
             Profile
-          </a>
+          </button>
           <button
             className="button is-text is-large"
             id="logoutButton"
