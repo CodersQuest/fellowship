@@ -342,3 +342,14 @@ canvas {
   z-index: -1000;
   position: absolute;
 }
+
+.token-grid {
+  max-height: 500px;
+  width: 500px;
+  display:grid;
+  grid-template-columns: repeat(auto-fill);
+  grid-template-rows: repeat(auto-fill);
+  grid-template-areas: 
+  'toke toke toke';
+  overflow: auto;
+}
