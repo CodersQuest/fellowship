@@ -8,6 +8,18 @@ class BattleLog extends Component {
   constructor(props) {
     super(props);
     console.log(props);
+    this.scrollToBottom = this.scrollToBottom.bind(this);
+  }
+  scrollToBottom() {
+    this.logEnd.scrollIntoView({behavior: 'smooth'});
+  }
+
+  componentDidMount() {
+    this.scrollToBottom();
+  }
+
+  componentDidUpdate() {
+    this.scrollToBottom();
   }
 
   render() {
@@ -25,6 +37,7 @@ class BattleLog extends Component {
             ))}
           </ul>
         </div>
+        <div ref={(el) => this.logEnd = el}></div>
       </div> // end #battleLog
     );
   }

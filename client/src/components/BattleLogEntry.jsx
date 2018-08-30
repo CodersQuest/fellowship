@@ -58,7 +58,7 @@ const renderIcon = (iconType) => {
     return (
       <span className='logIcons'>
         <img src={battleIcons[iconType].url} style={iconStyle}/>
-        <div>{battleIcons[iconType].text}</div>
+        <span>{battleIcons[iconType].text}</span>
       </span>
     );
   }
