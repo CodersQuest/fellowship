@@ -39,6 +39,7 @@ class GameRoom extends Component {
       log: [],
       tokenImages: [players, enemies],
       clearTokens: false,
+      gameOn: true,
     };
     this.rollDice = this.rollDice.bind(this);
     this.onClear = this.onClear.bind(this);
@@ -122,7 +123,7 @@ class GameRoom extends Component {
     leaveGame();
     // !need to pass down a method to reset
     // !currentGame obj to empty.
-    
+    this.props.exitGame();
   }
 /**
  * Clears Fabric Canvas.

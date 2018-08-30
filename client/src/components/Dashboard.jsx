@@ -13,7 +13,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       gameId: 0,
-      userGamesData: data,
+      userGamesData: [],
       modalState: false,
     };
     // console.log(this.props);

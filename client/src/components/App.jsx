@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import socket from '../socketClient.js';
 import axios from 'axios';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
@@ -14,7 +14,6 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          view: '/login',
           username: '',
           password: '',
           email: '',
@@ -46,16 +45,16 @@ class App extends Component {
 
   exitGame() {
     let resetGame = Object.assign({}, this.state.currentGame);
-    this.setState((prevState, props) => (
-      {
-        currentGame: prevState.currentGame + resetGame,
-      }
-    ));
+    resetGame = {};
+    this.setState({
+      currentGame: resetGame,
+    });
     console.log(this.state);
+    return <Redirect to='/' component={Dashboard} />;
   }
 
   joinGame(game) {
-    console.log(game);
+    // console.log(game);
     // update state for currentGame
     this.setState({
       currentGame: game,
@@ -194,7 +193,7 @@ class App extends Component {
               <GameRoom
                 isLoggedIn={loggedIn}
                 logOut={this.logOut}
-                exitGame={this.exitGameGame}
+                exitGame={this.exitGame}
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}
