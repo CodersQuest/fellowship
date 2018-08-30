@@ -38,7 +38,7 @@ class DiceTray extends React.Component {
     this.state = {
       bonus: 0,
       context: 'none',
-    }
+    },
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -52,11 +52,11 @@ class DiceTray extends React.Component {
   render() {
     return (
       <div id="diceTray">
-        <div className='bonusModify'>
+        <div className='bonusModify custom-select'>
           <div>Bonus Modifier</div>
           <DiceBonus handleChange={this.handleChange} bonus={this.state.bonus} />
         </div>
-        <div className='rollContext'>
+        <div className='rollContext custom-select'>
           <div>Roll Context</div>
           <DiceContext handleChange={this.handleChange} context={this.state.context} />
         </div>

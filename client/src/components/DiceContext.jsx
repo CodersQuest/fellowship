@@ -2,7 +2,7 @@ import React from 'react';
 
 const DiceContext = ({context, handleChange}) => (
   <React.Fragment>
-    <select className='diceInput' 
+    <select className='diceInput qip-select'
       value={context}
       name='context'
       onChange={handleChange}>
