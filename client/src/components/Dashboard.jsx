@@ -117,14 +117,13 @@ class Dashboard extends Component {
       <div className="dashBoard">
 
         <div className="wrapper">
-        
         <div className="navdash">
           <div className="paddedLogo">
             <QuestLogo />
           </div>
         </div>
 
-        <div id="settings">
+        <div className='user-menu'>
           <button type='button' className='button qip-db-btn'>
             Profile
           </button>

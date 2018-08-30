@@ -1,6 +1,11 @@
-module.exports.eevee = require('./eev.png');
-module.exports.lugia = require('./lugia.png');
-module.exports.clefairy = require('./clefairy.png');
-module.exports.ninetails = require('./9tails.png');
+// module.exports.eevee = require('./eev.png');
+// module.exports.lugia = require('./lugia.png');
+// module.exports.clefairy = require('./clefairy.png');
+// module.exports.ninetails = require('./9tails.png');
 module.exports.defaultGameImage = require('./defaultGameImage.png');
 module.exports.defaultGameAvatar = require('./defaultGameAvatar01.png');
+// module.exports.userImagePaladin = require('./https://image.ibb.co/kWZGDU/sm_paladin.png');
+// module.exports.userImageRogue = require('./https://image.ibb.co/iiaOtU/sm_rogue.png');
+// module.exports.userImageBarbarian = require('.https://image.ibb.co/hYLpYU/sm_barbarian.png');
+// module.exports.userImageWizard = require('./https://image.ibb.co/hXUu09/sm_ewizard.png');
+// module.exports.userGameImage = require('./https://image.ibb.co/mMg7L9/awesomegameimage.png');

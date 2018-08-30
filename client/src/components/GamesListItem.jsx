@@ -29,7 +29,6 @@ const GamesListItem = ({game, joinGame, history,}) => {
             <button type='button' className='button qip-db-btn'
               onClick={() => {
                 joinGame(game);
-                // <Redirect to={`/games/${game.gameUrl}`} />;
                 history.push(`/games/${game.gameUrl}`);
               }}>
               Join Game

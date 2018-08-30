@@ -138,6 +138,10 @@ canvas {
 .over {
   border: 3px solid;
 }
+#gameProfile {
+  color: #f1f1f1;
+  font-size: 1rem;
+}
 
 .centerall {
   height: 100vh;
@@ -206,6 +210,16 @@ canvas {
   flex-direction: column;
   justify-content: space-around;
   border-bottom: 4px solid #ad973e;
+}
+.user-menu {
+  background-color: #010101a8;
+  grid-area: settings;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
  
 #c {
