@@ -77,6 +77,7 @@ canvas {
 .player {
   font-size: 1rem;
   font-weight: bold;
+  color: #c9ad34;
   margin: 2px;
 }
 
@@ -316,15 +317,15 @@ canvas {
   margin-bottom: 5px;
 }
 
-#battleLog::-webkit-scrollbar-track {
+div::-webkit-scrollbar-track {
   background: rgba(0,0,0,0.5);
 }
 
-#battleLog::-webkit-scrollbar-thumb {
+div::-webkit-scrollbar-thumb {
   background: #ad973e;
 }
 
-#battleLog::-webkit-scrollbar-thumb:hover {
+div::-webkit-scrollbar-thumb:hover {
   background: #b1b1b1;
 }
 
@@ -429,4 +430,9 @@ canvas {
   grid-template-areas: 
   'toke toke toke';
   overflow: auto;
+}
+
+.rollSize {
+  font-size: 1.2rem;
+  color: #eaeaea;
 }
