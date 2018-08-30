@@ -2,7 +2,7 @@ import React from 'react';
 
 const DiceBonus = ({bonus, handleChange}) => (
   <React.Fragment>
-    <select className='diceInput' 
+    <select className='diceInput qip-select'
       value={bonus}
       name='bonus'
       onChange={handleChange}>

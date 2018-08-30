@@ -34,38 +34,38 @@ class TokenTemplateList extends Component {
   render() {
     return (
       <div id="tokenlist" className="column">
-        <button onClick={this.props.onClear} className="button is-dark">Clear Tokens</button>
+        <button onClick={this.props.onClear} className="button qip-btn">Clear Tokens</button>
         <div className="dropdown is-hoverable is-dark is-left">
           <div className="dropdown-trigger">
-            <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+            <button className="button qip-btn" aria-haspopup="true" aria-controls="dropdown-menu4">
               <span>Players</span>
               <span className="icon is-small">
                 <i className="fas fa-angle-down" aria-hidden="true"></i>
               </span>
             </button>
           </div>
-          <div className="dropdown-menu ">
-          <ul className="dropdown-content has-background-grey token-grid"> 
-          {this.props.tokenImages[0].map((url) =>
-            <li className="dropdown-item has-background-grey">
-            <TokenTemplateListItem
-              key={url}
-              imgUrl={url} />
-          </li>
-          )}
-          </ul>
+          <div className="dropdown-menu custom-select">
+            <ul className="dropdown-content has-background-grey token-grid">
+              {this.props.tokenImages[0].map((url) =>
+                <li className="dropdown-item has-background-grey">
+                  <TokenTemplateListItem
+                    key={url}
+                    imgUrl={url} />
+                </li>
+              )}
+            </ul>
           </div>
         </div>
         <div className="dropdown is-hoverable is-dark is-left">
           <div className="dropdown-trigger">
-            <button className="button is-dark" aria-haspopup="true" aria-controls="dropdown-menu4">
+            <button className="button qip-btn" aria-haspopup="true" aria-controls="dropdown-menu4">
               <span>Enemies</span>
               <span className="icon is-small">
                 <i className="fas fa-angle-down" aria-hidden="true"></i>
               </span>
             </button>
           </div>
-          <div className="dropdown-menu ">
+          <div className="dropdown-menu custom-select">
           <div className="dropdown-content has-background-grey token-grid"> 
           {this.props.tokenImages[1].map((url) =>
             <div className="dropdown-item has-background-grey is-large">

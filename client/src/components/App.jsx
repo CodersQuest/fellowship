@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import socket from '../socketClient.js';
 import axios from 'axios';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
@@ -14,7 +14,6 @@ class App extends Component {
   constructor(props) {
       super(props);
       this.state = {
-          view: '/login',
           username: '',
           password: '',
           email: '',
@@ -24,8 +23,8 @@ class App extends Component {
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.exitGame = this.exitGame.bind(this);
     this.joinGame = this.joinGame.bind(this);
     this.updateGamesPartOf = this.updateGamesPartOf.bind(this);
     this.setUser = this.setUser.bind(this);
@@ -38,14 +37,24 @@ class App extends Component {
     });
   }
 
-  viewChange(text) {
+  // viewChange(text) {
+  //   this.setState({
+  //     view: text,
+  //   });
+  // }
+
+  exitGame() {
+    let resetGame = Object.assign({}, this.state.currentGame);
+    resetGame = {};
     this.setState({
-      view: text,
+      currentGame: resetGame,
     });
+    console.log(this.state);
+    return <Redirect to='/' component={Dashboard} />;
   }
 
   joinGame(game) {
-    console.log(game);
+    // console.log(game);
     // update state for currentGame
     this.setState({
       currentGame: game,
@@ -148,7 +157,6 @@ class App extends Component {
           <Route exact path="/"
             render={(props) => (
               <Dashboard
-                // currentState={ this.state }
                 isLoggedIn={loggedIn}
                 logOut={this.logOut}
                 viewChange={this.viewChange}
@@ -173,7 +181,6 @@ class App extends Component {
           <Route path="/signup"
             render={(props) => (
               <SignUp
-              // viewChange={this.viewChange}
               onSubmit={this.onSubmit}
               email={email} username={username}
               pw={password}
@@ -186,6 +193,7 @@ class App extends Component {
               <GameRoom
                 isLoggedIn={loggedIn}
                 logOut={this.logOut}
+                exitGame={this.exitGame}
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}

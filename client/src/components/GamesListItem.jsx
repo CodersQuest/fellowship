@@ -26,7 +26,7 @@ const GamesListItem = ({game, joinGame, history,}) => {
           Players: {game.players ? game.players.join(', ') : null}
           </div>
           <div className="joinButton">
-            <button id="joinButtonSpace" type='button'
+            <button type='button' className='button qip-db-btn'
               onClick={() => {
                 joinGame(game);
                 // <Redirect to={`/games/${game.gameUrl}`} />;

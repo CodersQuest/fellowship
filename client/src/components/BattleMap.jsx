@@ -5,7 +5,6 @@ class BattleMap extends Component {
   constructor(props) {
     super(props);
     this.handleSocketUpdate = this.handleSocketUpdate.bind(this);
-
   }
   handleDragEnter(e) {
     e.target.classList.add('over');
@@ -44,17 +43,17 @@ class BattleMap extends Component {
     return false;
   }
 
-  componentDidUpdate (prevProps) {
+  componentDidUpdate(prevProps) {
     if (JSON.stringify(prevProps.tokens[0]) !== JSON.stringify(this.props.tokens[0])) {
-      this.handleSocketUpdate(this.props.tokens[0])
+      this.handleSocketUpdate(this.props.tokens[0]);
     }
     // console.log('prev', prevProps.tokens[0], 'tokens',this.props.tokens[0])
   }
 
-  handleSocketUpdate (canvasObj) {
+  handleSocketUpdate(canvasObj) {
     let c = document.getElementById('canvas').fabric;
     // console.log('handlesocketevents called', canvasObj)
-    c.loadFromJSON(canvasObj)
+    c.loadFromJSON(canvasObj);
   }
 
   componentDidMount() {
@@ -96,14 +95,14 @@ class BattleMap extends Component {
     });
 
     canvas.on('mouse:over', (options) => {
-      if (options.target && options.target.selectable){
+      if (options.target && options.target.selectable) {
         let t = document.getElementById('battleMap');
         t.addEventListener('dblclick', () => {
-          canvas.remove(options.target)
-          this.props.update()
-        }, false )
+          canvas.remove(options.target);
+          this.props.update();
+        }, false );
       }
-    })
+    });
 
 
     let t = document.getElementById('battleMap');

@@ -13,7 +13,7 @@ class Dashboard extends Component {
     super(props);
     this.state = {
       gameId: 0,
-      userGamesData: data,
+      userGamesData: [],
       modalState: false,
     };
     // console.log(this.props);
@@ -125,11 +125,11 @@ class Dashboard extends Component {
         </div>
 
         <div id="settings">
-          <button id="profileButton">
+          <button type='button' className='button qip-db-btn'>
             Profile
           </button>
           <button
-            id="logoutButton"
+            type='button' className='button qip-db-btn'
             onClick={this.props.logOut}
             >Logout
           </button>
@@ -146,17 +146,17 @@ class Dashboard extends Component {
           </div>
 
           <div id="sidebar">
-            <button id="sideBarButton">
+            <button type='button' className='button qip-db-btn'>
               Create New Game
             </button>
 
-            <button id="sideBarButton">
+            {/* <button type='button' className='button qip-btn'>
               Add Existing Game
             </button>
 
-            <button id="sideBarButton">
+            <button type='button' className='button qip-btn'>
               Add Character Sheet
-            </button>
+            </button> */}
             <div>
               <CreateGameModal
                 closeModal={this.toggleModal}

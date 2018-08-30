@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Redirect} from 'react-router-dom';
+import {Redirect, withRouter} from 'react-router-dom';
 import BattleMap from './BattleMap.jsx';
 import BattleLog from './BattleLog.jsx';
 import GameProfiles from './GameProfiles.jsx';
@@ -37,8 +37,9 @@ class GameRoom extends Component {
       players: [],
       tokens: [],
       log: [],
-      tokenImages: [players,enemies],
+      tokenImages: [players, enemies],
       clearTokens: false,
+      gameOn: true,
     };
     this.rollDice = this.rollDice.bind(this);
     this.onClear = this.onClear.bind(this);
@@ -111,7 +112,7 @@ class GameRoom extends Component {
       type: 'message',
       message: message,
       timestamp: date,
-    }
+    };
     sendMessage(msg);
   }
 /**
@@ -122,6 +123,7 @@ class GameRoom extends Component {
     leaveGame();
     // !need to pass down a method to reset
     // !currentGame obj to empty.
+    this.props.exitGame();
   }
 /**
  * Clears Fabric Canvas.
@@ -134,10 +136,10 @@ class GameRoom extends Component {
       }
     });
     c.renderAll.bind(c);
-    var json = c.toJSON()
-    var array = [].push(json)
-    console.log(json, 'from onclear')
-    this.setState({ tokens: array})
+    let json = c.toJSON();
+    let array = [].push(json);
+    console.log(json, 'from onclear');
+    this.setState({tokens: array,});
     // !function to emit socket event. Expects an array argument.
     deleteTokens(array);
   }
@@ -148,9 +150,9 @@ class GameRoom extends Component {
   updateTokens(token) {
     const tokens = [];
     const c = document.getElementById('canvas').fabric;
-    var json  = c.toJSON()
-    tokens.push(json)
-    this.setState({ tokens: tokens})//this is needed to have prev props in child battlemap component
+    let json = c.toJSON();
+    tokens.push(json);
+    this.setState({tokens: tokens,});// this is needed to have prev props in child battlemap component
     // !function to emit socket event. Expects an array argument.
     handleTokens(tokens);
   }
@@ -208,4 +210,4 @@ class GameRoom extends Component {
   }
 }
 
-export default GameRoom;
+export default withRouter(GameRoom);
