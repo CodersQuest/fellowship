@@ -6,8 +6,8 @@
 #gameContainer {
   background: #3f3e3e;
   display: grid;
-  width: 98vw;
-  height: 98vh;
+  width: 100vw;
+  height: 100vh;
   grid-template-columns: 1fr 8fr 2fr;
   grid-template-rows: 1fr 8fr 1fr;
   grid-template-areas: 
@@ -19,6 +19,7 @@
 .upperLeft {
   grid-area: gamedata;
   background-color: #010101a8;
+  border-bottom: 4px solid #ad973e;
 }
 
 .lowerLeft {
@@ -31,8 +32,6 @@ canvas {
   background: #11ffee00;
   position:relative;
   z-index:2;
-  border-top: 4px solid #ad973e;
-
 }
 
 #diceTray {
@@ -69,6 +68,9 @@ canvas {
 }
 
 #battleLogHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2rem;
 }
 
@@ -126,6 +128,7 @@ canvas {
   flex-flow: row wrap;
   justify-content: space-around;
   align-items: center;
+  border-bottom: 4px solid #ad973e;
 }
 
 .over {
@@ -169,8 +172,24 @@ canvas {
   margin-top: 10px;
 }
 
+#profileButton {
+  background: none;
+  width: 41%;
+  height: 46%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.2rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
+}
+
 #logoutButton {
-  color: #ad973e;
+  background: none;
+  width: 41%;
+  height: 46%;
+  border: 2px solid #a5a5a5;
+  font-size: 1.2rem;
+  color: #a5a5a5;
+  margin-bottom: 5px;
 }
 
 #settings {
@@ -182,7 +201,7 @@ canvas {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-
+  border-bottom: 4px solid #ad973e;
 }
  
 #c {
@@ -206,6 +225,16 @@ canvas {
   display: flex;
   flex-direction: column;
   grid-area: sidebar;
+}
+
+#sideBarButton {
+  background: none;
+  width: 75%;
+  height: 12%;
+  border: 2px solid #a5a5a5;
+  font-size: 1rem;
+  color: #a5a5a5;
+  margin: 5px;
 }
 
 .gameListItem {

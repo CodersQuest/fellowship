@@ -125,11 +125,10 @@ class Dashboard extends Component {
         </div>
 
         <div id="settings">
-          <button className="joinButton">
+          <button id="profileButton">
             Profile
           </button>
           <button
-            className="button is-text is-large"
             id="logoutButton"
             onClick={this.props.logOut}
             >Logout
@@ -147,20 +146,17 @@ class Dashboard extends Component {
           </div>
 
           <div id="sidebar">
-            <p className="control" onClick={this.toggleModal}>
-              <a className="button is-text is-large">
-                Create New Game
-              </a>
+            <button id="sideBarButton">
+              Create New Game
+            </button>
 
-              <a className="button is-text is-large">
-                Add Existing Game
-              </a>
+            <button id="sideBarButton">
+              Add Existing Game
+            </button>
 
-              <a className="button is-text is-large">
-                Add Character Sheet
-              </a>
-            </p>
-
+            <button id="sideBarButton">
+              Add Character Sheet
+            </button>
             <div>
               <CreateGameModal
                 closeModal={this.toggleModal}
