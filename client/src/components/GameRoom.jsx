@@ -180,7 +180,13 @@ class GameRoom extends Component {
       return (
         <Fragment>
           <div id="gameContainer">
-            <div className="upperLeft"></div>
+            <div className="upperLeft">
+              <img src={this.props.currentGame.gameImg} 
+              style={{
+                width: 100,
+                height: 100,
+                }} />
+            </div>
             <TokenTemplateList
             onClear={this.onClear}
             tokenImages={this.state.tokenImages} />

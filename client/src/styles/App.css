@@ -19,6 +19,9 @@
 .upperLeft {
   grid-area: gamedata;
   background-color: #010101a8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-bottom: 4px solid #ad973e;
 }
 
