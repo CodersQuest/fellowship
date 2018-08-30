@@ -29,8 +29,8 @@ class BattleMap extends Component {
     }
     let img = document.querySelector('.target-image');
     let newImage = new fabric.Image(img, {
-      width: 1000,
-      height: 1000,
+      width: 400,
+      height: 400,
       selectable: true,
     }).scale(0.2);
     let padding = 64;
