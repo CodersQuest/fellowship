@@ -152,11 +152,11 @@ class Dashboard extends Component {
               Create New Game
             </button>
 
-            {/* <button type='button' className='button qip-btn'>
+            <button type='button' className='button qip-btn'>
               Add Existing Game
             </button>
 
-            <button type='button' className='button qip-btn'>
+            {/* <button type='button' className='button qip-btn'>
               Add Character Sheet
             </button> */}
             <div>
