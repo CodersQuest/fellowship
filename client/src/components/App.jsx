@@ -24,8 +24,8 @@ class App extends Component {
       };
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.viewChange = this.viewChange.bind(this);
     this.logOut = this.logOut.bind(this);
+    this.exitGame = this.exitGame.bind(this);
     this.joinGame = this.joinGame.bind(this);
     this.updateGamesPartOf = this.updateGamesPartOf.bind(this);
     this.setUser = this.setUser.bind(this);
@@ -38,10 +38,20 @@ class App extends Component {
     });
   }
 
-  viewChange(text) {
-    this.setState({
-      view: text,
-    });
+  // viewChange(text) {
+  //   this.setState({
+  //     view: text,
+  //   });
+  // }
+
+  exitGame() {
+    let resetGame = Object.assign({}, this.state.currentGame);
+    this.setState((prevState, props) => (
+      {
+        currentGame: prevState.currentGame + resetGame,
+      }
+    ));
+    console.log(this.state);
   }
 
   joinGame(game) {
@@ -148,7 +158,6 @@ class App extends Component {
           <Route exact path="/"
             render={(props) => (
               <Dashboard
-                // currentState={ this.state }
                 isLoggedIn={loggedIn}
                 logOut={this.logOut}
                 viewChange={this.viewChange}
@@ -173,7 +182,6 @@ class App extends Component {
           <Route path="/signup"
             render={(props) => (
               <SignUp
-              // viewChange={this.viewChange}
               onSubmit={this.onSubmit}
               email={email} username={username}
               pw={password}
@@ -186,6 +194,7 @@ class App extends Component {
               <GameRoom
                 isLoggedIn={loggedIn}
                 logOut={this.logOut}
+                exitGame={this.exitGameGame}
                 currentUser={currentUser}
                 currentGame={currentGame}
                 {...props}
