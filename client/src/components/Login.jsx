@@ -94,12 +94,12 @@ class Login extends React.Component {
                 </div>
 
                 <button
-                  className="button is-fullwidth"
+                  className="loginButton"
                   type="submit">
                   Login
                 </button>
                 <button
-                  className="button is-fullwidth"
+                  className="signUpButton"
                   type="button"
                   onClick={() => this.goToPath('/signup')}
                 >Sign Up
