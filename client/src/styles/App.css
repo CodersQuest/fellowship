@@ -77,6 +77,7 @@ canvas {
 .player {
   font-size: 1rem;
   font-weight: bold;
+  color: #c9ad34;
   margin: 2px;
 }
 
@@ -433,4 +434,5 @@ div::-webkit-scrollbar-thumb:hover {
 
 .rollSize {
   font-size: 1.4rem;
+  color: #eaeaea;
 }
