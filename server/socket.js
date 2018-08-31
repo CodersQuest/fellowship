@@ -21,7 +21,7 @@ module.exports = function(server, session) {
       if (userData) {
         socket.username = userData.username;
         socket.uid = userData._id;
-        socket.userImage = userData.userImage;
+        socket.userImage = userData.userImage || userAvatar;
         if (!players[socket.uid]) {
           socket.room = null;
           socket.isInGame = false;
