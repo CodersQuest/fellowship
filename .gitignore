@@ -10,6 +10,10 @@ bower_components
 npm-debug.log
 ## API KEYS ##
 
+#sensative config file data
+config
+configBAK
+
 #bundle
 .babelrc
 package-lock.json
